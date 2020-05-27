@@ -1,0 +1,616 @@
+---
+title: "Figure 1"
+output: bookdown::word_document2
+params:
+  run_name: ["mre-submission"]
+linkcolor: blue
+---
+
+## Introduction
+
+This script generates Figure 1 for the Coaseian Tuna paper. Figure 1 is a two panel figure: panel A shows the number of purse seine and longline vessels authorized to fish in the WCPFC convention area by flag state, and panel B shows the catch of bigeye tuna (2014) by those two gear types for each flag state.
+
+```{r setup, include=FALSE}
+# Spatial packages
+library(sf) # Most spatial wrangling
+library(mapview) # Happy shapefile viewing
+library(rmapshaper)
+
+# General wrangling and plotting
+library(tidyverse)
+library(ggimage)
+library(ggpubr)
+library(scales)
+library(countrycode)
+library(lubridate)
+library(readxl)
+library(grid)
+knitr::opts_chunk$set(fig.retina = 3, fig.height = 7, fig.width = 8, echo = FALSE,
+                      message = FALSE, warning = FALSE)
+
+### Specify map characteristics for making shapefiles -----------
+map_center <- 150
+map_lon_min <- map_center - 180
+map_lon_max <- map_center + 180
+map_lat_min <- -90
+map_lat_max <- 90
+
+### Catch Data Year (2017 is most recent available in the data) ---------
+year_of_interest <- 2014
+
+### Results directories ----------
+results_dir <- paste0(here::here("results", params$run_name))
+
+if (dir.exists(results_dir) == F) {
+  dir.create(results_dir, recursive = T)
+}
+
+pie_dir <- paste0(results_dir, "/country_pies")
+
+if (dir.exists(pie_dir) == F) {
+  dir.create(pie_dir, recursive = T)
+}
+
+# Plot settings and theme -------------
+title_size <- 12 # Plot titles (axis, legends, plot, etc) - 14 for paper, 20 for ppts
+text_size <- 12 # All other text (axis text, legend text, etc.) - 12 for paper, 18 for ppts
+
+simple_theme <- theme_bw() +
+  theme(
+    text = element_text(size = text_size),
+    title = element_text(size = title_size),
+    #plot.margin = unit(rep(10,4), units = "pt"),
+    legend.position = "bottom"
+  )
+
+theme_set(simple_theme)
+
+```
+
+## Shapefile wrangling
+
+This section describes the process of wrangling the shapefiles used to generate this figure. We use `gdal::ogr2ogr` to do much of the wrangling with the shell.
+
+Changes needed: 
+- Want extent of world and eez shapefiles to be from -30 to 330 degrees (centered at 150 degrees)
+
+### World EEZ boundaries
+
+We last downloaded the World EEZ shapefile (v10, 2018-02-21) on October 21, 2019 from Marineregions.org. This file is stored in /data/shapefiles/World_EEZ_v10_20180221/ as eez_v10.shp. Since it's quite a large file, we want to simplify it before working with it further. 
+
+We simplified the shapefile prior to importing into R using mapshaper.org. The shapefile was simplified using the Visvalingam/weighted area method (shape removal prevented) to 0.5% of the original points. 977 line intersections needed to be repaired, but 17 could not be repaired. The simplified version was then exported as a shapefile and stored in /data/shapefiles/World_EEZ_v10_20180221 as eez_v10_simple.shp.
+
+The remaining line intersections were repaired using QGIS and the resulting shapefile was exported to /data/shapefiles/World_EEZ_v10_20180221 as eez_v10_simple_fixed.shp.
+
+We then want to shift this shapefile so it is centered at 150 degrees. The following bash code uses gdal to split our shapefile, shift the coordinates, and then dissolve them back together. 
+
+```{r}
+# Set some variables that our bash script will be able to see
+Sys.setenv(map_lon_min = map_lon_min,
+           proj_directory = here::here(),
+           eez_shp_directory = here::here("data", "shapefiles", "World_EEZ_v10_20180221"),
+           eez_file_in = "eez_v10_simple_fixed.shp",
+           eez_file_out = "eez_v10_simple_30_330.shp",
+           world_shp_directory = here::here("data", "shapefiles", "ne_50m_admin_0_countries"),
+           world_file_in = "ne_50m_admin_0_countries.shp",
+           world_file_out = "ne_50m_admin_0_countries_30_330.shp")
+```
+
+```{bash, eval = F}
+cd $eez_shp_directory
+pwd
+ogr2ogr temp_part1.shp $eez_file_in -clipsrc -180 -90 $map_lon_min 90
+ogr2ogr temp_part2.shp $eez_file_in -clipsrc $map_lon_min -90 180 90
+ogr2ogr temp_part1_shifted.shp temp_part1.shp -dialect sqlite -sql "SELECT ShiftCoords(geometry,359.9999,0), mrgid FROM temp_part1"
+ogr2ogr eez_v10_30_330_temp.shp temp_part2.shp
+ogr2ogr -update -append eez_v10_30_330_temp.shp temp_part1_shifted.shp -nln eez_v10_30_330_temp
+ogr2ogr $eez_file_out eez_v10_30_330_temp.shp -dialect sqlite -sql "SELECT ST_Union(geometry), mrgid FROM eez_v10_30_330_temp GROUP BY mrgid"
+rm temp_part1.*
+rm temp_part2.*
+rm temp_part1_shifted.*
+rm eez_v10_30_330_temp.*
+cd $proj_directory
+```
+
+We can now read in our shifted EEZ file and match it back to the eez characteristics from the lookup table.
+
+```{r eez, message = F, include=FALSE}
+# Load simplified and shifted world EEZ shapefile
+eez <- read_sf(dsn = here::here("data", "shapefiles", "World_EEZ_v10_20180221"), layer = "eez_v10_simple_30_330") %>%
+  setNames(tolower(names(.)))
+# View
+# mapview(eez)
+
+# Import EEZ info table and join to geometry
+eez_lookup <- read_csv(here::here("data", "eez_lookup.csv"))
+eez <- eez %>%
+  left_join(eez_lookup, by = c("mrgid" = "eez_id"))
+
+eez_non_disputed <- eez %>%
+  dplyr::filter(eez_type == "200NM")
+```
+
+### World country boundaries
+
+We last downloaded the Admin 0 - countries shapefile (50m resolution) on October 21, 2019 from Natural Earth. This file is stored in /data/shapefiles/ne_50m_admin_0_countries/ as ne_50m_admin_0_countries.shp. 
+
+We want to shift this shapefile so that it is centered at 150 degrees. The following bash uses gdal to split our shapefile, shift coordinates, and then put them back together. 
+
+```{bash, eval = F}
+cd $world_shp_directory
+pwd
+ogr2ogr temp_part1.shp $world_file_in -clipsrc -180 -90 $map_lon_min 90
+ogr2ogr temp_part2.shp $world_file_in -clipsrc $map_lon_min -90 180 90
+ogr2ogr temp_part1_shifted.shp temp_part1.shp -dialect sqlite -sql "SELECT ShiftCoords(geometry,359.99999,0), admin FROM temp_part1"
+ogr2ogr ne_50m_admin_0_countries_30_330_temp.shp temp_part2.shp
+ogr2ogr -update -append ne_50m_admin_0_countries_30_330_temp.shp temp_part1_shifted.shp -nln ne_50m_admin_0_countries_30_330_temp
+ogr2ogr $world_file_out ne_50m_admin_0_countries_30_330_temp.shp -dialect sqlite -sql "SELECT ST_Union(geometry), admin FROM ne_50m_admin_0_countries_30_330_temp GROUP BY admin"
+rm temp_part1.*
+rm temp_part2.*
+rm temp_part1_shifted.*
+rm ne_50m_admin_0_countries_30_330_temp.*
+cd $proj_directory
+```
+
+Now let's load that file into R and take a look
+
+```{r world, message = F, warning = F, include = FALSE}
+# Load shifted world countries shapefile
+world <- read_sf(dsn = here::here("data", "shapefiles", "ne_50m_admin_0_countries"), layer = "ne_50m_admin_0_countries_30_330") %>%
+  setNames(tolower(names(.)))
+# View
+# mapview(world)
+
+# Add iso3 codes for easier matching
+world <- world %>%
+  mutate(admin_iso3 = case_when(admin == "Aland" ~ "ALA",
+                                admin == "Ashmore and Cartier Islands" ~ "AUS",
+                                admin == "eSwatini" ~ "SWZ",
+                                admin == "Indian Ocean Territories" ~ "IOT",
+                                admin == "Kosovo" ~ "RKS",
+                                admin == "Saint Martin" ~ "MAF",
+                                admin == "Siachen Glacier" ~ "IND",
+                                TRUE ~ countrycode(admin, "country.name", "iso3c")))
+```
+
+## Load and wrangle data
+
+We need the following pieces of data for this figure: 
+- Number of vessels by gear type authorized to fish in the WCPFC convention area by flag state (2014)
+- Total annual catch of BET in the WCPFC convention area by flag state and gear type (2014)
+
+For the first, we will use the WCPFC Record of Fishing Vessels (RFV). We last downloaded this file from https://www.wcpfc.int/record-fishing-vessel-database on October 22, 2019 as a CSV. This file is stored in /data/WCPFC_vessels/ as RFV_database_export_20191022.csv. 
+
+For the second, we will use the WCPFC Tuna Fishery Yearbook. We last downloaded the most recent version of the yearbook data (2017) from https://www.wcpfc.int/statistical-bulletins on October 22, 2019 as a folder of Excel files. These are stored in data/WCPFC_yearbook/. 
+
+### Number of vessels by flag and gear type
+
+```{r, message=F}
+# The WCPFC RFV list is supposidly "all the details that each Member and Cooperating Non-Member has provided to the WCPFC Secretariat of its vessels that are authorized to fish beyond its national jurisdiction within the Convention Area".
+# Load file
+vessels <- read_csv(here::here("data", "WCPFC_vessels", "RFV_database_export_20191022.csv")) %>%
+  setNames(tolower(names(.)))
+
+# Define gear types
+ll_methods <- c("Tuna longliner", "Longliner", "Freezer Longliner")
+ps_methods <- c("Tuna purse seiner", "Purse seiner")
+pl_methods <- c("Pole and line")
+cb_methods <- c("FISH CARRIER", "BUNKER")
+support_methods <- c("Support Vessel")
+other_methods <- c("Troller", "FISHERY RESEARCH VESSEL", "GILLNETTER", "Handliner", "LIFT NETTER", "SEINER")
+
+# Create simplified classifications
+vessels <- vessels %>%
+  mutate(vessel_type_new = case_when(`vessel type` %in% ll_methods ~ "LL",
+                                     `vessel type` %in% ps_methods ~ "PS",
+                                     `vessel type` %in% pl_methods ~ "PL",
+                                     TRUE ~ "OTH"),
+         flag_iso3 = countrycode(flag, "country.name", "iso3c")) %>%
+  dplyr::select(flag_iso3, vessel_type = vessel_type_new, vid)
+
+# Summarize by flag and gear type - extract LL and PS for now
+vessels_summary <- vessels %>%
+  group_by(flag_iso3, vessel_type) %>%
+  summarise(vessels = n_distinct(vid)) %>%
+  dplyr::filter(vessel_type %in% c("LL", "PS"))
+
+```
+
+### Catch of BET by flag and gear type
+
+```{r, message=F, warning=F}
+# Since the RFV list supposidly only contains vessels authorized to fish beyond their national jurisdiction within the convention area, we should also pull catches from within the WCPFC convention area. Note, vessels contained on the RFV list probably also can fish elsewhere in the Pacific AND within their national jurisdictions. 
+
+# Load file
+catch <- readxl::read_xlsx(here::here("data", "WCPFC_yearbook","YEARBOOK_2017_XLS_0", "yb_wcp_ca.xlsx")) %>%
+  dplyr::filter(yy == year_of_interest)
+
+# Load some lookup files because they couldn't include this information in the yearbook because that would be too easy
+# WCPFC fleet definitions
+fleet_lookup <- read_csv(here::here("data", "fleet_lookup.csv")) %>%
+  mutate(fleet_name_new = NA) %>% #case_when(fleet %in% c("AF", "AU", "CS", "ID", "JP", "PH") ~ "Domestic")) %>%
+  dplyr::select(fleet, fleet_name = fleet_name_new)
+
+# WCPFC gear short codes
+gear_lookup <- read_csv(here::here("data", "gear_lookup.csv")) %>%
+  mutate(gear_type_new = case_when(gear_name == "Longline" ~ "LL",
+                              gear_name == "Purse Seine" ~ "PS",
+                              gear_name == "Pole-and-line" ~ "PL",
+                              TRUE ~ "OTH")) %>%
+  dplyr::select(gear, gear_type = gear_type_new)
+
+# WCPFC flag codes (NOT ALWAYS FLAG STATES)
+flag_lookup <- read_csv(here::here("data", "flag_lookup.csv")) %>%
+  mutate(flag_new = str_replace(flag_name, ":.+", ""),
+         flag_name_new = str_replace(flag_name, ".+:", ""),
+         flag_iso3 = case_when(flag_new == "EP" ~ "USA",
+                               TRUE ~ countrycode(flag_name_new, "country.name", "iso3c"))) %>%
+  dplyr::select(flag = flag_new, flag_iso3)
+
+# Do some wrangling on our yearbook data
+catch <- catch %>%
+  gather(species_units, catch, 5:13) %>%
+  mutate(species = str_replace(species_units, "_.+", "")) %>%
+  left_join(fleet_lookup, by = "fleet") %>%
+  left_join(gear_lookup, by = "gear") %>%
+  left_join(flag_lookup, by = "flag")
+
+# Now filter for BET and do some more wrangling to make our groupings match!
+
+catch_bet <- catch %>%
+  dplyr::filter(species == "bet") %>%
+  dplyr::filter(!is.na(flag_iso3)) %>%
+  mutate(flag_name = countrycode(flag_iso3, "iso3c", "country.name"))
+
+# Get bigeye catch and aggregate by flag and gear
+catch_summary<- catch_bet %>%
+  group_by(flag_iso3, flag_name, fleet_name, gear_type) %>%
+  summarize(catch = sum(catch, na.rm = T))
+
+# Correct indonesia fleets (no DW fleet)
+#catch_summary$fleet_name[catch_summary$flag_iso3 == "IDN"] <- "Domestic"
+```
+
+## Make catch plot
+
+```{r}
+# Get catch data ready for plotting
+catch_plot_dat <- catch_summary %>%
+  dplyr::filter(gear_type %in% c("LL", "PS")) %>%
+  spread(gear_type, catch)
+catch_plot_dat$LL[is.na(catch_plot_dat$LL)] <- 0
+catch_plot_dat$PS[is.na(catch_plot_dat$PS)] <- 0
+catch_plot_dat$flag_name[catch_plot_dat$flag_iso3 == "FSM"] <- "Fed. States of Micronesia"
+
+# Order 
+catch_plot_dat_ordered <- catch_plot_dat %>%
+  mutate(diff = LL - PS) %>%
+  gather(gear_type, catch, c("LL", "PS")) %>%
+  arrange(flag_iso3) %>%
+  dplyr::filter(diff != 0) %>%
+  mutate(gear_long = case_when(gear_type == "LL" ~ "Longline", 
+                               gear_type == "PS" ~ "Purse Seine"),
+         flag_name_long = case_when(!is.na(fleet_name) ~ paste0(flag_name, " (", fleet_name, ")"),
+                               TRUE ~ flag_name)) %>%
+  transform(name = reorder(flag_name_long, -diff))
+
+# States minus the US
+# Plot with zoom in
+# library(ggforce)
+# bet_catch_plot_w_zoom <- ggplot(catch_plot_dat_ordered, aes(x = as.numeric(name), y = catch, fill = gear_long))+
+#   geom_bar(stat = "identity", position = "dodge")+
+#   theme_bw()+
+#   theme(panel.border = element_rect(fill = NA, color = "black", size = 1, linetype = "solid"),
+#         axis.text.x = element_text(angle = 45, hjust = 1),
+#         axis.title.x = element_blank(),
+#         panel.grid.major.x = element_blank(),
+#         panel.grid.minor = element_blank(),
+#         plot.margin=unit(c(2,2,2,8),"mm"))+
+#   scale_y_continuous(expand = c(0, 0), name = "BET Catch (mt, 2014)", labels = comma)+
+#   facet_zoom(xlim = c(11.85, 19.15), ylim = c(0, 500), zoom.size = 0.5, horizontal = FALSE, show.area = F) +
+#   scale_x_continuous(
+#     breaks = 1:length(levels(catch_plot_dat_ordered$name)),
+#     label = levels(catch_plot_dat_ordered$name)
+#   )+
+#   scale_fill_manual(name = "Gear Type", values = c("#330033", "#cc0052"))+
+#   labs(title = "B)")
+
+# Custom color theme for LL and PS 
+vesselPalette <- c("#330033", "#cc0052")
+names(vesselPalette) <- c("Longline", "Purse Seine")
+
+# Plot with no zoom
+bet_catch_plot <- ggplot(catch_plot_dat_ordered, aes(x = name, y = catch, fill = gear_long))+
+  geom_bar(stat = "identity", position = "dodge")+
+  simple_theme+
+  theme(panel.border = element_rect(fill = NA, color = "black", size = 1, linetype = "solid"),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.x = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.margin=unit(c(2,2,2,2),"mm"))+
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 16000), name = "BET Catch (mt, 2014)", labels = comma)+
+  scale_fill_manual(name = "", values = vesselPalette)+
+  labs(title = "B) BET Catch by Flag State in the WCPFC Convention Area")
+
+bet_catch_plot
+
+ggsave(paste0(results_dir, "/BET_catch_plot.png"), bet_catch_plot, width = 7.5, height = 5, units = "in")
+```
+
+## Make map with numbers of vessels on the authorized vessel 
+
+```{r}
+# Get vessel data ready for plotting
+vessel_plot_dat <- vessels_summary %>%
+  spread(vessel_type, vessels)
+vessel_plot_dat$LL[is.na(vessel_plot_dat$LL)] <- 0
+vessel_plot_dat$PS[is.na(vessel_plot_dat$PS)] <- 0
+
+# Do some joining of our eez shapefile so it will highlight correctly
+eez_for_matching <- eez_non_disputed %>%
+  group_by(territory1_iso3) %>%
+  summarize(geometry = st_union(geometry)) %>%
+  ungroup()
+
+# Match vessel entries to eez shapefiles
+vessel_plot_dat_eez <- vessel_plot_dat %>%
+  left_join(eez_for_matching, by = c("flag_iso3" = "territory1_iso3")) %>%
+  gather(gear_type, vessels, c(LL, PS))
+
+# Do some joining of our country shapefile so it will highlight correctly
+world_for_matching <- world %>%
+  group_by(admin_iso3) %>%
+  summarize(geometry = st_union(geometry))%>%
+  ungroup()
+
+# Get centroids of each country
+world_centroids <- st_centroid(world_for_matching, of_largest_polygon = TRUE)
+world_centroids_df <- world_centroids %>%
+  bind_cols(as.tibble(st_coordinates(world_centroids))) %>%
+  rename(lat_cen = Y,
+         lon_cen = X)
+st_geometry(world_centroids_df) <- NULL
+
+# Match vessel entries to world shapefiles
+vessel_plot_dat_world <- vessel_plot_dat %>%
+  left_join(world_for_matching, by = c("flag_iso3" = "admin_iso3")) %>%
+  gather(gear_type, vessels, c(LL, PS)) %>%
+  group_by(flag_iso3) %>%
+  mutate(total_vessels = sum(unique(vessels))) %>%
+  ungroup() %>%
+  mutate(weight_vessels = (log(total_vessels)/max(log(total_vessels))), 
+         move = weight_vessels * 35) %>%
+  left_join(world_centroids_df, by = c("flag_iso3" = "admin_iso3")) %>%
+  mutate(name = countrycode(flag_iso3, "iso3c", "country.name"))
+vessel_plot_dat_world$name[vessel_plot_dat_world$flag_iso3 == "FSM"] <- "Fed. States of Micronesia"
+
+# Make manual corrections to center coordinates here
+vessel_plot_dat_world$lon_cen[vessel_plot_dat_world$flag_iso3 == "TUV"] <- 177.6493
+vessel_plot_dat_world$lat_cen[vessel_plot_dat_world$flag_iso3 == "TUV"] <- -7.1095
+
+# Create coordinates for where the pie chart should actually go - this was done manually and is stored in a CSV
+pie_coords <- read_csv(here::here("data", "WCPFC_vessels", "pie_chart_coordinates.csv")) %>%
+  dplyr::select(-name, -lon_cen, -lat_cen)
+
+# Add pie coordinates
+vessel_plot_dat_world <- vessel_plot_dat_world %>%
+  left_join(pie_coords, by = c("flag_iso3" = "iso3"))
+
+```
+
+Make pie charts 
+
+```{r}
+# Split country-level vessel data into a list
+vessel_plot_dat_world_list <- vessel_plot_dat_world %>%
+  select(name, lat_cen, lon_cen, pie_lat, pie_lon, gear_type, vessels, weight_vessels, total_vessels) %>%
+  mutate(gear_type_long = ifelse(gear_type == "LL", "Longline", "Purse Seine"),
+         gear_type_factor = as.factor(gear_type_long)) %>%
+  group_by(name, gear_type_factor) %>%
+  summarize(lat_cen = unique(lat_cen), 
+            lon_cen = unique(lon_cen), 
+            pie_lat = unique(pie_lat),
+            pie_lon = unique(pie_lon),
+            vessels = unique(vessels), 
+            total_vessels = unique(total_vessels)) %>%
+  split(., .$name)
+
+# Create a pie-plot for each country and store in a list 
+pies <- map(vessel_plot_dat_world_list, function(dat){
+  
+  ggplot(dat, aes(x=1, vessels, fill=gear_type_factor)) +
+    geom_bar(stat="identity", width=1, alpha = 1) +
+    coord_polar(theta="y") +
+    scale_fill_manual(values = vesselPalette[names(vesselPalette) %in% dat$gear_type_factor],
+                      guide = "none")+
+    labs(x = NULL, y = NULL, fill = NULL)+
+    theme(legend.position="none") + 
+    ggpubr::theme_transparent() +
+    theme(plot.margin=unit(c(0,0,0,0),"mm"))
+  
+  })
+
+# Save pie charts by name
+map2(names(pies), pies, function(name, plot){
+  ggsave(filename=paste0(pie_dir, "/", name,".png"), 
+         plot=plot, 
+         bg = "transparent", 
+         width = 6, 
+         height = 6, 
+         units = "in")
+  })
+
+```
+
+Now make map
+
+```{r}
+# Make base layers
+eez_layer <- geom_sf(data = eez, fill = "grey60", color = "grey40", size = 0.25, alpha = 0.4)
+
+world_layer <- geom_sf(data = world, fill = "grey60", color = "grey40", size = 0.25)
+
+# Set theme elements for map
+map_theme <- theme_bw() +
+  theme(panel.border = element_rect(fill = NA, color = "black", size = 1, linetype = "solid"),
+        panel.grid.major = element_line(colour = "white"),
+        axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "right",
+        legend.spacing = unit(0.1, "cm"),
+        legend.title = element_text(size = 14),
+        legend.text = element_text(size = 14))
+        #plot.margin = unit(c(0.5, 0.5 , 0.5 , 0.5), "cm"))
+
+# Make map 
+map <- ggplot()+
+  eez_layer +
+  geom_sf(data = vessel_plot_dat_eez, aes(geometry = geometry), fill = "#669999", color = "#476b6b", alpha = 0.4, size = 0.15)+
+  world_layer +
+  geom_sf(data = vessel_plot_dat_world, aes(geometry = geometry), fill = "#669999", color = "#476b6b", alpha = 1, size = 0.15)+
+  map_theme +
+  coord_sf(xlim = c(-13,313), ylim = c(-70, 80)) # manual adjustment of spacing for SF
+
+map
+
+# Save
+ggsave(paste0(results_dir, "/world_map.png"), map, width = 7.5, height = 4, units = "in")
+```
+
+Add pies
+
+```{r}
+# Put pies into a list with their coordinates on the map
+pie_tibble <- vessel_plot_dat_world %>%
+  group_by(name) %>%
+  summarize(lon_cen = unique(lon_cen),
+            lat_cen = unique(lat_cen),
+            pie_lon = unique(pie_lon),
+            pie_lat = unique(pie_lat),
+            tot_vessels = unique(total_vessels)) %>%  
+  mutate(pie = pies) %>%
+  st_as_sf(coords = c("pie_lon", "pie_lat"), crs = 4326)
+
+pie_tibble_fix <- cbind(pie_tibble, st_coordinates(pie_tibble)) %>%
+  mutate(hw = sqrt(tot_vessels * 1.5),
+         hw_real = convertUnit(unit(hw, "pt"), "mm", valueOnly=TRUE)) # have to futz manually with this a bit to get them sized how we want them to be
+
+# Get lines
+lines_for_map <- vessel_plot_dat_world %>%
+  group_by(flag_iso3) %>%
+  summarize(lon_cen = unique(lon_cen),
+            lat_cen = unique(lat_cen),
+            pie_lon = unique(pie_lon),
+            pie_lat = unique(pie_lat)) %>%
+  ungroup()
+
+kiribati_pheonix_islands <- c(lon_cen = 187.5,
+                              lat_cen = -3,
+                              pie_lon = lines_for_map$pie_lon[lines_for_map$flag_iso3 == "KIR"], 
+                              pie_lat = lines_for_map$pie_lat[lines_for_map$flag_iso3 == "KIR"])
+kiribati_line_islands <- c(lon_cen = 205, 
+                           lat_cen = -5, 
+                           pie_lon = lines_for_map$pie_lon[lines_for_map$flag_iso3 == "KIR"], 
+                           pie_lat = lines_for_map$pie_lat[lines_for_map$flag_iso3 == "KIR"])
+kiribati_gilbert_islands <- c(lon_cen = 173, 
+                              lat_cen = -1, 
+                              pie_lon = lines_for_map$pie_lon[lines_for_map$flag_iso3 == "KIR"], 
+                              pie_lat = lines_for_map$pie_lat[lines_for_map$flag_iso3 == "KIR"])
+
+lines_for_map <- lines_for_map %>%
+  dplyr::filter(!(flag_iso3 %in% c("KIR", "TUV", "NIC", "TON"))) %>%
+  dplyr::select(-flag_iso3) %>%
+  bind_rows(kiribati_pheonix_islands) %>%
+  bind_rows(kiribati_gilbert_islands) %>%
+  bind_rows(kiribati_line_islands)
+
+# Add pies
+map_with_pies <- map +
+  geom_segment(data = lines_for_map, aes(x = lon_cen, xend = pie_lon, y = lat_cen, yend = pie_lat), size = 0.25) +
+  # geom_point(data = lines_for_map, aes(x = lon_cen, y = lat_cen), size = 0.5, color = "black")+
+  geom_subview(data = pie_tibble_fix, 
+               aes(x = X, y = Y, subview = pie, 
+                   width = hw, 
+                   height = hw)) +
+  theme(plot.margin=unit(c(2,2,2,2),"mm"),
+        text = element_text(size = text_size),
+        title = element_text(size = text_size))+
+  labs(title = "A) Vessels by Flag State on the WCPFC Record of Fishing Vessels")
+
+map_with_pies
+
+ggsave(paste0(results_dir, "/world_map_with_pies.png"), map_with_pies, width = 7.5, height = 4, units = "in")
+```
+
+Now we put them together
+
+```{r}
+combined_plot <- ggarrange(map_with_pies, bet_catch_plot, ncol=1, nrow=2, align = "v", heights = c(1,1))
+
+combined_plot # looks weird here but saves fine
+
+ggsave(paste0(results_dir, "/fig_1.png"), combined_plot, width = 7.5, height = 7.5, units = "in")
+```
+
+
+
+# Rest of figures
+
+
+```{r load-figs}
+
+load(file.path(results_dir,"figures.Rdata"))
+
+```
+
+## Table 1
+
+
+```{r}
+
+table_1 <- read_csv(file.path(results_dir,"figure-table.csv"))
+
+knitr::kable(table_1, caption = "NPV of revenue benefits (increases in bigeye catch) and revenue costs (losses in skipjack catch) and equilibrium SSB/SSB~MSY~ resulting from incremental increases in percent of VDS FAD days removed")
+
+```
+
+
+## Figure 1
+
+```{r fig-1, fig.cap = "Panel A) shows the breakdown of vessels listed on the WCPFC Record of Fishing Vessels by gear type for each flag state. Only longline and purse seine vessels are shown, and the size of the pie is representative of each flag state’s total number of vessels of those two gear types (as of October 19, 2019). Panel B) shows the breakdown of bigeye catches by gear type for each flag state (2014). Only catches by longline and purse seine vessels are shown, and the bars are ordered based on the difference between longline and purse seine catches."}
+combined_plot
+
+ggsave(file.path(results_dir, "fig_1.tiff"), combined_plot, width = 7.5, height = 7.5, units = "in")
+```
+
+
+## Figure 2
+
+```{r fig-2, fig.cap= "Median observed ratios of bigeye (BET) and skipjack (SKJ) caught by FAD associated purse seine fishing  by A) latitude/longitude and B) month (2000 - 2014)."}
+fig_2
+
+ggsave(file.path(results_dir, "fig_3.tiff"), fig_2, width = 7, height = 6, units = "in")
+```
+
+
+
+## Figure 3
+
+```{r fig-3, fig.cap=  "Median predicted ratios of reduction in bigeye (BET) and skipjack (SKJ) CPUE resulting from moving from FAD to free-school purse seine fishing  by A) latitude/longitude and B) month (2000 - 2014)."}
+fig_3
+ggsave(file.path(results_dir, "fig_4.tiff"), fig_3, width = 7, height = 6, units = "in")
+
+```
+
+## Figure 4
+
+
+```{r fig-4, fig.cap=  "Projected Economic Tradeoffs Associated with Conservation Outcomes Achieved as a Function of Different FAD removals. The X-axis in all panels shows projected equilibrium SSB/SSB~MSY~ as a function of removing increasing percentages of FADs from the WCPO (color scale of points).  Fisheries management generally has an objective of SSB/SSB~MSY~ values near 1. On the y-axes, Panel (A) shows the projected net present value of the bigeye surplus (assuming a discount rate of 10%). Panel (B) shows the estimated % tax on sashimi grade bigeye in Japanese markets that would be required to offset losses in the skipjack revenues as FAD use is reduced and thereby achieve a benefit-cost ratio of 1.  Panel (C) shows alternatively, the estimated price premium on canned and labeled free-school skipjack  to achieve the same tradeoff balance.  Panel (D) shows the estimated associated annual annuity payments per FAD day required for compensating the loss in skipjack harvest as FAD reductions are increased for different of SSB/SSB~MSY~ objectives."}
+fig_4
+
+ggsave(file.path(results_dir, "fig_5.tiff"), fig_4, width = 7, height = 6, units = "in")
+
+
+```

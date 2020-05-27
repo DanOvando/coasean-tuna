@@ -1,0 +1,66 @@
+---
+title: "Check catches"
+output: html_notebook
+---
+
+Check whether your catches are matching up correctly with the catches from the stock assessment, as defined by the outputs of `TNC-Tuna`
+
+
+```{r}
+
+
+rm(list = ls())
+library(tidyverse)
+library(AER)
+library(car)
+library(broom)
+library(tmap)
+library(readr)
+library(scales)
+library(ggalt)
+library(plotly)
+library(leaflet)
+library(mgcv)
+library(pbapply)
+library(RobustRegression)
+library(stringr)
+library(parallel)
+library(ggthemr)
+library(rstanarm)
+library(ggforce)
+library(viridis)
+
+
+demons::load_functions()
+# Load Data ---------------------------------------------------------------
+
+run_name <-  '2.1'
+
+run_dir <-  paste('../results/', run_name, '/', sep = '')
+
+load(paste(run_dir, 'coaseian_fad_bargain_results.Rdata', sep = ''))
+
+stock_assessment <- fitted_bet$catches_fleet %>% 
+  filter(gear_type != 'LL') %>% 
+  mutate(year = quarter  %>% floor()) %>% 
+  group_by(year,gear_type) %>% 
+  summarise(catch = sum(catch)) %>% 
+  mutate(fad = str_detect(gear_type, 'FAD')) %>% 
+  select(-gear_type, year, fad, catch) %>% 
+  mutate(source = 'tnc')
+
+coaseian_tuna <- purse_data %>% 
+  filter(species == 'bet', year <=2014) %>% 
+  mutate(fad = str_detect(fad,'(una)') == F) %>% 
+  group_by(year, fad) %>% 
+    summarise(catch = sum(catch)) %>% 
+  mutate(source = 'coaseian')
+
+stock_assessment %>% 
+  bind_rows(coaseian_tuna) %>% 
+  ggplot(aes(year,catch, color = source)) + 
+  geom_line() + 
+  facet_grid(fad~., scales = 'free_y', labeller = label_both)
+
+```
+

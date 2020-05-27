@@ -1,0 +1,584 @@
+---
+title: ""
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning=FALSE,message=FALSE)
+```
+
+
+```{r}
+rm(list = ls())
+
+
+library(broom)
+library(caret)
+
+library(dplyr)
+library(tidyr)
+library(plyr)
+library(plyr)
+library(tidyverse)
+library(stringr)
+library(maps)
+library(ggmap)
+library(rgeos)
+library(maptools)
+library(raster)
+library(gridExtra)
+library(rgdal)
+library(foreign)
+library(scales)
+library(stringr)
+library(maps)
+library(ggmap)
+library(hrbrthemes)
+library(maptools)
+library(raster)
+library(gridExtra)
+library(rgdal)
+library(tmap)
+source("../functions/MakeBoundingBoxShapefile.R")
+
+load("../results/random-forest/coaseian_fad_bargain_results.Rdata")
+
+font_size = 18
+
+font_family = 'Helvetica'
+
+hrbrthemes::update_geom_font_defaults()
+
+paper_theme <-  theme_ipsum(base_size = font_size,
+                          strip_text_size = 40)
+
+theme_set(paper_theme)
+
+boxdir<-"/Users/lennonthomas/Box Sync/coaseian-tuna-results"
+```
+
+```{r define bet ratio}
+flat_reform$bet_ratio<-flat_reform$bet_saved/flat_reform$skj_bought
+```
+
+
+###Explore BET Ratio
+
+```{r monthly_med_betratio_plot}
+m_summary<-flat_reform %>%
+  dplyr::group_by(month) %>%
+  dplyr:: summarise(b_average=mean(bet_ratio,na.rm=TRUE),
+             b_med=median(bet_ratio,na.rm=TRUE),
+             b_total=sum(bet_ratio)) %>%
+  ungroup() %>%
+  gather('metric','values',dplyr::contains("b_"))%>%
+  filter(metric=="b_med")
+
+m_summary$month<-as.factor(m_summary$month)
+
+ggplot(m_summary,aes(x=month,y=values),fill=metric) +
+  geom_bar (stat = 'identity') +
+  theme_light() +
+  xlab("Month")+
+  ylab("Median BET ratio")
+ # scale_y_continuous(expand = c(0,0))
+ggsave(paste(boxdir,"/random-forest/monthly_med_betratio_plot.png",sep=""))
+```
+
+
+```{r fad_med_betratio_plot}
+f_summary<-flat_reform %>%
+  dplyr::group_by(fad) %>%
+  dplyr:: summarise(b_average=mean(bet_ratio,na.rm=TRUE),
+             b_med=median(bet_ratio,na.rm=TRUE),
+             b_total=sum(bet_ratio)) %>%
+  ungroup() %>%
+  gather('metric','values',dplyr::contains("b_"))%>%
+  filter(metric=="b_med")
+
+ggplot(f_summary,aes(x=fad,y=values)) +
+  geom_bar (stat = 'identity') +
+  theme_light() +
+  xlab("fad")+
+  ylab("Median bet_ratio")+
+  #scale_y_continuous(expand=c(0,0))
+ggsave(paste(boxdir,"/random-forest/fad_med_betratio_plot.png",sep=""))
+```
+
+
+
+
+```{r eez_med_betratio_plot}
+e_summary<-flat_reform %>%
+  dplyr::group_by(eez) %>%
+  dplyr:: summarise(b_average=mean(bet_ratio,na.rm=TRUE),
+             b_med=median(bet_ratio,na.rm=TRUE),
+             b_total=sum(bet_ratio)) %>%
+  ungroup() %>%
+  gather('metric','values',dplyr::contains("b_"))%>%
+  filter(metric=="b_med")
+
+ggplot(e_summary,aes(x=eez,y=values)) +
+  geom_bar (stat = 'identity') +
+  theme_light() +
+  xlab("EEZ") +
+  ylab("Median BET ratio") +
+  #theme (axis.text = element_text(angle=90, size=8), axis.title = element_text(size=14, face ="bold")) +
+  coord_flip()
+ # scale_y_continuous(expand=c(0,0))
+
+ggsave(paste(boxdir,"/random-forest/eez_med_betratio_plot.png",sep=""))
+
+```
+
+
+
+```{r load map data,message=FALSE}
+### Load shapefile and set up spatial data ###
+
+flat_reform$lon<-ifelse(flat_reform$lon <0, flat_reform$lon+360, flat_reform$lon)
+
+remake_coord <- F
+if(remake_coord == T){
+  
+coordinates <-flat_reform %>%
+  dplyr::select(lat, lon)
+
+boxes <- coordinates %>%
+  mutate(latitude_north = lat + 5, 
+         latitude_south = lat, # latitude listed in data is the south-west corner of a 5 x 5 grid
+         longitude_west = lon, 
+         longitude_east = lon + 5)
+
+### Turn into shapefile of boxes ###
+
+  MakeBoundingBoxShapefile(path = '../data', 
+                           data = boxes,
+                           file_name = 'lat_lon_5deg_360_results')
+}
+
+
+
+
+lat_lon <- readOGR(dsn = '../data/lat_lon_5deg_360_results', layer = "lat_lon_5deg_360_results")
+
+lat_lon@data$id <- rownames(lat_lon@data)
+lat_lon_boxes <- fortify(lat_lon, region = 'id') %>%
+  dplyr::mutate(order_short = order %% 5, 
+                lon_center_one = ifelse(order_short == 1, long + 2.5, NA),
+                lat_center_one = ifelse(order_short == 1, lat - 2.5, NA)) %>%
+  ungroup() %>%
+  dplyr::group_by(id) %>%
+  dplyr::mutate(lon_center = max(lon_center_one, na.rm = T),
+                lat_center = max(lat_center_one, na.rm = T)) %>%
+  ungroup() %>%
+  dplyr::select(long, lat, order, hole, piece, id, group, lon_center, lat_center)
+
+
+
+# load map
+
+require(maps)
+world <- map_data("world2")
+map_layer <- geom_polygon(data = world, aes(x = long, y = lat, group = group), fill = "grey60", color = "grey40", size = 0.25)
+
+# Set theme elements for map
+map_theme <- theme_bw() + 
+  theme(panel.border = element_rect(fill = NA, color = "black", size = 1, linetype = "solid"),
+        #axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "bottom",
+        legend.spacing = unit(-0.1, "cm"),
+        legend.title = element_text(size = 14, face = "bold", hjust = 20),
+        legend.text = element_text(size = 14),
+        plot.margin = unit(c(0.5, 0.5 , 0.5 , 0.5), "cm"))
+
+flat_reform$lon<-ifelse(flat_reform$lon <0, flat_reform$lon+360, flat_reform$lon)
+
+
+```
+
+```{r data transformation}
+
+min(flat_reform$bet_ratio)
+flat_reform$transformed<-log(flat_reform$bet_ratio)
+```
+
+
+
+
+
+```{r mean_monthly_spatial_betratio_plot}
+
+total_summary<- flat_reform %>%
+  dplyr::group_by (lon,lat,month) %>%
+  dplyr::summarise(total = sum(transformed,na.rm = TRUE),
+                   median = median(transformed,na.rm = TRUE),
+                   mean = mean(transformed,na.rm = TRUE),
+                   max= max(transformed,na.rm = TRUE))%>%
+  ungroup() %>%
+  dplyr::mutate( lat_center = lat + 2.5,
+                 lon_center = lon + 2.5
+                 )
+
+combine_latlong <- dplyr::left_join(total_summary, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+
+
+month_map <- ggplot(combine_latlong) +
+  aes(x = long, y = lat.y, group = group, fill = (median)) +
+  geom_polygon(color = "grey90", size = 0.25)+
+  #scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+  scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+  coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+  labs(x = "Longitude", y = "Latitude")+
+  scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = "log(BET Ratio)"),
+  #                     breaks=log_breaks(n=5,base=10),
+                      #limits = c(low_limit, up_limit),
+                      # values = c(0,.1,.3,.5,.7,.8,.9,.95,1),
+                        #breaks = c(-9000,-4000,-3000,-2000,-1000,-500,0),
+                       #            low_limit+0.8*low_limit, 
+                        #           low_limit+0.6*low_limit, 
+                         #          low_limit+0.4*low_limit, 
+                          #         low_limit+0.2*low_limit, 
+                           #        up_limit),
+                       # labels = c("0%",
+                       #            "10%",
+                       #            "20%",
+                       #            "30%",
+                       #            "40%",
+                       #            "50%"),
+                       type = "div",
+                       palette = "RdBu",
+                       direction = -1,
+                       na.value = NA) +
+  geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5)+
+  map_layer +
+  map_theme +
+  facet_wrap(~month)
+
+plot(month_map)
+ggsave(paste(boxdir,"/random-forest/median_monthly_spatial_betratio_plot.png",sep=""),height = 9, width =12, units = "in")
+```
+
+
+
+```{r FAD mean_fad_spatial_betratio_plot}
+
+total_summary<- flat_reform %>%
+  dplyr::group_by (lon,lat,fad) %>%
+  dplyr::summarise(total = sum(transformed,na.rm = TRUE),
+                   median = median(transformed,na.rm = TRUE),
+                   mean = mean(transformed,na.rm = TRUE),
+                   max= max(transformed,na.rm = TRUE))%>%
+  ungroup() %>%
+  dplyr::mutate( lat_center = lat + 2.5,
+                 lon_center = lon + 2.5
+                 )
+
+combine_latlong <- dplyr::left_join(total_summary, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+
+
+fad_map <- ggplot(combine_latlong) +
+  aes(x = long, y = lat.y, group = group, fill = (median)) +
+  geom_polygon(color = "grey90", size = 0.25)+
+  #scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+  scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+  coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+  labs(x = "Longitude", y = "Latitude")+
+  scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title =  "log(BET Ratio)"),
+                   #    limits = c(low_limit, up_limit),
+                      # values = c(-4000,-3000,-2000,-1500,-1000,-500,0,90),
+                      #  breaks = c(low_limit, 
+                       #            low_limit+0.8*low_limit, 
+                        #           low_limit+0.6*low_limit, 
+                         #          low_limit+0.4*low_limit, 
+                          #         low_limit+0.2*low_limit, 
+                           #        up_limit),
+                       # labels = c("0%",
+                       #            "10%",
+                       #            "20%",
+                       #            "30%",
+                       #            "40%",
+                       #            "50%"),
+                       type = "div",
+                       palette = "RdBu",
+                       direction = -1,
+                       na.value = NA) +
+  geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5)+
+  map_layer +
+  map_theme +
+  facet_wrap(~fad)
+
+plot(fad_map)
+ggsave(paste(boxdir,"/random-forest/median_fad_spatial_betratio_plot.png",sep=""),height = 8, width = 8, units = "in")
+```
+
+
+
+```{r mean_AFAD_spatial_betratio_plot}
+total_summary<- flat_reform %>%
+  dplyr::group_by (lon,lat,fad,month) %>%
+  dplyr::summarise(total = sum(transformed,na.rm = TRUE),
+                   median = median(transformed,na.rm = TRUE),
+                   mean = mean(transformed,na.rm = TRUE),
+                   max= max(transformed,na.rm = TRUE))%>%
+  ungroup() %>%
+  dplyr::mutate( lat_center = lat + 2.5,
+                 lon_center = lon + 2.5
+                 ) %>%
+  filter(fad=="afad")
+
+combine_latlong <- dplyr::left_join(total_summary, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+
+
+afad_map <- ggplot(combine_latlong) +
+  aes(x = long, y = lat.y, group = group, fill = (median)) +
+  geom_polygon(color = "grey90", size = 0.25)+
+  scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+  scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+  coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+  labs(x = "Longitude", y = "Latitude")+
+  ggtitle("AFAD") +
+  scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = "log(BET Ratio)"),
+                     #  limits = c(low_limit, up_limit),
+                      # values = c(-4000,-3000,-2000,-1500,-1000,-500,0,90),
+                      #  breaks = c(low_limit, 
+                       #            low_limit+0.8*low_limit, 
+                        #           low_limit+0.6*low_limit, 
+                         #          low_limit+0.4*low_limit, 
+                          #         low_limit+0.2*low_limit, 
+                           #        up_limit),
+                       # labels = c("0%",
+                       #            "10%",
+                       #            "20%",
+                       #            "30%",
+                       #            "40%",
+                       #            "50%"),
+                       type = "div",
+                       palette = "RdBu",
+                       direction = -1,
+                       na.value = NA) +
+  geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5)+
+  map_layer +
+  map_theme +
+  facet_wrap(~month)
+
+plot(afad_map)
+ggsave(paste(boxdir,"/random-forest/median_AFAD_spatial_betratio_plot.png",sep=""),height = 9, width =12, units = "in")
+```
+
+
+```{r  mean_LOG_spatial_betratio_plot}
+
+total_summary<- flat_reform %>%
+  dplyr::group_by (lon,lat,fad,month) %>%
+  dplyr::summarise(total = sum(transformed,na.rm = TRUE),
+                   median = median(transformed,na.rm = TRUE),
+                   mean = mean(transformed,na.rm = TRUE),
+                   max= max(transformed,na.rm = TRUE))%>%
+  ungroup() %>%
+  dplyr::mutate( lat_center = lat + 2.5,
+                 lon_center = lon + 2.5) %>%
+  filter(fad=="log")
+
+combine_latlong <- dplyr::left_join(total_summary, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+
+
+log_map <- ggplot(combine_latlong) +
+  aes(x = long, y = lat.y, group = group, fill = (median)) +
+  geom_polygon(color = "grey90", size = 0.25) +
+  #scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200)) +
+  scale_y_continuous(breaks = c(-40, -20, 0, 20, 40)) +
+  coord_cartesian(xlim = c(90,230), ylim = c(-40, 50)) +
+  labs(x = "Longitude", y = "Latitude")+
+  ggtitle ("LOG") +
+  scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = "log(BET Ratio)"),
+                   #    limits = c(low_limit, up_limit),
+                      # values = c(-4000,-3000,-2000,-1500,-1000,-500,0,90),
+                      #  breaks = c(low_limit, 
+                       #            low_limit+0.8*low_limit, 
+                        #           low_limit+0.6*low_limit, 
+                         #          low_limit+0.4*low_limit, 
+                          #         low_limit+0.2*low_limit, 
+                           #        up_limit),
+                       # labels = c("0%",
+                       #            "10%",
+                       #            "20%",
+                       #            "30%",
+                       #            "40%",
+                       #            "50%"),
+                       type = "div",
+                       palette = "RdBu",
+                       direction = -1,
+                       na.value = NA) +
+  geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5)+
+  map_layer +
+  map_theme +
+  facet_wrap(~month)
+
+plot(log_map)
+ggsave(paste(boxdir,"/random-forest/median_LOG_spatial_betratio_plot.png",sep=""),height = 9, width =12, units = "in")
+```
+
+
+```{r mean_DFAD_spatial_betratio_plot}
+total_summary<- flat_reform %>%
+  dplyr::group_by (lon,lat,fad,month) %>%
+  dplyr::summarise(total = sum(transformed,na.rm = TRUE),
+                   median = median(transformed,na.rm = TRUE),
+                   mean = mean(transformed,na.rm = TRUE),
+                   max= max(transformed,na.rm = TRUE))%>%
+  ungroup() %>%
+  dplyr::mutate( lat_center = lat + 2.5,
+                 lon_center = lon + 2.5) %>%
+  filter(fad=="dfad")
+
+combine_latlong <- dplyr::left_join(total_summary, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+
+
+dfad_map <- ggplot(combine_latlong) +
+  aes(x = long, y = lat.y, group = group, fill = (median)) +
+  geom_polygon(color = "grey90", size = 0.25)+
+  #scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+  scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+  coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+  labs(x = "Longitude", y = "Latitude")+
+  ggtitle("DFAD") +
+  scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = "log(BET Ratio)"),
+                   #    limits = c(low_limit, up_limit),
+                      # values = c(-4000,-3000,-2000,-1500,-1000,-500,0,90),
+                       # breaks = c(-8000,-4000,-2000,-1000,0), 
+                       #            low_limit+0.8*low_limit, 
+                        #           low_limit+0.6*low_limit, 
+                         #          low_limit+0.4*low_limit, 
+                          #         low_limit+0.2*low_limit, 
+                           #        up_limit),
+                       # labels = c("0%",
+                       #            "10%",
+                       #            "20%",
+                       #            "30%",
+                       #            "40%",
+                       #            "50%"),
+                       type = "div",
+                       palette = "RdBu",
+                       direction = -1,
+                       na.value = NA) +
+  geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5)+
+  map_layer +
+  map_theme +
+  facet_wrap(~month) 
+
+plot(dfad_map)
+ggsave(paste(boxdir,"/random-forest/median_DFAD_spatial_betratio_plot.png",sep=""),height = 9, width =12, units = "in")
+```
+
+```{r}
+sst<-read.csv("../data/SST/wcpfc_sst_00_15.csv") %>%
+  filter(YY == "2015")
+
+all<-left_join(flat_reform,sst_data, by = c('lat', 'lon', 'month', 'year'))
+
+ggplot(all,aes(x=sst,y=bet_ratio))+
+  geom_point()
+
+ggsave(paste(boxdir,"/random-forest/bet_ratio_SST_plot.png",sep=""))
+```
+
+
+
+### Catch by flag
+
+
+```{r LL_BET_catch_flag}
+
+pna<-c("FM","KI","MH","PW","PG","SB","TV")
+
+data<-read.csv('../data/WCPFC_Yearbook2014/YB_WCP_CA.csv') %>%
+   gather(species,catch,dplyr::contains("_mt")) %>%
+   filter (yy > 2003) %>%
+   dplyr::group_by(gear,flag,species) %>%
+   dplyr::summarise (total_catch=sum(catch)) %>%
+   ungroup() %>%
+   mutate (pna=ifelse(flag %in% pna, TRUE, FALSE))
+
+ll_data <- data %>%
+  filter(gear=="L" & species=="bet_mt") %>%
+  arrange(-total_catch)
+
+ggplot(ll_data, aes(x=reorder(flag,-total_catch),y=total_catch,fill=pna))+
+  geom_bar(stat='identity')+
+  theme_bw()+
+  xlab("Flag")+
+  ylab("BET LL Catch")+
+  scale_y_continuous(expand=c(0,0))
+
+ggsave (paste(boxdir,"/random-forest/LL_BET_catch_flag.png",sep=""))
+```
+
+ 
+
+ 
+ 
+```{r PS_catch_flag}
+ps_data <- data %>%
+  filter(gear=="S") %>%
+  arrange(-total_catch)
+
+ggplot(ps_data, aes(x=reorder(flag,-total_catch),y=total_catch,fill=species))+
+  geom_bar(stat='identity' )+
+  theme_bw()+
+  xlab("Flag")+
+  ylab("Total PS Catch") +
+  scale_y_continuous(expand=c(0,0))
+
+ggsave (paste(boxdir,"/random-forest/.png",sep=""))
+```
+
+
+```{r PS_BET_catch_flag}
+ps_data <- data %>%
+  filter(gear=="S" & species=="bet_mt") %>%
+  arrange(-total_catch)
+
+ggplot(ps_data, aes(x=reorder(flag,-total_catch),y=total_catch,fill=pna))+
+  geom_bar(stat='identity' )+
+  theme_bw()+
+  xlab("Flag")+
+  ylab("Total BET PS Catch") +
+  scale_y_continuous(expand = c(0,0))
+ggsave (paste(boxdir,"/random-forest/PS_BET_catch_flag.png",sep=""))
+```
+
+### Stability
+
+```{r model stability}
+
+data<-model_predictions %>%
+  dplyr::group_by(lon,lat,month) %>%
+  dplyr::summarise (mean_bet = mean(bet_ratio,na.rm=TRUE),
+             stdev = sd(bet_ratio,na.rm=TRUE),
+             cv = mean_bet/stdev) %>%
+  ungroup()
+
+qplot(data$mean_bet,geom="histogram",xlab="Mean BET Ratio")
+ggsave (paste(boxdir,"/random-forest/Mean_betratio_dist.png",sep=""))
+qplot(data$stdev, geom="histogram",xlab="Stdev BET Ratio")
+ggsave (paste(boxdir,"/random-forest/stdev_betratio_dist.png",sep=""))
+qplot(data$cv,geom="histogram",xlab="C.V. Bet Ratio")
+ggsave (paste(boxdir,"/random-forest/CV_betratio_dist.png",sep=""))
+
+ggplot(data,aes(x=mean_bet,y=stdev))+
+  geom_point () +
+  theme_light() +
+  xlab ("Mean Bet Ratio") +
+  ylab ("Stdev Bet Ratio")
+
+```
+
+

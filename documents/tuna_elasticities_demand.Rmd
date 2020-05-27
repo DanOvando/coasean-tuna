@@ -1,0 +1,58 @@
+---
+title: "Price Elasticities of Demand for WCPO Tuna"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+## Canned
+
+
+
+
+## Estimating Elasticity of Demand for Tuna
+
+Bertignac et al. (2001) used the following simple model to estimate elasticity of demand for raw tuna from either the PS/PL or LL fleets [^1]. World demand was assumed to be $Q = Q_{f} + Q{o}$ where $Q_{f}$ is tuna sourced from 4the WCPO region and $Q_{o}$ is that from other sources. Retail price is $P = P_{r} + P_{p}$ where $P_{r}$ is the price of raw tuna and $P_{p}$ is the cost of processing and distribution. The elasticity of demand for all tuna products in the retail market can then be expressed as: 
+$$e = -(\frac{dQ_{f}}{dP_{r}} + \frac{dQ_{o}}{dP_{r}})  (\frac{P_{r} + P_{p}}{Q_{f} + Q{o}})$$
+
+The elasticity of demand for raw tuna from the WCPO region is therefore: 
+$$e_{r} = -(\frac{dQ_{f}}{dP_{r}})(\frac{P_{r}}{Q_{f}}) = e_{r}(\frac{S_{r}}{S_{f}}) + e_{so}(\frac{1}{S_{f}} - 1)$$
+Where $S_{r}$ is the share of the price of raw tuna in the price of tuna at the retail level, $S_{f}$ is the whare of the region's output in the world market, and $e_{so}$ is the elasticity of tuna supply from the rest of the world. 
+
+A linear demand function was then used to calculate price responses in each of the two main markets: $$ p_{e,g,j} = p^{96}_{e,g,j} - (p^{96}_{e,g,j} * E_{j}[\frac{C_{j} - C^{96}_{j}}{C^{96}_{j}}])$$
+
+where $p_{e,g,j}$ is the current price for species e, supplied by gear g, in market j, $p^{96}_{e,g,j}$ is the price for that subset in 1996, $C_{j}$ is the total catch supplied from the WCPO region to market j by all gear types, and $E_{j}$ is the elasticity coefficient/price flexibility (inverse of the demand elasticity for raw tuna). 
+
+[^1]: Purse-seine (PS) and pole-and-line (PL) vessels supply most tuna for canning in the WCPO region, while longline (LL) vessels in this region supply most tuna for fresh or frozen consumption, largely for the Japanese sashimi market.
+
+## Published Values
+
+### Elasticity of Demand
+
+| Species | Destination | Type | Source | $e_{d}$ | Reference | 
+|---------|-------------|------|--------| --------|-----|
+| all | canning industry | raw | PS/PL (WCPO) | 1.55 | Bertignac et al. 2000 | 
+| all | sashimi market | raw (fresh or frozen) | LL - WCPO | 2.53 | Bertignac et al. 2000 |
+
+### Price Flexability 
+
+| Species | Purpose | Market | Type | Point | $f$ | Model | Reference | 
+|---------|-------------|--------|------| -------|-----|-----------|
+| BET | sashimi | Japan | frozen | wholesale | 0.031 | | Chiang, Lee, & Brown (2001) | 
+| BFT | sashimi | Japan | frozen | wholesale | 0.034 | | Chiang, Lee, & Brown (2001) | 
+| YFT | sashimi | Japan | frozen | wholesale | 0.15 | | Chiang, Lee, & Brown (2001) | 
+| BET | sashimi | Japan | fresh | wholesale | 0.16 | | Chiang, Lee, & Brown (2001) |
+| BFT | sashimi | Japan | frozen | wholesale | 0.19 | | Chiang, Lee, & Brown (2001) |
+| YFT | sashimi | Japan | frozen | wholesale | 0.29 | | Chiang, Lee, & Brown (2001) |
+| All | canning | Thailand |  | ex-vessel | 0.65^1 | Linear Demand | Bertignac et al. (2000)^2 |
+| SKJ | canning | FFA Country |  | ex-vessel | 0.000041 | Linear Demand | Owen (2001) |
+| SKJ | canning | Thailand | frozen | ex-vessel | 0.05 - 0.55 | Price Transfer Function | Sun & Hsieh (2000) | 
+1. Derived from price elasticity
+2. Based on Campbell (1998)
+ 
+
+
+
+
+

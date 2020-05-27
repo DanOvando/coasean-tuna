@@ -1,0 +1,997 @@
+"","LON5_D","LAT5_D","species","set_type","sp_catch","days","total_catch","EEZ","Country","Sovereign","PNA_country"
+"1",-180,-10,"BET","ASS",2927.002,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"2",-180,-10,"BET","OTH",0,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"3",-180,-10,"BET","UNA",110.807,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"4",-180,-10,"OTH","ASS",2.732,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"5",-180,-10,"OTH","OTH",0,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"6",-180,-10,"OTH","UNA",2.16,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"7",-180,-10,"SKJ","ASS",48419.536,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"8",-180,-10,"SKJ","OTH",0,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"9",-180,-10,"SKJ","UNA",33559.059,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"10",-180,-10,"YFT","ASS",8163.8,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"11",-180,-10,"YFT","OTH",0,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"12",-180,-10,"YFT","UNA",673.852,2671.52,93858.948,"High Seas",NA,NA,FALSE
+"13",-180,-5,"BET","ASS",3540.777,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"14",-180,-5,"BET","OTH",0,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"15",-180,-5,"BET","UNA",409.473,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"16",-180,-5,"OTH","ASS",11.372,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"17",-180,-5,"OTH","OTH",0,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"18",-180,-5,"OTH","UNA",2.079,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"19",-180,-5,"SKJ","ASS",46957.698,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"20",-180,-5,"SKJ","OTH",0,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"21",-180,-5,"SKJ","UNA",67746.301,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"22",-180,-5,"YFT","ASS",8595.545,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"23",-180,-5,"YFT","OTH",0,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"24",-180,-5,"YFT","UNA",6982.571,3231.75,134245.816,"High Seas",NA,NA,FALSE
+"25",-175,-10,"BET","ASS",1729.698,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"26",-175,-10,"BET","OTH",0,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"27",-175,-10,"BET","UNA",64.215,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"28",-175,-10,"OTH","ASS",3.805,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"29",-175,-10,"OTH","OTH",0,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"30",-175,-10,"OTH","UNA",0.589,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"31",-175,-10,"SKJ","ASS",27234.921,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"32",-175,-10,"SKJ","OTH",0,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"33",-175,-10,"SKJ","UNA",39894.413,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"34",-175,-10,"YFT","ASS",3601.827,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"35",-175,-10,"YFT","OTH",0,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"36",-175,-10,"YFT","UNA",1144.047,2240.64,73673.515,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"37",-175,-5,"BET","ASS",5370.019,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"38",-175,-5,"BET","OTH",0,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"39",-175,-5,"BET","UNA",451.192,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"40",-175,-5,"OTH","ASS",14.901,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"41",-175,-5,"OTH","OTH",0,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"42",-175,-5,"OTH","UNA",4.661,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"43",-175,-5,"SKJ","ASS",49788.622,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"44",-175,-5,"SKJ","OTH",0,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"45",-175,-5,"SKJ","UNA",51885.492,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"46",-175,-5,"YFT","ASS",8438.778,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"47",-175,-5,"YFT","OTH",0,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"48",-175,-5,"YFT","UNA",10746.82,2825.56,126700.485,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"49",-175,0,"BET","ASS",237.702,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"50",-175,0,"BET","OTH",0,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"51",-175,0,"BET","UNA",102.051,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"52",-175,0,"OTH","ASS",1.345,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"53",-175,0,"OTH","OTH",0,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"54",-175,0,"OTH","UNA",0.005,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"55",-175,0,"SKJ","ASS",1566.35,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"56",-175,0,"SKJ","OTH",0,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"57",-175,0,"SKJ","UNA",6767.502,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"58",-175,0,"YFT","ASS",329.224,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"59",-175,0,"YFT","OTH",0,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"60",-175,0,"YFT","UNA",2656.821,148.42,11661,"Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island","United States",FALSE
+"61",-170,-15,"BET","ASS",96.338,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"62",-170,-15,"BET","OTH",0,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"63",-170,-15,"BET","UNA",0,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"64",-170,-15,"OTH","ASS",0.564,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"65",-170,-15,"OTH","OTH",0,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"66",-170,-15,"OTH","UNA",0,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"67",-170,-15,"SKJ","ASS",2796.558,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"68",-170,-15,"SKJ","OTH",0,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"69",-170,-15,"SKJ","UNA",928.702,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"70",-170,-15,"YFT","ASS",334.212,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"71",-170,-15,"YFT","OTH",0,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"72",-170,-15,"YFT","UNA",0,119.61,4156.374,"American Samoa Exclusive Economic Zone","American Samoa","United States",FALSE
+"73",-170,-10,"BET","ASS",1281.302,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"74",-170,-10,"BET","OTH",0,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"75",-170,-10,"BET","UNA",24.78,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"76",-170,-10,"OTH","ASS",1.881,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"77",-170,-10,"OTH","OTH",0,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"78",-170,-10,"OTH","UNA",1.023,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"79",-170,-10,"SKJ","ASS",21065.484,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"80",-170,-10,"SKJ","OTH",0,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"81",-170,-10,"SKJ","UNA",19722.489,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"82",-170,-10,"YFT","ASS",2072.298,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"83",-170,-10,"YFT","OTH",0,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"84",-170,-10,"YFT","UNA",1214.715,1134.57,45383.972,"Tokelau Exclusive Economic Zone","Tokelau","New Zealand",FALSE
+"85",-170,-5,"BET","ASS",2311.226,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"86",-170,-5,"BET","OTH",0,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"87",-170,-5,"BET","UNA",231.098,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"88",-170,-5,"OTH","ASS",1.056,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"89",-170,-5,"OTH","OTH",0,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"90",-170,-5,"OTH","UNA",1.654,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"91",-170,-5,"SKJ","ASS",18613.79,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"92",-170,-5,"SKJ","OTH",0,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"93",-170,-5,"SKJ","UNA",29781.179,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"94",-170,-5,"YFT","ASS",3324.479,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"95",-170,-5,"YFT","OTH",0,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"96",-170,-5,"YFT","UNA",10551.65,1277.81,64816.132,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"97",-170,0,"BET","ASS",143.585,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"98",-170,0,"BET","OTH",0,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"99",-170,0,"BET","UNA",8.675,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"100",-170,0,"OTH","ASS",0.074,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"101",-170,0,"OTH","OTH",0,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"102",-170,0,"OTH","UNA",0,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"103",-170,0,"SKJ","ASS",822.824,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"104",-170,0,"SKJ","OTH",0,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"105",-170,0,"SKJ","UNA",465.684,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"106",-170,0,"YFT","ASS",196.601,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"107",-170,0,"YFT","OTH",0,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"108",-170,0,"YFT","UNA",245.936,56.09,1883.379,"Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group","Kiribati",TRUE
+"109",-165,-15,"BET","ASS",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"110",-165,-15,"BET","OTH",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"111",-165,-15,"BET","UNA",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"112",-165,-15,"OTH","ASS",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"113",-165,-15,"OTH","OTH",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"114",-165,-15,"OTH","UNA",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"115",-165,-15,"SKJ","ASS",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"116",-165,-15,"SKJ","OTH",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"117",-165,-15,"SKJ","UNA",1068.204,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"118",-165,-15,"YFT","ASS",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"119",-165,-15,"YFT","OTH",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"120",-165,-15,"YFT","UNA",0,56.28,1068.204,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"121",-165,-10,"BET","ASS",92.31,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"122",-165,-10,"BET","OTH",0,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"123",-165,-10,"BET","UNA",9.62,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"124",-165,-10,"OTH","ASS",0,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"125",-165,-10,"OTH","OTH",0,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"126",-165,-10,"OTH","UNA",1.316,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"127",-165,-10,"SKJ","ASS",962.957,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"128",-165,-10,"SKJ","OTH",0,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"129",-165,-10,"SKJ","UNA",5987.586,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"130",-165,-10,"YFT","ASS",111.059,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"131",-165,-10,"YFT","OTH",0,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"132",-165,-10,"YFT","UNA",474.169,239.14,7639.017,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"133",-165,-5,"BET","ASS",0,207.99,7639.503,"High Seas",NA,NA,FALSE
+"134",-165,-5,"BET","OTH",0,207.99,7639.503,"High Seas",NA,NA,FALSE
+"135",-165,-5,"BET","UNA",28.383,207.99,7639.503,"High Seas",NA,NA,FALSE
+"136",-165,-5,"OTH","ASS",0,207.99,7639.503,"High Seas",NA,NA,FALSE
+"137",-165,-5,"OTH","OTH",0,207.99,7639.503,"High Seas",NA,NA,FALSE
+"138",-165,-5,"OTH","UNA",0.439,207.99,7639.503,"High Seas",NA,NA,FALSE
+"139",-165,-5,"SKJ","ASS",0,207.99,7639.503,"High Seas",NA,NA,FALSE
+"140",-165,-5,"SKJ","OTH",0,207.99,7639.503,"High Seas",NA,NA,FALSE
+"141",-165,-5,"SKJ","UNA",6824.869,207.99,7639.503,"High Seas",NA,NA,FALSE
+"142",-165,-5,"YFT","ASS",0,207.99,7639.503,"High Seas",NA,NA,FALSE
+"143",-165,-5,"YFT","OTH",0,207.99,7639.503,"High Seas",NA,NA,FALSE
+"144",-165,-5,"YFT","UNA",785.812,207.99,7639.503,"High Seas",NA,NA,FALSE
+"145",-165,0,"BET","ASS",11.211,62.15,4325.792,"High Seas",NA,NA,FALSE
+"146",-165,0,"BET","OTH",0,62.15,4325.792,"High Seas",NA,NA,FALSE
+"147",-165,0,"BET","UNA",27.999,62.15,4325.792,"High Seas",NA,NA,FALSE
+"148",-165,0,"OTH","ASS",0,62.15,4325.792,"High Seas",NA,NA,FALSE
+"149",-165,0,"OTH","OTH",0,62.15,4325.792,"High Seas",NA,NA,FALSE
+"150",-165,0,"OTH","UNA",0,62.15,4325.792,"High Seas",NA,NA,FALSE
+"151",-165,0,"SKJ","ASS",72.459,62.15,4325.792,"High Seas",NA,NA,FALSE
+"152",-165,0,"SKJ","OTH",0,62.15,4325.792,"High Seas",NA,NA,FALSE
+"153",-165,0,"SKJ","UNA",2884.639,62.15,4325.792,"High Seas",NA,NA,FALSE
+"154",-165,0,"YFT","ASS",18.321,62.15,4325.792,"High Seas",NA,NA,FALSE
+"155",-165,0,"YFT","OTH",0,62.15,4325.792,"High Seas",NA,NA,FALSE
+"156",-165,0,"YFT","UNA",1311.163,62.15,4325.792,"High Seas",NA,NA,FALSE
+"157",-160,-10,"BET","ASS",0,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"158",-160,-10,"BET","OTH",0,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"159",-160,-10,"BET","UNA",0.112,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"160",-160,-10,"OTH","ASS",0,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"161",-160,-10,"OTH","OTH",0,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"162",-160,-10,"OTH","UNA",0.29,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"163",-160,-10,"SKJ","ASS",0,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"164",-160,-10,"SKJ","OTH",0,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"165",-160,-10,"SKJ","UNA",3083.85,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"166",-160,-10,"YFT","ASS",0,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"167",-160,-10,"YFT","OTH",0,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"168",-160,-10,"YFT","UNA",32.704,63.05,3116.956,"Cook Islands Exclusive Economic Zone","Cook Islands","New Zealand",FALSE
+"169",-160,-5,"BET","ASS",0,457.14,16816.169,"High Seas",NA,NA,FALSE
+"170",-160,-5,"BET","OTH",0,457.14,16816.169,"High Seas",NA,NA,FALSE
+"171",-160,-5,"BET","UNA",80.337,457.14,16816.169,"High Seas",NA,NA,FALSE
+"172",-160,-5,"OTH","ASS",0,457.14,16816.169,"High Seas",NA,NA,FALSE
+"173",-160,-5,"OTH","OTH",0,457.14,16816.169,"High Seas",NA,NA,FALSE
+"174",-160,-5,"OTH","UNA",0.294,457.14,16816.169,"High Seas",NA,NA,FALSE
+"175",-160,-5,"SKJ","ASS",0,457.14,16816.169,"High Seas",NA,NA,FALSE
+"176",-160,-5,"SKJ","OTH",0,457.14,16816.169,"High Seas",NA,NA,FALSE
+"177",-160,-5,"SKJ","UNA",14080.882,457.14,16816.169,"High Seas",NA,NA,FALSE
+"178",-160,-5,"YFT","ASS",0,457.14,16816.169,"High Seas",NA,NA,FALSE
+"179",-160,-5,"YFT","OTH",0,457.14,16816.169,"High Seas",NA,NA,FALSE
+"180",-160,-5,"YFT","UNA",2654.656,457.14,16816.169,"High Seas",NA,NA,FALSE
+"181",-155,-5,"BET","ASS",1005.679,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"182",-155,-5,"BET","OTH",0,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"183",-155,-5,"BET","UNA",0,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"184",-155,-5,"OTH","ASS",0,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"185",-155,-5,"OTH","OTH",0,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"186",-155,-5,"OTH","UNA",0,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"187",-155,-5,"SKJ","ASS",3530.681,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"188",-155,-5,"SKJ","OTH",0,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"189",-155,-5,"SKJ","UNA",0,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"190",-155,-5,"YFT","ASS",357.428,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"191",-155,-5,"YFT","OTH",0,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"192",-155,-5,"YFT","UNA",0,52.02,4893.788,"Kiribati Exclusive Economic Zone (Line Group)","Line Group","Kiribati",TRUE
+"193",110,10,"BET","ASS",814.1,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"194",110,10,"BET","OTH",0,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"195",110,10,"BET","UNA",70.625,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"196",110,10,"OTH","ASS",0,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"197",110,10,"OTH","OTH",0,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"198",110,10,"OTH","UNA",0,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"199",110,10,"SKJ","ASS",13385.3,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"200",110,10,"SKJ","OTH",0,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"201",110,10,"SKJ","UNA",12329.45,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"202",110,10,"YFT","ASS",2210.825,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"203",110,10,"YFT","OTH",0,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"204",110,10,"YFT","UNA",3351.55,14275.75,32161.85,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"205",110,15,"BET","ASS",814.107,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"206",110,15,"BET","OTH",0,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"207",110,15,"BET","UNA",70.392,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"208",110,15,"OTH","ASS",0,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"209",110,15,"OTH","OTH",0,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"210",110,15,"OTH","UNA",0,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"211",110,15,"SKJ","ASS",13384.896,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"212",110,15,"SKJ","OTH",0,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"213",110,15,"SKJ","UNA",12329.184,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"214",110,15,"YFT","ASS",2211.153,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"215",110,15,"YFT","OTH",0,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"216",110,15,"YFT","UNA",3351.768,14028.42,32161.5,"Vietnamese Exclusive Economic Zone","Vietnam","Vietnam",FALSE
+"217",115,10,"BET","ASS",814.264,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"218",115,10,"BET","OTH",0,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"219",115,10,"BET","UNA",70.521,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"220",115,10,"OTH","ASS",0,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"221",115,10,"OTH","OTH",0,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"222",115,10,"OTH","UNA",0,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"223",115,10,"SKJ","ASS",13385.306,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"224",115,10,"SKJ","OTH",0,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"225",115,10,"SKJ","UNA",12329.449,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"226",115,10,"YFT","ASS",2211.132,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"227",115,10,"YFT","OTH",0,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"228",115,10,"YFT","UNA",3351.667,13792.68,32162.339,"Spratly Islands Exclusive Economic Zone","Spratly Islands","Disputed",FALSE
+"229",115,15,"BET","ASS",814.215,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"230",115,15,"BET","OTH",0,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"231",115,15,"BET","UNA",70.485,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"232",115,15,"OTH","ASS",0,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"233",115,15,"OTH","OTH",0,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"234",115,15,"OTH","UNA",0,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"235",115,15,"SKJ","ASS",13385.4,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"236",115,15,"SKJ","OTH",0,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"237",115,15,"SKJ","UNA",12329.52,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"238",115,15,"YFT","ASS",2211.075,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"239",115,15,"YFT","OTH",0,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"240",115,15,"YFT","UNA",3351.735,13875,32162.43,"Paracel Islands Exclusive Economic Zone","Paracel Islands","Disputed",FALSE
+"241",120,0,"BET","ASS",915.666,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"242",120,0,"BET","OTH",0,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"243",120,0,"BET","UNA",239.495,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"244",120,0,"OTH","ASS",0,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"245",120,0,"OTH","OTH",0,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"246",120,0,"OTH","UNA",0,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"247",120,0,"SKJ","ASS",33760.499,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"248",120,0,"SKJ","OTH",0,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"249",120,0,"SKJ","UNA",14291.552,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"250",120,0,"YFT","ASS",6230.079,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"251",120,0,"YFT","OTH",0,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"252",120,0,"YFT","UNA",4948.401,12671.82,60385.692,"High Seas",NA,NA,FALSE
+"253",120,5,"BET","ASS",1058.577,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"254",120,5,"BET","OTH",0,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"255",120,5,"BET","UNA",288.197,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"256",120,5,"OTH","ASS",0,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"257",120,5,"OTH","OTH",0,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"258",120,5,"OTH","UNA",0,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"259",120,5,"SKJ","ASS",29739.55,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"260",120,5,"SKJ","OTH",0,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"261",120,5,"SKJ","UNA",25825.237,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"262",120,5,"YFT","ASS",5306.098,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"263",120,5,"YFT","OTH",0,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"264",120,5,"YFT","UNA",7275.195,17385.26,69492.854,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"265",120,25,"BET","ASS",0,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"266",120,25,"BET","OTH",0,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"267",120,25,"BET","UNA",0,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"268",120,25,"OTH","ASS",20617.374,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"269",120,25,"OTH","OTH",0,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"270",120,25,"OTH","UNA",1611.026,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"271",120,25,"SKJ","ASS",0.106,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"272",120,25,"SKJ","OTH",0,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"273",120,25,"SKJ","UNA",0.393,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"274",120,25,"YFT","ASS",0,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"275",120,25,"YFT","OTH",0,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"276",120,25,"YFT","UNA",0,338.88,22228.899,"Chinese Exclusive Economic Zone","China","China",FALSE
+"277",120,30,"BET","ASS",0,58.99,521.599,"High Seas",NA,NA,FALSE
+"278",120,30,"BET","OTH",0,58.99,521.599,"High Seas",NA,NA,FALSE
+"279",120,30,"BET","UNA",0,58.99,521.599,"High Seas",NA,NA,FALSE
+"280",120,30,"OTH","ASS",512.558,58.99,521.599,"High Seas",NA,NA,FALSE
+"281",120,30,"OTH","OTH",0,58.99,521.599,"High Seas",NA,NA,FALSE
+"282",120,30,"OTH","UNA",4.242,58.99,521.599,"High Seas",NA,NA,FALSE
+"283",120,30,"SKJ","ASS",0.897,58.99,521.599,"High Seas",NA,NA,FALSE
+"284",120,30,"SKJ","OTH",0,58.99,521.599,"High Seas",NA,NA,FALSE
+"285",120,30,"SKJ","UNA",3.902,58.99,521.599,"High Seas",NA,NA,FALSE
+"286",120,30,"YFT","ASS",0,58.99,521.599,"High Seas",NA,NA,FALSE
+"287",120,30,"YFT","OTH",0,58.99,521.599,"High Seas",NA,NA,FALSE
+"288",120,30,"YFT","UNA",0,58.99,521.599,"High Seas",NA,NA,FALSE
+"289",125,-5,"BET","ASS",1401.915,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"290",125,-5,"BET","OTH",0,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"291",125,-5,"BET","UNA",125.267,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"292",125,-5,"OTH","ASS",0,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"293",125,-5,"OTH","OTH",0,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"294",125,-5,"OTH","UNA",0,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"295",125,-5,"SKJ","ASS",22366.002,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"296",125,-5,"SKJ","OTH",0,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"297",125,-5,"SKJ","UNA",21921.839,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"298",125,-5,"YFT","ASS",4166.358,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"299",125,-5,"YFT","OTH",0,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"300",125,-5,"YFT","UNA",6772.379,14440.76,56753.76,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"301",125,0,"BET","ASS",1591.17,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"302",125,0,"BET","OTH",0,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"303",125,0,"BET","UNA",397.845,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"304",125,0,"OTH","ASS",0,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"305",125,0,"OTH","OTH",0,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"306",125,0,"OTH","UNA",0,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"307",125,0,"SKJ","ASS",55529.838,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"308",125,0,"SKJ","OTH",0,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"309",125,0,"SKJ","UNA",27060.621,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"310",125,0,"YFT","ASS",10927.455,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"311",125,0,"YFT","OTH",0,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"312",125,0,"YFT","UNA",8170.911,22301.79,103677.84,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"313",125,5,"BET","ASS",700.02,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"314",125,5,"BET","OTH",0,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"315",125,5,"BET","UNA",133.836,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"316",125,5,"OTH","ASS",0,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"317",125,5,"OTH","OTH",0,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"318",125,5,"OTH","UNA",0,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"319",125,5,"SKJ","ASS",21546.974,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"320",125,5,"SKJ","OTH",0,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"321",125,5,"SKJ","UNA",12991.967,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"322",125,5,"YFT","ASS",4244.88,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"323",125,5,"YFT","OTH",0,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"324",125,5,"YFT","UNA",3675.018,10301.95,43292.695,"Philippines Exclusive Economic Zone","Philippines","Philippines",FALSE
+"325",125,25,"BET","ASS",0,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"326",125,25,"BET","OTH",0,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"327",125,25,"BET","UNA",0,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"328",125,25,"OTH","ASS",44781.902,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"329",125,25,"OTH","OTH",0,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"330",125,25,"OTH","UNA",18500.497,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"331",125,25,"SKJ","ASS",29.292,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"332",125,25,"SKJ","OTH",0,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"333",125,25,"SKJ","UNA",171.705,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"334",125,25,"YFT","ASS",2.578,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"335",125,25,"YFT","OTH",0,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"336",125,25,"YFT","UNA",96.722,1921.71,63582.696,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"337",125,30,"BET","ASS",0.06,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"338",125,30,"BET","OTH",0,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"339",125,30,"BET","UNA",0.041,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"340",125,30,"OTH","ASS",125914.188,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"341",125,30,"OTH","OTH",0,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"342",125,30,"OTH","UNA",74384.503,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"343",125,30,"SKJ","ASS",641.722,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"344",125,30,"SKJ","OTH",0,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"345",125,30,"SKJ","UNA",1730.662,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"346",125,30,"YFT","ASS",20.604,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"347",125,30,"YFT","OTH",0,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"348",125,30,"YFT","UNA",3.198,9026.63,202694.978,"Chinese Exclusive Economic Zone","China","China",FALSE
+"349",125,35,"BET","ASS",0,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"350",125,35,"BET","OTH",0,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"351",125,35,"BET","UNA",0,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"352",125,35,"OTH","ASS",231.317,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"353",125,35,"OTH","OTH",0,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"354",125,35,"OTH","UNA",260.883,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"355",125,35,"SKJ","ASS",19.916,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"356",125,35,"SKJ","OTH",0,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"357",125,35,"SKJ","UNA",33.484,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"358",125,35,"YFT","ASS",0,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"359",125,35,"YFT","OTH",0,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"360",125,35,"YFT","UNA",0,41.25,545.6,"South Korean Exclusive Economic Zone","South Korea","South Korea",FALSE
+"361",130,-5,"BET","ASS",1401.939,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"362",130,-5,"BET","OTH",0,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"363",130,-5,"BET","UNA",125.271,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"364",130,-5,"OTH","ASS",0,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"365",130,-5,"OTH","OTH",0,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"366",130,-5,"OTH","UNA",0,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"367",130,-5,"SKJ","ASS",22366.188,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"368",130,-5,"SKJ","OTH",0,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"369",130,-5,"SKJ","UNA",21921.867,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"370",130,-5,"YFT","ASS",4166.262,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"371",130,-5,"YFT","OTH",0,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"372",130,-5,"YFT","UNA",6772.212,14057.28,56753.739,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"373",130,0,"BET","ASS",6075.04,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"374",130,0,"BET","OTH",0,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"375",130,0,"BET","UNA",574.116,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"376",130,0,"OTH","ASS",0,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"377",130,0,"OTH","OTH",0,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"378",130,0,"OTH","UNA",0,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"379",130,0,"SKJ","ASS",139611.695,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"380",130,0,"SKJ","OTH",0,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"381",130,0,"SKJ","UNA",73343.19,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"382",130,0,"YFT","ASS",33436.975,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"383",130,0,"YFT","OTH",0,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"384",130,0,"YFT","UNA",19442.942,58639.77,272483.958,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"385",130,5,"BET","ASS",2585.428,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"386",130,5,"BET","OTH",0,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"387",130,5,"BET","UNA",430.128,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"388",130,5,"OTH","ASS",0,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"389",130,5,"OTH","OTH",0,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"390",130,5,"OTH","UNA",0,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"391",130,5,"SKJ","ASS",77913.228,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"392",130,5,"SKJ","OTH",0,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"393",130,5,"SKJ","UNA",46747.4,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"394",130,5,"YFT","ASS",16309.2,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"395",130,5,"YFT","OTH",0,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"396",130,5,"YFT","UNA",12112.596,36210.1,156097.98,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"397",130,30,"BET","ASS",0,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"398",130,30,"BET","OTH",0,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"399",130,30,"BET","UNA",0,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"400",130,30,"OTH","ASS",72119.331,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"401",130,30,"OTH","OTH",0,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"402",130,30,"OTH","UNA",56136.971,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"403",130,30,"SKJ","ASS",38.536,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"404",130,30,"SKJ","OTH",0,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"405",130,30,"SKJ","UNA",111.464,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"406",130,30,"YFT","ASS",0.182,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"407",130,30,"YFT","OTH",0,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"408",130,30,"YFT","UNA",8.919,2963.66,128415.403,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"409",130,35,"BET","ASS",0,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"410",130,35,"BET","OTH",0,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"411",130,35,"BET","UNA",0,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"412",130,35,"OTH","ASS",57612.35,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"413",130,35,"OTH","OTH",0,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"414",130,35,"OTH","UNA",34480.843,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"415",130,35,"SKJ","ASS",84.125,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"416",130,35,"SKJ","OTH",0,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"417",130,35,"SKJ","UNA",353.072,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"418",130,35,"YFT","ASS",1.912,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"419",130,35,"YFT","OTH",0,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"420",130,35,"YFT","UNA",6.388,1876.55,92538.69,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"421",135,-5,"BET","ASS",3504.919,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"422",135,-5,"BET","OTH",0,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"423",135,-5,"BET","UNA",313.17,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"424",135,-5,"OTH","ASS",0,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"425",135,-5,"OTH","OTH",0,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"426",135,-5,"OTH","UNA",0,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"427",135,-5,"SKJ","ASS",55915.541,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"428",135,-5,"SKJ","OTH",0,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"429",135,-5,"SKJ","UNA",54804.761,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"430",135,-5,"YFT","ASS",10415.68,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"431",135,-5,"YFT","OTH",0,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"432",135,-5,"YFT","UNA",16930.551,34859.11,141884.622,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"433",135,0,"BET","ASS",4627.564,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"434",135,0,"BET","OTH",0,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"435",135,0,"BET","UNA",402.37,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"436",135,0,"OTH","ASS",0,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"437",135,0,"OTH","OTH",0,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"438",135,0,"OTH","UNA",0,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"439",135,0,"SKJ","ASS",126060.047,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"440",135,0,"SKJ","OTH",0,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"441",135,0,"SKJ","UNA",46938.561,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"442",135,0,"YFT","ASS",30192.088,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"443",135,0,"YFT","OTH",0,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"444",135,0,"YFT","UNA",11432.138,43298.87,219652.768,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"445",135,5,"BET","ASS",20.511,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"446",135,5,"BET","OTH",0,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"447",135,5,"BET","UNA",3.479,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"448",135,5,"OTH","ASS",0,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"449",135,5,"OTH","OTH",0,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"450",135,5,"OTH","UNA",0,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"451",135,5,"SKJ","ASS",3895.702,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"452",135,5,"SKJ","OTH",0,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"453",135,5,"SKJ","UNA",919.791,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"454",135,5,"YFT","ASS",83.067,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"455",135,5,"YFT","OTH",0,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"456",135,5,"YFT","UNA",9.039,121.91,4931.589,"Palau Exclusive Economic Zone","Palau","Palau",TRUE
+"457",135,30,"BET","ASS",0,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"458",135,30,"BET","OTH",0,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"459",135,30,"BET","UNA",2.6,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"460",135,30,"OTH","ASS",0.3,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"461",135,30,"OTH","OTH",0,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"462",135,30,"OTH","UNA",13.4,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"463",135,30,"SKJ","ASS",84.824,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"464",135,30,"SKJ","OTH",0,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"465",135,30,"SKJ","UNA",1809.776,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"466",135,30,"YFT","ASS",12.572,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"467",135,30,"YFT","OTH",0,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"468",135,30,"YFT","UNA",190.227,60.67,2113.699,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"469",135,35,"BET","ASS",0,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"470",135,35,"BET","OTH",0,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"471",135,35,"BET","UNA",0,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"472",135,35,"OTH","ASS",19399.621,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"473",135,35,"OTH","OTH",0,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"474",135,35,"OTH","UNA",21925.079,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"475",135,35,"SKJ","ASS",0.02,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"476",135,35,"SKJ","OTH",0,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"477",135,35,"SKJ","UNA",0.08,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"478",135,35,"YFT","ASS",0,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"479",135,35,"YFT","OTH",0,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"480",135,35,"YFT","UNA",0,1381.76,41324.8,"High Seas",NA,NA,FALSE
+"481",140,-5,"BET","ASS",7426.242,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"482",140,-5,"BET","OTH",0,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"483",140,-5,"BET","UNA",2181.611,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"484",140,-5,"OTH","ASS",240.271,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"485",140,-5,"OTH","OTH",0,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"486",140,-5,"OTH","UNA",125.49,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"487",140,-5,"SKJ","ASS",135047.529,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"488",140,-5,"SKJ","OTH",0,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"489",140,-5,"SKJ","UNA",80697.62,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"490",140,-5,"YFT","ASS",66627.158,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"491",140,-5,"YFT","OTH",0,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"492",140,-5,"YFT","UNA",51245.4,18847.6,343591.321,"High Seas",NA,NA,FALSE
+"493",140,0,"BET","ASS",3641.62,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"494",140,0,"BET","OTH",0,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"495",140,0,"BET","UNA",832.974,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"496",140,0,"OTH","ASS",14.2,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"497",140,0,"OTH","OTH",0,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"498",140,0,"OTH","UNA",2.737,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"499",140,0,"SKJ","ASS",66783.781,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"500",140,0,"SKJ","OTH",0,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"501",140,0,"SKJ","UNA",128405.097,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"502",140,0,"YFT","ASS",11044.166,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"503",140,0,"YFT","OTH",0,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"504",140,0,"YFT","UNA",14526.579,7142.01,225251.154,"Indonesian Exclusive Economic Zone","Indonesia","Indonesia",FALSE
+"505",140,5,"BET","ASS",267.121,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"506",140,5,"BET","OTH",0,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"507",140,5,"BET","UNA",31.451,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"508",140,5,"OTH","ASS",0.6,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"509",140,5,"OTH","OTH",0,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"510",140,5,"OTH","UNA",0,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"511",140,5,"SKJ","ASS",11940.755,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"512",140,5,"SKJ","OTH",0,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"513",140,5,"SKJ","UNA",10872.61,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"514",140,5,"YFT","ASS",484.801,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"515",140,5,"YFT","OTH",0,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"516",140,5,"YFT","UNA",93.051,577.33,23690.389,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"517",140,30,"BET","ASS",32.766,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"518",140,30,"BET","OTH",0,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"519",140,30,"BET","UNA",34.733,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"520",140,30,"OTH","ASS",155.4,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"521",140,30,"OTH","OTH",0,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"522",140,30,"OTH","UNA",163.6,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"523",140,30,"SKJ","ASS",553.7,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"524",140,30,"SKJ","OTH",0,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"525",140,30,"SKJ","UNA",1010.001,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"526",140,30,"YFT","ASS",97.664,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"527",140,30,"YFT","OTH",0,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"528",140,30,"YFT","UNA",184.635,96.84,2232.499,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"529",140,35,"BET","ASS",110.85,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"530",140,35,"BET","OTH",0,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"531",140,35,"BET","UNA",46.748,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"532",140,35,"OTH","ASS",412.924,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"533",140,35,"OTH","OTH",0,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"534",140,35,"OTH","UNA",546.273,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"535",140,35,"SKJ","ASS",950.28,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"536",140,35,"SKJ","OTH",0,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"537",140,35,"SKJ","UNA",2128.22,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"538",140,35,"YFT","ASS",135.471,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"539",140,35,"YFT","OTH",0,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"540",140,35,"YFT","UNA",686.029,224.01,5016.795,"Japanese Exclusive Economic Zone","Japan","Japan",FALSE
+"541",145,-10,"BET","ASS",131.305,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"542",145,-10,"BET","OTH",0,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"543",145,-10,"BET","UNA",201.015,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"544",145,-10,"OTH","ASS",17.514,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"545",145,-10,"OTH","OTH",0,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"546",145,-10,"OTH","UNA",60.328,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"547",145,-10,"SKJ","ASS",2749.964,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"548",145,-10,"SKJ","OTH",0,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"549",145,-10,"SKJ","UNA",3696.687,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"550",145,-10,"YFT","ASS",2540.036,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"551",145,-10,"YFT","OTH",0,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"552",145,-10,"YFT","UNA",5769.442,824.55,15166.291,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"553",145,-5,"BET","ASS",15629.62,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"554",145,-5,"BET","OTH",0,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"555",145,-5,"BET","UNA",4915.776,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"556",145,-5,"OTH","ASS",348.727,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"557",145,-5,"OTH","OTH",0,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"558",145,-5,"OTH","UNA",293.041,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"559",145,-5,"SKJ","ASS",199903.777,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"560",145,-5,"SKJ","OTH",0,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"561",145,-5,"SKJ","UNA",229373.636,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"562",145,-5,"YFT","ASS",87705.29,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"563",145,-5,"YFT","OTH",0,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"564",145,-5,"YFT","UNA",117757.671,33264.24,655927.538,"High Seas",NA,NA,FALSE
+"565",145,0,"BET","ASS",7082.168,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"566",145,0,"BET","OTH",0,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"567",145,0,"BET","UNA",1852.918,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"568",145,0,"OTH","ASS",34.276,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"569",145,0,"OTH","OTH",0,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"570",145,0,"OTH","UNA",4.822,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"571",145,0,"SKJ","ASS",108425.693,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"572",145,0,"SKJ","OTH",0,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"573",145,0,"SKJ","UNA",227679.963,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"574",145,0,"YFT","ASS",16087.326,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"575",145,0,"YFT","OTH",0,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"576",145,0,"YFT","UNA",28678.069,12249.81,389845.235,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"577",145,5,"BET","ASS",124.103,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"578",145,5,"BET","OTH",0,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"579",145,5,"BET","UNA",15.644,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"580",145,5,"OTH","ASS",1.287,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"581",145,5,"OTH","OTH",0,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"582",145,5,"OTH","UNA",0,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"583",145,5,"SKJ","ASS",3473.535,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"584",145,5,"SKJ","OTH",0,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"585",145,5,"SKJ","UNA",5663.433,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"586",145,5,"YFT","ASS",149.316,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"587",145,5,"YFT","OTH",0,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"588",145,5,"YFT","UNA",224.125,353.62,9651.443,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"589",145,30,"BET","ASS",11.7,90.61,1761.001,"High Seas",NA,NA,FALSE
+"590",145,30,"BET","OTH",0,90.61,1761.001,"High Seas",NA,NA,FALSE
+"591",145,30,"BET","UNA",2,90.61,1761.001,"High Seas",NA,NA,FALSE
+"592",145,30,"OTH","ASS",26.7,90.61,1761.001,"High Seas",NA,NA,FALSE
+"593",145,30,"OTH","OTH",0,90.61,1761.001,"High Seas",NA,NA,FALSE
+"594",145,30,"OTH","UNA",5.5,90.61,1761.001,"High Seas",NA,NA,FALSE
+"595",145,30,"SKJ","ASS",327.555,90.61,1761.001,"High Seas",NA,NA,FALSE
+"596",145,30,"SKJ","OTH",0,90.61,1761.001,"High Seas",NA,NA,FALSE
+"597",145,30,"SKJ","UNA",1383.246,90.61,1761.001,"High Seas",NA,NA,FALSE
+"598",145,30,"YFT","ASS",3.3,90.61,1761.001,"High Seas",NA,NA,FALSE
+"599",145,30,"YFT","OTH",0,90.61,1761.001,"High Seas",NA,NA,FALSE
+"600",145,30,"YFT","UNA",1,90.61,1761.001,"High Seas",NA,NA,FALSE
+"601",145,35,"BET","ASS",345.177,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"602",145,35,"BET","OTH",0,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"603",145,35,"BET","UNA",93.827,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"604",145,35,"OTH","ASS",434.416,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"605",145,35,"OTH","OTH",0,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"606",145,35,"OTH","UNA",760.182,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"607",145,35,"SKJ","ASS",25236.977,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"608",145,35,"SKJ","OTH",0,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"609",145,35,"SKJ","UNA",45313.124,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"610",145,35,"YFT","ASS",451.947,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"611",145,35,"YFT","OTH",0,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"612",145,35,"YFT","UNA",1760.857,2259.61,74396.507,"High Seas",NA,NA,FALSE
+"613",150,-15,"BET","ASS",3.497,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"614",150,-15,"BET","OTH",0,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"615",150,-15,"BET","UNA",83.683,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"616",150,-15,"OTH","ASS",0,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"617",150,-15,"OTH","OTH",0,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"618",150,-15,"OTH","UNA",0,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"619",150,-15,"SKJ","ASS",309.144,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"620",150,-15,"SKJ","OTH",0,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"621",150,-15,"SKJ","UNA",3775.961,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"622",150,-15,"YFT","ASS",156.168,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"623",150,-15,"YFT","OTH",0,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"624",150,-15,"YFT","UNA",4278.904,153.31,8607.357,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"625",150,-10,"BET","ASS",1785.116,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"626",150,-10,"BET","OTH",0,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"627",150,-10,"BET","UNA",2648.688,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"628",150,-10,"OTH","ASS",17.468,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"629",150,-10,"OTH","OTH",0,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"630",150,-10,"OTH","UNA",15.628,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"631",150,-10,"SKJ","ASS",54033.987,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"632",150,-10,"SKJ","OTH",0,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"633",150,-10,"SKJ","UNA",121856.317,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"634",150,-10,"YFT","ASS",22187.956,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"635",150,-10,"YFT","OTH",0,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"636",150,-10,"YFT","UNA",78885.433,8775.33,281430.593,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"637",150,-5,"BET","ASS",12504.613,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"638",150,-5,"BET","OTH",0,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"639",150,-5,"BET","UNA",3602.141,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"640",150,-5,"OTH","ASS",80.999,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"641",150,-5,"OTH","OTH",0,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"642",150,-5,"OTH","UNA",136.001,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"643",150,-5,"SKJ","ASS",162956.567,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"644",150,-5,"SKJ","OTH",0,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"645",150,-5,"SKJ","UNA",247913.037,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"646",150,-5,"YFT","ASS",51304.237,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"647",150,-5,"YFT","OTH",0,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"648",150,-5,"YFT","UNA",113888.011,23445.88,592385.606,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"649",150,0,"BET","ASS",8698.628,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"650",150,0,"BET","OTH",0,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"651",150,0,"BET","UNA",1559.971,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"652",150,0,"OTH","ASS",42.366,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"653",150,0,"OTH","OTH",0,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"654",150,0,"OTH","UNA",9.17,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"655",150,0,"SKJ","ASS",116230.249,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"656",150,0,"SKJ","OTH",0,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"657",150,0,"SKJ","UNA",205246.008,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"658",150,0,"YFT","ASS",22322.351,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"659",150,0,"YFT","OTH",0,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"660",150,0,"YFT","UNA",34228.946,14231.68,388337.689,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"661",150,5,"BET","ASS",193.242,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"662",150,5,"BET","OTH",0,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"663",150,5,"BET","UNA",14.037,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"664",150,5,"OTH","ASS",3.674,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"665",150,5,"OTH","OTH",0,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"666",150,5,"OTH","UNA",0,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"667",150,5,"SKJ","ASS",4670.278,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"668",150,5,"SKJ","OTH",0,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"669",150,5,"SKJ","UNA",6423.199,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"670",150,5,"YFT","ASS",411.899,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"671",150,5,"YFT","OTH",0,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"672",150,5,"YFT","UNA",72.977,390.81,11789.306,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"673",150,35,"BET","ASS",263.5,873.65,30468.4,"High Seas",NA,NA,FALSE
+"674",150,35,"BET","OTH",0,873.65,30468.4,"High Seas",NA,NA,FALSE
+"675",150,35,"BET","UNA",42.4,873.65,30468.4,"High Seas",NA,NA,FALSE
+"676",150,35,"OTH","ASS",8.7,873.65,30468.4,"High Seas",NA,NA,FALSE
+"677",150,35,"OTH","OTH",0,873.65,30468.4,"High Seas",NA,NA,FALSE
+"678",150,35,"OTH","UNA",9.6,873.65,30468.4,"High Seas",NA,NA,FALSE
+"679",150,35,"SKJ","ASS",14524.801,873.65,30468.4,"High Seas",NA,NA,FALSE
+"680",150,35,"SKJ","OTH",0,873.65,30468.4,"High Seas",NA,NA,FALSE
+"681",150,35,"SKJ","UNA",15338.499,873.65,30468.4,"High Seas",NA,NA,FALSE
+"682",150,35,"YFT","ASS",125.6,873.65,30468.4,"High Seas",NA,NA,FALSE
+"683",150,35,"YFT","OTH",0,873.65,30468.4,"High Seas",NA,NA,FALSE
+"684",150,35,"YFT","UNA",155.3,873.65,30468.4,"High Seas",NA,NA,FALSE
+"685",150,40,"BET","ASS",0,262.52,11032.199,"High Seas",NA,NA,FALSE
+"686",150,40,"BET","OTH",0,262.52,11032.199,"High Seas",NA,NA,FALSE
+"687",150,40,"BET","UNA",1.3,262.52,11032.199,"High Seas",NA,NA,FALSE
+"688",150,40,"OTH","ASS",0.5,262.52,11032.199,"High Seas",NA,NA,FALSE
+"689",150,40,"OTH","OTH",0,262.52,11032.199,"High Seas",NA,NA,FALSE
+"690",150,40,"OTH","UNA",0.4,262.52,11032.199,"High Seas",NA,NA,FALSE
+"691",150,40,"SKJ","ASS",2381.592,262.52,11032.199,"High Seas",NA,NA,FALSE
+"692",150,40,"SKJ","OTH",0,262.52,11032.199,"High Seas",NA,NA,FALSE
+"693",150,40,"SKJ","UNA",8642.107,262.52,11032.199,"High Seas",NA,NA,FALSE
+"694",150,40,"YFT","ASS",4.903,262.52,11032.199,"High Seas",NA,NA,FALSE
+"695",150,40,"YFT","OTH",0,262.52,11032.199,"High Seas",NA,NA,FALSE
+"696",150,40,"YFT","UNA",1.397,262.52,11032.199,"High Seas",NA,NA,FALSE
+"697",155,-15,"BET","ASS",119.63,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"698",155,-15,"BET","OTH",0,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"699",155,-15,"BET","UNA",332.156,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"700",155,-15,"OTH","ASS",0.68,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"701",155,-15,"OTH","OTH",0,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"702",155,-15,"OTH","UNA",6.719,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"703",155,-15,"SKJ","ASS",6254.152,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"704",155,-15,"SKJ","OTH",0,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"705",155,-15,"SKJ","UNA",22646.684,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"706",155,-15,"YFT","ASS",2268.092,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"707",155,-15,"YFT","OTH",0,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"708",155,-15,"YFT","UNA",14354.487,1289.16,45982.6,"Australian Exclusive Economic Zone","Australia","Australia",FALSE
+"709",155,-10,"BET","ASS",5537.181,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"710",155,-10,"BET","OTH",0,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"711",155,-10,"BET","UNA",1090.828,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"712",155,-10,"OTH","ASS",156.407,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"713",155,-10,"OTH","OTH",0,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"714",155,-10,"OTH","UNA",74.342,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"715",155,-10,"SKJ","ASS",115934.058,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"716",155,-10,"SKJ","OTH",0,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"717",155,-10,"SKJ","UNA",96424.829,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"718",155,-10,"YFT","ASS",54847.944,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"719",155,-10,"YFT","OTH",0,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"720",155,-10,"YFT","UNA",38740.421,10020.97,312806.01,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"721",155,-5,"BET","ASS",24190.109,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"722",155,-5,"BET","OTH",0,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"723",155,-5,"BET","UNA",3725.33,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"724",155,-5,"OTH","ASS",58.355,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"725",155,-5,"OTH","OTH",0,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"726",155,-5,"OTH","UNA",65.764,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"727",155,-5,"SKJ","ASS",285895.926,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"728",155,-5,"SKJ","OTH",0,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"729",155,-5,"SKJ","UNA",340934.26,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"730",155,-5,"YFT","ASS",83936.554,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"731",155,-5,"YFT","OTH",0,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"732",155,-5,"YFT","UNA",103028.663,30625.41,841834.961,"Papua New Guinean Exclusive Economic Zone","Papua New Guinea","Papua New Guinea",TRUE
+"733",155,0,"BET","ASS",7768.462,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"734",155,0,"BET","OTH",0,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"735",155,0,"BET","UNA",1144.607,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"736",155,0,"OTH","ASS",25.886,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"737",155,0,"OTH","OTH",0,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"738",155,0,"OTH","UNA",20.517,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"739",155,0,"SKJ","ASS",99873.353,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"740",155,0,"SKJ","OTH",0,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"741",155,0,"SKJ","UNA",129939.769,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"742",155,0,"YFT","ASS",25065.271,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"743",155,0,"YFT","OTH",0,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"744",155,0,"YFT","UNA",21316.864,11321.25,285154.729,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"745",155,5,"BET","ASS",103.691,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"746",155,5,"BET","OTH",0,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"747",155,5,"BET","UNA",23.538,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"748",155,5,"OTH","ASS",0.125,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"749",155,5,"OTH","OTH",0,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"750",155,5,"OTH","UNA",0.143,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"751",155,5,"SKJ","ASS",1492.67,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"752",155,5,"SKJ","OTH",0,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"753",155,5,"SKJ","UNA",3794.488,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"754",155,5,"YFT","ASS",234.743,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"755",155,5,"YFT","OTH",0,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"756",155,5,"YFT","UNA",802.526,215.1,6451.924,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"757",160,-15,"BET","ASS",150.095,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"758",160,-15,"BET","OTH",0,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"759",160,-15,"BET","UNA",4.277,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"760",160,-15,"OTH","ASS",0.053,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"761",160,-15,"OTH","OTH",0,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"762",160,-15,"OTH","UNA",0,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"763",160,-15,"SKJ","ASS",6911.295,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"764",160,-15,"SKJ","OTH",0,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"765",160,-15,"SKJ","UNA",3571.814,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"766",160,-15,"YFT","ASS",1451.354,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"767",160,-15,"YFT","OTH",0,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"768",160,-15,"YFT","UNA",546.872,317.58,12635.76,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"769",160,-10,"BET","ASS",8884.174,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"770",160,-10,"BET","OTH",0,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"771",160,-10,"BET","UNA",658.666,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"772",160,-10,"OTH","ASS",61.336,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"773",160,-10,"OTH","OTH",0,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"774",160,-10,"OTH","UNA",11.616,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"775",160,-10,"SKJ","ASS",128441.556,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"776",160,-10,"SKJ","OTH",0,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"777",160,-10,"SKJ","UNA",83350.226,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"778",160,-10,"YFT","ASS",28168.956,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"779",160,-10,"YFT","OTH",0,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"780",160,-10,"YFT","UNA",18387.345,8596.92,267963.875,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"781",160,-5,"BET","ASS",18553.88,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"782",160,-5,"BET","OTH",0,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"783",160,-5,"BET","UNA",1337.822,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"784",160,-5,"OTH","ASS",21.177,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"785",160,-5,"OTH","OTH",0,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"786",160,-5,"OTH","UNA",1.186,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"787",160,-5,"SKJ","ASS",198336.816,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"788",160,-5,"SKJ","OTH",0,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"789",160,-5,"SKJ","UNA",121155.249,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"790",160,-5,"YFT","ASS",48356.763,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"791",160,-5,"YFT","OTH",0,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"792",160,-5,"YFT","UNA",33983.463,14379.82,421746.356,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"793",160,0,"BET","ASS",3954.579,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"794",160,0,"BET","OTH",0,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"795",160,0,"BET","UNA",828.568,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"796",160,0,"OTH","ASS",12.067,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"797",160,0,"OTH","OTH",0,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"798",160,0,"OTH","UNA",0.488,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"799",160,0,"SKJ","ASS",58654.532,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"800",160,0,"SKJ","OTH",0,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"801",160,0,"SKJ","UNA",76027.881,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"802",160,0,"YFT","ASS",13781.442,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"803",160,0,"YFT","OTH",0,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"804",160,0,"YFT","UNA",13773.625,6102.38,167033.182,"High Seas",NA,NA,FALSE
+"805",160,5,"BET","ASS",246.892,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"806",160,5,"BET","OTH",0,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"807",160,5,"BET","UNA",20.014,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"808",160,5,"OTH","ASS",0.483,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"809",160,5,"OTH","OTH",0,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"810",160,5,"OTH","UNA",0,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"811",160,5,"SKJ","ASS",3507.097,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"812",160,5,"SKJ","OTH",0,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"813",160,5,"SKJ","UNA",2873.303,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"814",160,5,"YFT","ASS",538.879,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"815",160,5,"YFT","OTH",0,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"816",160,5,"YFT","UNA",333.322,212.58,7519.99,"Micronesian Exclusive Economic Zone","Micronesia","Micronesia",TRUE
+"817",160,35,"BET","ASS",0,65,1862,"High Seas",NA,NA,FALSE
+"818",160,35,"BET","OTH",0,65,1862,"High Seas",NA,NA,FALSE
+"819",160,35,"BET","UNA",0,65,1862,"High Seas",NA,NA,FALSE
+"820",160,35,"OTH","ASS",0,65,1862,"High Seas",NA,NA,FALSE
+"821",160,35,"OTH","OTH",0,65,1862,"High Seas",NA,NA,FALSE
+"822",160,35,"OTH","UNA",0,65,1862,"High Seas",NA,NA,FALSE
+"823",160,35,"SKJ","ASS",244.943,65,1862,"High Seas",NA,NA,FALSE
+"824",160,35,"SKJ","OTH",0,65,1862,"High Seas",NA,NA,FALSE
+"825",160,35,"SKJ","UNA",1617.057,65,1862,"High Seas",NA,NA,FALSE
+"826",160,35,"YFT","ASS",0,65,1862,"High Seas",NA,NA,FALSE
+"827",160,35,"YFT","OTH",0,65,1862,"High Seas",NA,NA,FALSE
+"828",160,35,"YFT","UNA",0,65,1862,"High Seas",NA,NA,FALSE
+"829",165,-15,"BET","ASS",27.927,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"830",165,-15,"BET","OTH",0,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"831",165,-15,"BET","UNA",0,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"832",165,-15,"OTH","ASS",0.098,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"833",165,-15,"OTH","OTH",0,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"834",165,-15,"OTH","UNA",0.274,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"835",165,-15,"SKJ","ASS",1820.626,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"836",165,-15,"SKJ","OTH",0,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"837",165,-15,"SKJ","UNA",701.975,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"838",165,-15,"YFT","ASS",340.156,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"839",165,-15,"YFT","OTH",0,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"840",165,-15,"YFT","UNA",24.538,74.98,2915.594,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"841",165,-10,"BET","ASS",4640.334,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"842",165,-10,"BET","OTH",0,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"843",165,-10,"BET","UNA",78.632,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"844",165,-10,"OTH","ASS",8.347,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"845",165,-10,"OTH","OTH",0,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"846",165,-10,"OTH","UNA",0.068,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"847",165,-10,"SKJ","ASS",79804.632,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"848",165,-10,"SKJ","OTH",0,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"849",165,-10,"SKJ","UNA",25191.593,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"850",165,-10,"YFT","ASS",15505.803,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"851",165,-10,"YFT","OTH",0,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"852",165,-10,"YFT","UNA",3310.672,3931.03,128540.081,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"853",165,-5,"BET","ASS",27638.052,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"854",165,-5,"BET","OTH",0,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"855",165,-5,"BET","UNA",1117.089,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"856",165,-5,"OTH","ASS",26.784,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"857",165,-5,"OTH","OTH",0,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"858",165,-5,"OTH","UNA",1.36,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"859",165,-5,"SKJ","ASS",273531.743,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"860",165,-5,"SKJ","OTH",0,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"861",165,-5,"SKJ","UNA",136065.633,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"862",165,-5,"YFT","ASS",57739.704,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"863",165,-5,"YFT","OTH",0,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"864",165,-5,"YFT","UNA",36484.668,16053.3,532605.033,"High Seas",NA,NA,FALSE
+"865",165,0,"BET","ASS",9547.394,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"866",165,0,"BET","OTH",0,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"867",165,0,"BET","UNA",1073.722,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"868",165,0,"OTH","ASS",14.101,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"869",165,0,"OTH","OTH",0,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"870",165,0,"OTH","UNA",1.679,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"871",165,0,"SKJ","ASS",95446.966,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"872",165,0,"SKJ","OTH",0,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"873",165,0,"SKJ","UNA",102055.809,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"874",165,0,"YFT","ASS",19013.811,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"875",165,0,"YFT","OTH",0,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"876",165,0,"YFT","UNA",29498.593,8187.25,256652.075,"Nauruan Exclusive Economic Zone","Nauru","Nauru",TRUE
+"877",170,-40,"BET","ASS",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"878",170,-40,"BET","OTH",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"879",170,-40,"BET","UNA",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"880",170,-40,"OTH","ASS",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"881",170,-40,"OTH","OTH",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"882",170,-40,"OTH","UNA",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"883",170,-40,"SKJ","ASS",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"884",170,-40,"SKJ","OTH",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"885",170,-40,"SKJ","UNA",4993.311,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"886",170,-40,"YFT","ASS",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"887",170,-40,"YFT","OTH",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"888",170,-40,"YFT","UNA",0,93.63,4993.311,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"889",170,-15,"BET","ASS",16.134,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"890",170,-15,"BET","OTH",0,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"891",170,-15,"BET","UNA",2.706,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"892",170,-15,"OTH","ASS",0,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"893",170,-15,"OTH","OTH",0,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"894",170,-15,"OTH","UNA",0,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"895",170,-15,"SKJ","ASS",666.756,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"896",170,-15,"SKJ","OTH",0,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"897",170,-15,"SKJ","UNA",3349.776,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"898",170,-15,"YFT","ASS",162.778,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"899",170,-15,"YFT","OTH",0,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"900",170,-15,"YFT","UNA",115.656,92.13,4313.806,"Vanuatu Exclusive Economic Zone","Vanuatu","Vanuatu",FALSE
+"901",170,-10,"BET","ASS",3298.032,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"902",170,-10,"BET","OTH",0,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"903",170,-10,"BET","UNA",43.083,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"904",170,-10,"OTH","ASS",2.644,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"905",170,-10,"OTH","OTH",0,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"906",170,-10,"OTH","UNA",0,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"907",170,-10,"SKJ","ASS",63730.724,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"908",170,-10,"SKJ","OTH",0,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"909",170,-10,"SKJ","UNA",19132.529,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"910",170,-10,"YFT","ASS",12198.243,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"911",170,-10,"YFT","OTH",0,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"912",170,-10,"YFT","UNA",1576.318,2802.32,99981.573,"Solomon Islands Exclusive Economic Zone","Solomon Islands","Solomon Islands",TRUE
+"913",170,-5,"BET","ASS",19772.699,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"914",170,-5,"BET","OTH",0,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"915",170,-5,"BET","UNA",1201.053,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"916",170,-5,"OTH","ASS",30.883,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"917",170,-5,"OTH","OTH",0,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"918",170,-5,"OTH","UNA",23.002,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"919",170,-5,"SKJ","ASS",220498.868,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"920",170,-5,"SKJ","OTH",0,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"921",170,-5,"SKJ","UNA",139524.866,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"922",170,-5,"YFT","ASS",41768.947,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"923",170,-5,"YFT","OTH",0,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"924",170,-5,"YFT","UNA",63274.994,14407.92,486095.312,"High Seas",NA,NA,FALSE
+"925",170,0,"BET","ASS",6436.738,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"926",170,0,"BET","OTH",0,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"927",170,0,"BET","UNA",582.402,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"928",170,0,"OTH","ASS",9.369,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"929",170,0,"OTH","OTH",0,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"930",170,0,"OTH","UNA",1.645,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"931",170,0,"SKJ","ASS",59543.464,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"932",170,0,"SKJ","OTH",0,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"933",170,0,"SKJ","UNA",42042.937,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"934",170,0,"YFT","ASS",10753.869,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"935",170,0,"YFT","OTH",0,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"936",170,0,"YFT","UNA",20923.024,4446.34,140293.448,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"937",170,5,"BET","ASS",0,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"938",170,5,"BET","OTH",0,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"939",170,5,"BET","UNA",49.646,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"940",170,5,"OTH","ASS",0,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"941",170,5,"OTH","OTH",0,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"942",170,5,"OTH","UNA",0,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"943",170,5,"SKJ","ASS",0,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"944",170,5,"SKJ","OTH",0,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"945",170,5,"SKJ","UNA",3970.87,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"946",170,5,"YFT","ASS",0,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"947",170,5,"YFT","OTH",0,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"948",170,5,"YFT","UNA",755.834,100.06,4776.35,"Marshall Islands Exclusive Economic Zone","Marshall Islands","Marshall Islands",TRUE
+"949",175,-40,"BET","ASS",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"950",175,-40,"BET","OTH",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"951",175,-40,"BET","UNA",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"952",175,-40,"OTH","ASS",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"953",175,-40,"OTH","OTH",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"954",175,-40,"OTH","UNA",1.039,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"955",175,-40,"SKJ","ASS",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"956",175,-40,"SKJ","OTH",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"957",175,-40,"SKJ","UNA",20269.901,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"958",175,-40,"YFT","ASS",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"959",175,-40,"YFT","OTH",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"960",175,-40,"YFT","UNA",0,567.99,20270.94,"New Zealand Exclusive Economic Zone","New Zealand","New Zealand",FALSE
+"961",175,-10,"BET","ASS",4019.089,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"962",175,-10,"BET","OTH",0,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"963",175,-10,"BET","UNA",139.037,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"964",175,-10,"OTH","ASS",9.945,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"965",175,-10,"OTH","OTH",0,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"966",175,-10,"OTH","UNA",5.505,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"967",175,-10,"SKJ","ASS",74564.883,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"968",175,-10,"SKJ","OTH",0,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"969",175,-10,"SKJ","UNA",37483.761,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"970",175,-10,"YFT","ASS",14635.342,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"971",175,-10,"YFT","OTH",0,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"972",175,-10,"YFT","UNA",1089.319,3720.92,131946.881,"Fijian Exclusive Economic Zone","Fiji","Fiji",FALSE
+"973",175,-5,"BET","ASS",11740.889,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"974",175,-5,"BET","OTH",0,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"975",175,-5,"BET","UNA",1490.863,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"976",175,-5,"OTH","ASS",22.824,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"977",175,-5,"OTH","OTH",0,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"978",175,-5,"OTH","UNA",22.058,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"979",175,-5,"SKJ","ASS",141853.792,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"980",175,-5,"SKJ","OTH",0,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"981",175,-5,"SKJ","UNA",171309.585,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"982",175,-5,"YFT","ASS",27935.882,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"983",175,-5,"YFT","OTH",0,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"984",175,-5,"YFT","UNA",44673.99,10665.86,399049.883,"Tuvaluan Exclusive Economic Zone","Tuvalu","Tuvalu",TRUE
+"985",175,0,"BET","ASS",4425.305,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"986",175,0,"BET","OTH",0,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"987",175,0,"BET","UNA",532.333,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"988",175,0,"OTH","ASS",1.53,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"989",175,0,"OTH","OTH",0,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"990",175,0,"OTH","UNA",0.306,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"991",175,0,"SKJ","ASS",40833.496,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"992",175,0,"SKJ","OTH",0,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"993",175,0,"SKJ","UNA",36251.307,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"994",175,0,"YFT","ASS",7561.374,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"995",175,0,"YFT","OTH",0,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE
+"996",175,0,"YFT","UNA",18976.343,2519.56,108581.994,"Kiribati Exclusive Economic Zone","Kiribati","Kiribati",TRUE

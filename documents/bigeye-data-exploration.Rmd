@@ -1,0 +1,338 @@
+---
+title: "Bigeye Data Exploration"
+author: "Dan Ovando"
+date: "April 22, 2016"
+output:
+  html_document:
+    fig_caption: yes
+  pdf_document:
+    fig_caption: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = F, warning = F, cache = F)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(broom)
+library(tmap)
+library(readr)
+library(scales)
+library(ggalt)
+library(plotly)
+library(leaflet)
+```
+
+```{r read in data}
+
+purse_data = read.csv('Coaseian Tuna Data/purse_seine_0/PURSE_SEINE.csv', stringsAsFactors = F) %>%
+  as_data_frame()
+
+purse_flags = read.csv('Coaseian Tuna Data/WCPFC_Yearbook2014/YB_WCP_CA.csv', stringsAsFactors = F) %>%
+  as_data_frame() %>%
+  gather('species','catch_mt',alb_mt:swo_mt) %>%
+  mutate(species = gsub('_.*$', replacement = '', species)) %>%
+  spread(species, catch_mt) %>%
+  mutate(perc_bigeye = bet/(skj + bet)) #%>%
+
+```
+
+First things first, we're going to try and understand the fleet a little bit. Let's look at the top 5 "flag" players in terms of total tuna catch
+
+```{r flag gear breakdown, fig.cap='Distribution of tuna catches by gear type'}
+
+flag_gear <- purse_flags %>%
+  filter(yy == max(yy)) %>%
+  gather('species','catch_mt', alb:yft ) %>%
+  group_by(yy, flag, gear) %>%
+  summarise(total_gear_tuna = sum(catch_mt, na.rm = T)) %>%
+  # filter(yy 2009) %>% 
+  ungroup() %>%
+  group_by(flag) %>%
+  mutate(total_tuna = sum(total_gear_tuna)) %>%
+  ungroup() %>%
+  arrange(desc(total_tuna)) %>%
+  spread(gear,total_gear_tuna) %>%
+  group_by(yy) %>%
+  top_n(10,total_tuna) %>%
+  gather('gear','total_gear_tuna',G:T)
+
+flag_gear_plot <- flag_gear %>%
+  ggplot(aes(factor(gear),total_gear_tuna, fill = factor(gear))) + 
+  geom_bar(stat = 'identity') + 
+  facet_wrap(~flag) + 
+  coord_polar() + 
+  xlab('') + 
+  ylab('Tuna Catch (MT)') + 
+  scale_fill_discrete(guide = F)
+
+flag_gear_plot
+
+```
+COdy was here
+We can see that most countries catch all of their tuna by purse seine (*S*). Next, let's do the same thing, but for the breakdown of catch by species
+
+```{r flag species breakdown, fig.cap='Distribution of tuna catches for top 10 countries by species'}
+
+flag_species <- purse_flags %>%
+  filter(yy == max(yy)) %>%
+  gather('species','catch_mt', alb:yft ) %>%
+  group_by(yy, flag, species) %>%
+  summarise(total_species_tuna = sum(catch_mt, na.rm = T)) %>%
+  ungroup() %>%
+  group_by(flag) %>%
+  mutate(total_tuna = sum(total_species_tuna)) %>%
+  ungroup() %>%
+  arrange(desc(total_tuna)) %>%
+  spread(species,total_species_tuna) %>%
+  group_by(yy) %>%
+  top_n(10,total_tuna) %>%
+  gather('species','total_species_tuna',alb:yft)
+
+flag_species_plot <- flag_species %>%
+  ggplot(aes(factor(species),total_species_tuna, fill = factor(species))) + 
+  geom_bar(stat = 'identity') + 
+  facet_wrap(~flag) + 
+  coord_polar() + 
+  xlab('') + 
+  ylab('Tuna Catch (MT)') + 
+  scale_fill_discrete(guide = F)
+
+flag_species_plot
+
+```
+
+No surprises there, skipjack makes up the bulk of catches. Let's start to focus in on bigeye and bigeye bycatch now. 
+
+Let's break down bigeye capture by gear type
+
+```{r bigeye by gear, fig.cap='Catch by gear type for bigeye tuna'}
+
+bigeye_gear <- purse_flags %>%
+  filter(yy == max(yy)) %>%
+  gather('species','catch_mt', alb:yft ) %>%
+  filter(species == 'bet') %>%
+  group_by(yy, flag, gear) %>%
+  summarise(total_gear_tuna = sum(catch_mt, na.rm = T)) %>%
+  # filter(yy 2009) %>% 
+  ungroup() %>%
+  group_by(flag) %>%
+  mutate(total_tuna = sum(total_gear_tuna)) %>%
+  ungroup() %>%
+  arrange(desc(total_tuna)) %>%
+  spread(gear,total_gear_tuna) %>%
+  group_by(yy) %>%
+  top_n(10,total_tuna) %>%
+  gather('gear','total_gear_tuna',G:T)
+
+bigeye_gear_plot <- bigeye_gear %>%
+  ggplot(aes(factor(gear),total_gear_tuna, fill = factor(gear))) + 
+  geom_bar(stat = 'identity') + 
+  facet_wrap(~flag) + 
+  coord_polar() + 
+  xlab('') + 
+  ylab('Bigeye Tuna Catch (MT)') + 
+  scale_fill_discrete(guide = F)
+
+bigeye_gear_plot
+
+```
+
+We see that almost all bigeye tuna are caught by longline (*L*) or purse seines (*S*). We also see that the bulk of the targeted bigeye catch comes from China, India, Japan, Korea, and Taiwan. 
+
+```{r rank plots}
+
+bigeye_gear <- purse_flags %>%
+  filter(yy == max(yy)) %>%
+  gather('species','catch_mt', alb:yft ) %>%
+  filter(species == 'bet')  %>%
+  group_by(flag,gear) %>%
+  summarise(gear_bigeye = sum(catch_mt)) %>%
+  ungroup() %>%
+  group_by(flag) %>%
+  mutate(total_bigeye = sum(gear_bigeye)) %>%
+  spread(gear,gear_bigeye) %>%
+  ungroup() %>%
+  arrange(desc(total_bigeye)) %>%
+  # group_by(yy) %>%
+  top_n(10,total_bigeye) %>%
+  gather('gear','catch_mt',G:T) %>%
+  ungroup() %>%
+  arrange(desc(total_bigeye), desc(catch_mt))
+
+
+bigeye_gear$flag_factor = factor(bigeye_gear$flag, levels = bigeye_gear$flag[order(bigeye_gear$total_bigeye, decreasing = T)] )
+
+bigeye_gear_plot = bigeye_gear  %>%
+  ggplot(aes(flag_factor,catch_mt, fill = gear)) + 
+  geom_bar(stat = 'identity', color = 'black')
+
+bigeye_gear_plot
+
+```
+
+Interesting, Indonesia is actually the biggest. Now, let's take a look at the relative contribution 
+
+```{r relative contribution}
+
+bigeye_gear <- purse_flags %>%
+  filter(yy == max(yy)) %>%
+  gather('species','catch_mt', alb:yft ) %>%
+  filter(species == 'bet' & gear == 'S')  %>%
+  group_by(flag) %>%
+  summarise(bycatch_bigeye = sum(catch_mt)) %>%
+  arrange(desc(bycatch_bigeye)) %>%
+  ungroup() %>%
+  mutate(cumu_bigeye = cumsum(bycatch_bigeye) ,
+         factor_flag = factor(flag, levels = flag[order(cumu_bigeye, decreasing = F)]))
+
+cumu_bigeye_bycatch_plot = bigeye_gear %>%
+  ggplot(aes(factor_flag, cumu_bigeye)) + 
+  geom_point()
+
+cumu_bigeye_bycatch_plot
+```
+
+
+```{r look for outliers}
+
+purse_flag_outliers = read.csv('Coaseian Tuna Data/WCPFC_Yearbook2014/YB_WCP_CA.csv', stringsAsFactors = F) %>%
+  as_data_frame() %>%
+  gather('species','catch_mt',alb_mt:swo_mt) %>%
+  mutate(species = gsub('_.*$', replacement = '', species)) %>%
+  spread(species, catch_mt) %>%
+  mutate(perc_bigeye = bet/(skj + bet)) %>%
+  filter(gear == 'S', yy >=2009) %>% 
+  group_by(yy) %>%
+  top_n(5,bet)
+
+
+flag_plots = purse_flag_outliers %>%
+  ggplot(aes(perc_bigeye,bet, fill = flag, size = skj)) + 
+  geom_point(shape = 21) + 
+  scale_x_continuous(labels = percent) + 
+  facet_wrap(~yy) + 
+  xlab('SKPJ and BET PS Catch coming from BET') + 
+  ylab('PS BET Catch (MT)')
+
+flag_plots
+```
+
+```{r trading}
+
+tuna_trading <- purse_flags %>%
+  filter(yy == max(yy)) %>%
+  gather('species','catch_mt', alb:yft ) %>%
+  group_by(gear, flag, species) %>%
+  summarise(total_catch_mt = sum(catch_mt)) %>%
+  ungroup() %>% 
+  mutate(bycatch = gear == 'S') %>%
+  filter(species == 'bet') %>%
+  group_by(flag,bycatch) %>% 
+  summarise(caught = sum(total_catch_mt)) %>%
+  spread(bycatch, caught)
+
+colnames(tuna_trading) <- c('flag','Targeted','Bycatch')
+
+trading_plot = ggplot(tuna_trading, aes(Targeted, Bycatch, fill = flag)) + 
+  geom_point(shape = 21, size = 2)
+
+
+ggplotly(trading_plot)
+
+```
+
+
+```{r trading plot 2}
+
+tuna_trading_2 <- purse_flags %>%
+  filter(yy == max(yy)) %>%
+  gather('species','catch_mt', alb:yft ) %>%
+  group_by(flag, species) %>%
+  summarise(total_catch_mt = sum(catch_mt)) %>%
+  ungroup() %>% 
+  mutate(bigeye = species == 'bet') %>%
+  group_by(flag,bigeye) %>%
+  summarise(caught = sum(total_catch_mt)) %>%
+  spread(bigeye, caught)
+
+colnames(tuna_trading_2) <- c('flag','Other Tunas','Bigeye')
+
+trading_plot_2 = ggplot(tuna_trading_2, aes(Bigeye, `Other Tunas`, fill = flag)) + 
+  geom_point(shape = 21, size = 2)
+
+
+ggplotly(trading_plot_2)
+
+
+```
+
+
+```{r month trends}
+
+monthly_bycatch_plot = purse_data %>% 
+  gather('species','catch',contains('_')) %>%
+  mutate(short_species = gsub('_.*$','',species)) %>%
+  group_by(YY,MM,short_species) %>%
+  summarise(total_catch = sum(catch, na.rm = T)) %>%
+  filter(short_species == 'BET' | short_species == 'SKJ') %>%
+  ungroup() %>% 
+  group_by(YY,short_species) %>%
+  mutate(yearly_catch = sum(total_catch),
+         month_prop = total_catch/yearly_catch) %>%
+  ungroup() %>% 
+  group_by(MM,short_species) %>%
+  summarise(mean_month_prop = mean(month_prop, na.rm = T)) %>%
+  spread(short_species,mean_month_prop) %>%
+  ggplot(aes(MM, BET, fill= SKJ)) + 
+  geom_point(shape = 21, size = 4) + 
+  scale_fill_continuous(low = 'blue', high = 'red') + 
+  xlab('Month') + 
+  ylab('Proportion of Yearly Bigeye Bycatch') + 
+  scale_y_continuous(labels = percent)
+
+monthly_bycatch_plot
+
+```
+
+## Paper figures
+
+You want to make two figures here. The first one shows the marginal surplus generaged by the nth unit of bycatch reduction. For now, let's do this by country instead of by space. 
+
+
+```{r figure 2}
+
+fig_2_dat = tuna_trading_2 %>%
+  ungroup() %>%
+  mutate(bycatch_rate = Bigeye / `Other Tunas`) %>%
+  filter(bycatch_rate < 0.3 &
+  is.na(bycatch_rate) == F & bycatch_rate > 0) %>%
+  arrange(desc(bycatch_rate)) %>%
+  mutate(cost = `Other Tunas` * 1,
+  benefit = Bigeye * 10,
+  surplus = benefit - cost) %>%
+  arrange(desc(surplus)) %>%
+  mutate(cumu_surplus = cumsum(surplus),
+  cumu_bigeye = cumsum(Bigeye))
+  
+  fig_2 = fig_2_dat %>%
+  ggplot(aes(cumu_bigeye, surplus, fill = pmax(-50000,surplus))) +   geom_hline(aes(yintercept = 0), size = 2) +
+  geom_point(shape  = 21, size = 3) +
+  scale_fill_gradient2(
+  low = 'orangered2',
+  mid = 'white',
+  high = 'seagreen2',
+  midpoint = 0, guide = F,
+  limits = c(-50000,50000))  +
+    scale_y_continuous(name = 'Marginal Surplus', labels = scales::dollar ) + 
+    xlab('Bigeye Conserved') +
+    theme_light()
+ggsave(file = 'figure_2.pdf', width = 6, height = 4, plot = fig_2)
+```
+
+```{r fig 3}
+
+
+```
+## Spatial Stuff
+

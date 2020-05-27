@@ -1,0 +1,250 @@
+"","EEZ","Country","PNA_country","set_type","EEZ_total_catch","EEZ_total_days","LON5_D","LAT5_D"
+"1","American Samoa Exclusive Economic Zone","American Samoa",FALSE,"ASS",2796.558,119.61,-170,-15
+"2","American Samoa Exclusive Economic Zone","American Samoa",FALSE,"OTH",0,119.61,-170,-15
+"3","American Samoa Exclusive Economic Zone","American Samoa",FALSE,"UNA",928.702,119.61,-170,-15
+"4","Australian Exclusive Economic Zone","Australia",FALSE,"ASS",309.144,153.31,150,-15
+"5","Australian Exclusive Economic Zone","Australia",FALSE,"ASS",6254.152,1289.16,155,-15
+"6","Australian Exclusive Economic Zone","Australia",FALSE,"OTH",0,153.31,150,-15
+"7","Australian Exclusive Economic Zone","Australia",FALSE,"OTH",0,1289.16,155,-15
+"8","Australian Exclusive Economic Zone","Australia",FALSE,"UNA",3775.961,153.31,150,-15
+"9","Australian Exclusive Economic Zone","Australia",FALSE,"UNA",22646.684,1289.16,155,-15
+"10","Chinese Exclusive Economic Zone","China",FALSE,"ASS",0.106,338.88,120,25
+"11","Chinese Exclusive Economic Zone","China",FALSE,"ASS",641.722,9026.63,125,30
+"12","Chinese Exclusive Economic Zone","China",FALSE,"OTH",0,338.88,120,25
+"13","Chinese Exclusive Economic Zone","China",FALSE,"OTH",0,9026.63,125,30
+"14","Chinese Exclusive Economic Zone","China",FALSE,"UNA",0.393,338.88,120,25
+"15","Chinese Exclusive Economic Zone","China",FALSE,"UNA",1730.662,9026.63,125,30
+"16","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,"ASS",0,56.28,-165,-15
+"17","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,"ASS",962.957,239.14,-165,-10
+"18","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,"ASS",0,63.05,-160,-10
+"19","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,"OTH",0,56.28,-165,-15
+"20","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,"OTH",0,239.14,-165,-10
+"21","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,"OTH",0,63.05,-160,-10
+"22","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,"UNA",1068.204,56.28,-165,-15
+"23","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,"UNA",5987.586,239.14,-165,-10
+"24","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,"UNA",3083.85,63.05,-160,-10
+"25","Fijian Exclusive Economic Zone","Fiji",FALSE,"ASS",74564.883,3720.92,175,-10
+"26","Fijian Exclusive Economic Zone","Fiji",FALSE,"OTH",0,3720.92,175,-10
+"27","Fijian Exclusive Economic Zone","Fiji",FALSE,"UNA",37483.761,3720.92,175,-10
+"28","High Seas",NA,FALSE,"ASS",48419.536,2671.52,-180,-10
+"29","High Seas",NA,FALSE,"ASS",46957.698,3231.75,-180,-5
+"30","High Seas",NA,FALSE,"ASS",0,207.99,-165,-5
+"31","High Seas",NA,FALSE,"ASS",72.459,62.15,-165,0
+"32","High Seas",NA,FALSE,"ASS",0,457.14,-160,-5
+"33","High Seas",NA,FALSE,"ASS",33760.499,12671.82,120,0
+"34","High Seas",NA,FALSE,"ASS",0.897,58.99,120,30
+"35","High Seas",NA,FALSE,"ASS",0.02,1381.76,135,35
+"36","High Seas",NA,FALSE,"ASS",135047.529,18847.6,140,-5
+"37","High Seas",NA,FALSE,"ASS",199903.777,33264.24,145,-5
+"38","High Seas",NA,FALSE,"ASS",327.555,90.61,145,30
+"39","High Seas",NA,FALSE,"ASS",25236.977,2259.61,145,35
+"40","High Seas",NA,FALSE,"ASS",14524.801,873.65,150,35
+"41","High Seas",NA,FALSE,"ASS",2381.592,262.52,150,40
+"42","High Seas",NA,FALSE,"ASS",58654.532,6102.38,160,0
+"43","High Seas",NA,FALSE,"ASS",244.943,65,160,35
+"44","High Seas",NA,FALSE,"ASS",273531.743,16053.3,165,-5
+"45","High Seas",NA,FALSE,"ASS",220498.868,14407.92,170,-5
+"46","High Seas",NA,FALSE,"OTH",0,2671.52,-180,-10
+"47","High Seas",NA,FALSE,"OTH",0,3231.75,-180,-5
+"48","High Seas",NA,FALSE,"OTH",0,207.99,-165,-5
+"49","High Seas",NA,FALSE,"OTH",0,62.15,-165,0
+"50","High Seas",NA,FALSE,"OTH",0,457.14,-160,-5
+"51","High Seas",NA,FALSE,"OTH",0,12671.82,120,0
+"52","High Seas",NA,FALSE,"OTH",0,58.99,120,30
+"53","High Seas",NA,FALSE,"OTH",0,1381.76,135,35
+"54","High Seas",NA,FALSE,"OTH",0,18847.6,140,-5
+"55","High Seas",NA,FALSE,"OTH",0,33264.24,145,-5
+"56","High Seas",NA,FALSE,"OTH",0,90.61,145,30
+"57","High Seas",NA,FALSE,"OTH",0,2259.61,145,35
+"58","High Seas",NA,FALSE,"OTH",0,873.65,150,35
+"59","High Seas",NA,FALSE,"OTH",0,262.52,150,40
+"60","High Seas",NA,FALSE,"OTH",0,6102.38,160,0
+"61","High Seas",NA,FALSE,"OTH",0,65,160,35
+"62","High Seas",NA,FALSE,"OTH",0,16053.3,165,-5
+"63","High Seas",NA,FALSE,"OTH",0,14407.92,170,-5
+"64","High Seas",NA,FALSE,"UNA",33559.059,2671.52,-180,-10
+"65","High Seas",NA,FALSE,"UNA",67746.301,3231.75,-180,-5
+"66","High Seas",NA,FALSE,"UNA",6824.869,207.99,-165,-5
+"67","High Seas",NA,FALSE,"UNA",2884.639,62.15,-165,0
+"68","High Seas",NA,FALSE,"UNA",14080.882,457.14,-160,-5
+"69","High Seas",NA,FALSE,"UNA",14291.552,12671.82,120,0
+"70","High Seas",NA,FALSE,"UNA",3.902,58.99,120,30
+"71","High Seas",NA,FALSE,"UNA",0.08,1381.76,135,35
+"72","High Seas",NA,FALSE,"UNA",80697.62,18847.6,140,-5
+"73","High Seas",NA,FALSE,"UNA",229373.636,33264.24,145,-5
+"74","High Seas",NA,FALSE,"UNA",1383.246,90.61,145,30
+"75","High Seas",NA,FALSE,"UNA",45313.124,2259.61,145,35
+"76","High Seas",NA,FALSE,"UNA",15338.499,873.65,150,35
+"77","High Seas",NA,FALSE,"UNA",8642.107,262.52,150,40
+"78","High Seas",NA,FALSE,"UNA",76027.881,6102.38,160,0
+"79","High Seas",NA,FALSE,"UNA",1617.057,65,160,35
+"80","High Seas",NA,FALSE,"UNA",136065.633,16053.3,165,-5
+"81","High Seas",NA,FALSE,"UNA",139524.866,14407.92,170,-5
+"82","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,"ASS",1566.35,148.42,-175,0
+"83","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,"OTH",0,148.42,-175,0
+"84","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,"UNA",6767.502,148.42,-175,0
+"85","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"ASS",22366.002,14440.76,125,-5
+"86","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"ASS",55529.838,22301.79,125,0
+"87","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"ASS",22366.188,14057.28,130,-5
+"88","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"ASS",139611.695,58639.77,130,0
+"89","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"ASS",55915.541,34859.11,135,-5
+"90","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"ASS",126060.047,43298.87,135,0
+"91","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"ASS",66783.781,7142.01,140,0
+"92","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"OTH",0,14440.76,125,-5
+"93","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"OTH",0,22301.79,125,0
+"94","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"OTH",0,14057.28,130,-5
+"95","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"OTH",0,58639.77,130,0
+"96","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"OTH",0,34859.11,135,-5
+"97","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"OTH",0,43298.87,135,0
+"98","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"OTH",0,7142.01,140,0
+"99","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"UNA",21921.839,14440.76,125,-5
+"100","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"UNA",27060.621,22301.79,125,0
+"101","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"UNA",21921.867,14057.28,130,-5
+"102","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"UNA",73343.19,58639.77,130,0
+"103","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"UNA",54804.761,34859.11,135,-5
+"104","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"UNA",46938.561,43298.87,135,0
+"105","Indonesian Exclusive Economic Zone","Indonesia",FALSE,"UNA",128405.097,7142.01,140,0
+"106","Japanese Exclusive Economic Zone","Japan",FALSE,"ASS",29.292,1921.71,125,25
+"107","Japanese Exclusive Economic Zone","Japan",FALSE,"ASS",38.536,2963.66,130,30
+"108","Japanese Exclusive Economic Zone","Japan",FALSE,"ASS",84.125,1876.55,130,35
+"109","Japanese Exclusive Economic Zone","Japan",FALSE,"ASS",84.824,60.67,135,30
+"110","Japanese Exclusive Economic Zone","Japan",FALSE,"ASS",553.7,96.84,140,30
+"111","Japanese Exclusive Economic Zone","Japan",FALSE,"ASS",950.28,224.01,140,35
+"112","Japanese Exclusive Economic Zone","Japan",FALSE,"OTH",0,1921.71,125,25
+"113","Japanese Exclusive Economic Zone","Japan",FALSE,"OTH",0,2963.66,130,30
+"114","Japanese Exclusive Economic Zone","Japan",FALSE,"OTH",0,1876.55,130,35
+"115","Japanese Exclusive Economic Zone","Japan",FALSE,"OTH",0,60.67,135,30
+"116","Japanese Exclusive Economic Zone","Japan",FALSE,"OTH",0,96.84,140,30
+"117","Japanese Exclusive Economic Zone","Japan",FALSE,"OTH",0,224.01,140,35
+"118","Japanese Exclusive Economic Zone","Japan",FALSE,"UNA",171.705,1921.71,125,25
+"119","Japanese Exclusive Economic Zone","Japan",FALSE,"UNA",111.464,2963.66,130,30
+"120","Japanese Exclusive Economic Zone","Japan",FALSE,"UNA",353.072,1876.55,130,35
+"121","Japanese Exclusive Economic Zone","Japan",FALSE,"UNA",1809.776,60.67,135,30
+"122","Japanese Exclusive Economic Zone","Japan",FALSE,"UNA",1010.001,96.84,140,30
+"123","Japanese Exclusive Economic Zone","Japan",FALSE,"UNA",2128.22,224.01,140,35
+"124","Kiribati Exclusive Economic Zone","Kiribati",TRUE,"ASS",59543.464,4446.34,170,0
+"125","Kiribati Exclusive Economic Zone","Kiribati",TRUE,"ASS",40833.496,2519.56,175,0
+"126","Kiribati Exclusive Economic Zone","Kiribati",TRUE,"OTH",0,4446.34,170,0
+"127","Kiribati Exclusive Economic Zone","Kiribati",TRUE,"OTH",0,2519.56,175,0
+"128","Kiribati Exclusive Economic Zone","Kiribati",TRUE,"UNA",42042.937,4446.34,170,0
+"129","Kiribati Exclusive Economic Zone","Kiribati",TRUE,"UNA",36251.307,2519.56,175,0
+"130","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,"ASS",3530.681,52.02,-155,-5
+"131","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,"OTH",0,52.02,-155,-5
+"132","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,"UNA",0,52.02,-155,-5
+"133","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,"ASS",49788.622,2825.56,-175,-5
+"134","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,"ASS",18613.79,1277.81,-170,-5
+"135","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,"ASS",822.824,56.09,-170,0
+"136","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,"OTH",0,2825.56,-175,-5
+"137","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,"OTH",0,1277.81,-170,-5
+"138","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,"OTH",0,56.09,-170,0
+"139","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,"UNA",51885.492,2825.56,-175,-5
+"140","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,"UNA",29781.179,1277.81,-170,-5
+"141","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,"UNA",465.684,56.09,-170,0
+"142","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,"ASS",0,100.06,170,5
+"143","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,"OTH",0,100.06,170,5
+"144","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,"UNA",3970.87,100.06,170,5
+"145","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"ASS",11940.755,577.33,140,5
+"146","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"ASS",3473.535,353.62,145,5
+"147","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"ASS",4670.278,390.81,150,5
+"148","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"ASS",99873.353,11321.25,155,0
+"149","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"ASS",1492.67,215.1,155,5
+"150","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"ASS",3507.097,212.58,160,5
+"151","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"OTH",0,577.33,140,5
+"152","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"OTH",0,353.62,145,5
+"153","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"OTH",0,390.81,150,5
+"154","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"OTH",0,11321.25,155,0
+"155","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"OTH",0,215.1,155,5
+"156","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"OTH",0,212.58,160,5
+"157","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"UNA",10872.61,577.33,140,5
+"158","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"UNA",5663.433,353.62,145,5
+"159","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"UNA",6423.199,390.81,150,5
+"160","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"UNA",129939.769,11321.25,155,0
+"161","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"UNA",3794.488,215.1,155,5
+"162","Micronesian Exclusive Economic Zone","Micronesia",TRUE,"UNA",2873.303,212.58,160,5
+"163","Nauruan Exclusive Economic Zone","Nauru",TRUE,"ASS",95446.966,8187.25,165,0
+"164","Nauruan Exclusive Economic Zone","Nauru",TRUE,"OTH",0,8187.25,165,0
+"165","Nauruan Exclusive Economic Zone","Nauru",TRUE,"UNA",102055.809,8187.25,165,0
+"166","New Zealand Exclusive Economic Zone","New Zealand",FALSE,"ASS",0,93.63,170,-40
+"167","New Zealand Exclusive Economic Zone","New Zealand",FALSE,"ASS",0,567.99,175,-40
+"168","New Zealand Exclusive Economic Zone","New Zealand",FALSE,"OTH",0,93.63,170,-40
+"169","New Zealand Exclusive Economic Zone","New Zealand",FALSE,"OTH",0,567.99,175,-40
+"170","New Zealand Exclusive Economic Zone","New Zealand",FALSE,"UNA",4993.311,93.63,170,-40
+"171","New Zealand Exclusive Economic Zone","New Zealand",FALSE,"UNA",20269.901,567.99,175,-40
+"172","Palau Exclusive Economic Zone","Palau",TRUE,"ASS",77913.228,36210.1,130,5
+"173","Palau Exclusive Economic Zone","Palau",TRUE,"ASS",3895.702,121.91,135,5
+"174","Palau Exclusive Economic Zone","Palau",TRUE,"OTH",0,36210.1,130,5
+"175","Palau Exclusive Economic Zone","Palau",TRUE,"OTH",0,121.91,135,5
+"176","Palau Exclusive Economic Zone","Palau",TRUE,"UNA",46747.4,36210.1,130,5
+"177","Palau Exclusive Economic Zone","Palau",TRUE,"UNA",919.791,121.91,135,5
+"178","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"ASS",2749.964,824.55,145,-10
+"179","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"ASS",108425.693,12249.81,145,0
+"180","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"ASS",54033.987,8775.33,150,-10
+"181","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"ASS",162956.567,23445.88,150,-5
+"182","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"ASS",116230.249,14231.68,150,0
+"183","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"ASS",115934.058,10020.97,155,-10
+"184","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"ASS",285895.926,30625.41,155,-5
+"185","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"OTH",0,824.55,145,-10
+"186","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"OTH",0,12249.81,145,0
+"187","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"OTH",0,8775.33,150,-10
+"188","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"OTH",0,23445.88,150,-5
+"189","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"OTH",0,14231.68,150,0
+"190","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"OTH",0,10020.97,155,-10
+"191","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"OTH",0,30625.41,155,-5
+"192","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"UNA",3696.687,824.55,145,-10
+"193","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"UNA",227679.963,12249.81,145,0
+"194","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"UNA",121856.317,8775.33,150,-10
+"195","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"UNA",247913.037,23445.88,150,-5
+"196","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"UNA",205246.008,14231.68,150,0
+"197","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"UNA",96424.829,10020.97,155,-10
+"198","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,"UNA",340934.26,30625.41,155,-5
+"199","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,"ASS",13385.4,13875,115,15
+"200","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,"OTH",0,13875,115,15
+"201","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,"UNA",12329.52,13875,115,15
+"202","Philippines Exclusive Economic Zone","Philippines",FALSE,"ASS",29739.55,17385.26,120,5
+"203","Philippines Exclusive Economic Zone","Philippines",FALSE,"ASS",21546.974,10301.95,125,5
+"204","Philippines Exclusive Economic Zone","Philippines",FALSE,"OTH",0,17385.26,120,5
+"205","Philippines Exclusive Economic Zone","Philippines",FALSE,"OTH",0,10301.95,125,5
+"206","Philippines Exclusive Economic Zone","Philippines",FALSE,"UNA",25825.237,17385.26,120,5
+"207","Philippines Exclusive Economic Zone","Philippines",FALSE,"UNA",12991.967,10301.95,125,5
+"208","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"ASS",6911.295,317.58,160,-15
+"209","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"ASS",128441.556,8596.92,160,-10
+"210","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"ASS",198336.816,14379.82,160,-5
+"211","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"ASS",79804.632,3931.03,165,-10
+"212","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"ASS",63730.724,2802.32,170,-10
+"213","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"OTH",0,317.58,160,-15
+"214","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"OTH",0,8596.92,160,-10
+"215","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"OTH",0,14379.82,160,-5
+"216","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"OTH",0,3931.03,165,-10
+"217","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"OTH",0,2802.32,170,-10
+"218","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"UNA",3571.814,317.58,160,-15
+"219","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"UNA",83350.226,8596.92,160,-10
+"220","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"UNA",121155.249,14379.82,160,-5
+"221","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"UNA",25191.593,3931.03,165,-10
+"222","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,"UNA",19132.529,2802.32,170,-10
+"223","South Korean Exclusive Economic Zone","South Korea",FALSE,"ASS",19.916,41.25,125,35
+"224","South Korean Exclusive Economic Zone","South Korea",FALSE,"OTH",0,41.25,125,35
+"225","South Korean Exclusive Economic Zone","South Korea",FALSE,"UNA",33.484,41.25,125,35
+"226","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,"ASS",13385.306,13792.68,115,10
+"227","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,"OTH",0,13792.68,115,10
+"228","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,"UNA",12329.449,13792.68,115,10
+"229","Tokelau Exclusive Economic Zone","Tokelau",FALSE,"ASS",27234.921,2240.64,-175,-10
+"230","Tokelau Exclusive Economic Zone","Tokelau",FALSE,"ASS",21065.484,1134.57,-170,-10
+"231","Tokelau Exclusive Economic Zone","Tokelau",FALSE,"OTH",0,2240.64,-175,-10
+"232","Tokelau Exclusive Economic Zone","Tokelau",FALSE,"OTH",0,1134.57,-170,-10
+"233","Tokelau Exclusive Economic Zone","Tokelau",FALSE,"UNA",39894.413,2240.64,-175,-10
+"234","Tokelau Exclusive Economic Zone","Tokelau",FALSE,"UNA",19722.489,1134.57,-170,-10
+"235","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,"ASS",141853.792,10665.86,175,-5
+"236","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,"OTH",0,10665.86,175,-5
+"237","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,"UNA",171309.585,10665.86,175,-5
+"238","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,"ASS",1820.626,74.98,165,-15
+"239","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,"ASS",666.756,92.13,170,-15
+"240","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,"OTH",0,74.98,165,-15
+"241","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,"OTH",0,92.13,170,-15
+"242","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,"UNA",701.975,74.98,165,-15
+"243","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,"UNA",3349.776,92.13,170,-15
+"244","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,"ASS",13385.3,14275.75,110,10
+"245","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,"ASS",13384.896,14028.42,110,15
+"246","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,"OTH",0,14275.75,110,10
+"247","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,"OTH",0,14028.42,110,15
+"248","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,"UNA",12329.45,14275.75,110,10
+"249","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,"UNA",12329.184,14028.42,110,15

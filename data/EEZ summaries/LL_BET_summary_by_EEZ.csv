@@ -1,0 +1,29 @@
+"","Species","EEZ","Country","PNA_country","EEZ_catch","EEZ_Hhooks","EEZ_CPUE"
+"1","BET","Australian Exclusive Economic Zone","Australia",FALSE,59168.248,7357141.13,0.008042288023908
+"2","BET","Chinese Exclusive Economic Zone","China",FALSE,60.266,107948.64,0.000558284013582756
+"3","BET","Fijian Exclusive Economic Zone","Fiji",FALSE,17227.135,5077300.11,0.00339297158465585
+"4","BET","High Seas",NA,FALSE,279934.44,31953350.32,0.00876072265338591
+"5","BET","Indonesian Exclusive Economic Zone","Indonesia",FALSE,64961.15,11851367.52,0.00548132102817448
+"6","BET","Japanese Exclusive Economic Zone","Japan",FALSE,28757.059,5900349.77,0.00487378886353715
+"7","BET","Kiribati Exclusive Economic Zone","Kiribati",FALSE,66731.665,3086667.37,0.0216193249873892
+"8","BET","Malaysian Exclusive Economic Zone","Malaysia",FALSE,0.075,2324.39,3.22665301433925e-05
+"9","BET","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,42265.402,2726864.95,0.0154996315457427
+"10","BET","Micronesian Exclusive Economic Zone","Micronesia",TRUE,99179.794,6462217.71,0.0153476404619615
+"11","BET","Nauruan Exclusive Economic Zone","Nauru",TRUE,17752.829,956136.47,0.01856725431674
+"12","BET","New Caledonian Exclusive Economic Zone","New Caledonia",FALSE,4125.962,2471676.4,0.00166929700020601
+"13","BET","New Zealand Exclusive Economic Zone","New Zealand",FALSE,4549.633,1150841.55,0.00395330964545032
+"14","BET","Norfolk Island Exclusive Economic Zone","Norfolk Island",FALSE,1838.848,982168.93,0.00187223189803001
+"15","BET","Northern Mariana Islands and Guam Exclusive Economic Zone","Northern Mariana Islands and Guam",FALSE,450.943,455448.09,0.000990108444630869
+"16","BET","Palau Exclusive Economic Zone","Palau",TRUE,31172.857,2887699.46,0.0107950489418314
+"17","BET","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,128797.347,7512779.36,0.0171437680821229
+"18","BET","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,11608.373,3528571.25,0.0032898224741813
+"19","BET","Philippines Exclusive Economic Zone","Philippines",FALSE,8981.555,5624096.63,0.0015969773620337
+"20","BET","Russian Exclusive Economic Zone","Russia",FALSE,0,0,NA
+"21","BET","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,81887.592,6960690.44,0.0117642915894418
+"22","BET","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,10206.137,2518996.93,0.00405166710544582
+"23","BET","Taiwanese Exclusive Economic Zone","Taiwan",FALSE,528.067,369750.59,0.00142817081103238
+"24","BET","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,18628.795,1028989.1,0.0181039770003395
+"25","BET","United States Exclusive Exclusive Economic Zone (Alaska)","Alaska",FALSE,0,0,NA
+"26","BET","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,12285.04,6884950.62,0.00178433233265513
+"27","BET","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,19085.724,4744372.11,0.00402281346350803
+"28","BET","Wake Island Exclusive Economic Zone","Wake Island",FALSE,5168.999,447992.46,0.0115381383874184

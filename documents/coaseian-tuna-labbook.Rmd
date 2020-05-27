@@ -1,0 +1,355 @@
+---
+title: "coaseian-tuna-shortform"
+author: "Dan Ovando"
+date: "5/22/2017"
+output:
+  bookdown::html_document2: default
+  html_document: default
+  pdf_document: default
+---
+
+
+```{r setup, include=FALSE}
+
+fig_width <- 8
+fig_asp <- .65
+knitr::opts_chunk$set(echo = FALSE, message = F, warning = F,
+                      fig.asp = fig_asp, fig.width = fig_width,
+                      dev = 'cairo_pdf')
+```
+
+```{r load run}
+library(tidyverse)
+library(broom)
+library(tmap)
+library(scales)
+library(ggalt)
+library(plotly)
+library(leaflet)
+library(ggExtra)
+library(ggthemr)
+library(rstanarm)
+library(forcats)
+library(hrbrthemes)
+library(ggsci)
+
+run_name = 'random-forest'
+
+cur_dir = getwd()
+
+if (cur_dir == "/Users/danovando/SFG Work/Coaseian Tuna") {
+results_dir = paste('results/', run_name, '/', sep = '')
+}else{
+  results_dir = paste('../results/', run_name, '/', sep = '')
+
+}
+
+load(paste(results_dir,'coaseian_fad_bargain_figures.Rdata', sep = ''))
+
+font_size = 18
+
+font_family = 'Helvetica'
+
+hrbrthemes::update_geom_font_defaults()
+
+paper_theme <-  theme_ipsum(base_size = font_size,
+                          axis_title_size = font_size)
+
+theme_set(paper_theme)
+
+```
+
+
+Under “business as usual”, defined as maintaining current levels of fishing mortality reported by @Harley2014, our model of the fishery estimates that the Bigeye stock will be driven down to a stock status of `r round(sq_status$ssb_v_ssbmsy,1)` SSB/SSB~MSY~, resulting in a an estimated loss of $XX in revenues from the Bigeye fishery, relative to current levels. How much can our incentive-based solution improve on this future? We estimate that the fishery benefits (in the form of increased future catches of Bigeye) of FAD removal could afford to pay for removal of `r 100*purchases$p_fad[which(purchases$npv_surplus < 0)[1] - 1] %>% round(1)`% of FAD days currently reported in the WCPO skipjack fishery, reducing the amount of Bigeye caught in the Skipjack fishery by `r  100*( sum(flat_reform$bet_saved) / sum(bet_dat$catch[bet_dat$year == max(bet_dat$year)])) %>% round(2)`% (`r sum(flat_reform$bet_saved)` tons). We estimate this reduction in FAD associated bigeye catch would result in an increase in stock status to `r purchases$ssb_v_ssbmsy[which(purchases$npv_surplus < 0)[1] - 1] %>% round(1)`, leaving the stock in a better state but still substantially overfished (Fig. \@ref(fig:conservation-plot)). It is critical to note though that this gain in conservation leaves the stock, the bigeye fishery, and the skipjack fishery as well off or better than under business as usual. 
+
+```{r conservation-plot, fig.cap='NPV of bigeye surplus against equilibrium spawning stock biomass relative to unfished spawning stock biomass. Color shows percent of FAD days purchased'}
+
+conservation_plot
+
+```
+
+
+While this incentive based approach is capable provide benefits to all parties, the Coaseian bargain leaves the fishery well short of a biological management target such as SSB/SSB~MSY~ of 1. How much would it cost to achieve more substantial conservation gains, through for example a regulatory ban on FAD associated purse-seining? Our model estimates that complete removal of purse-seine FAD fishing from the WCPO skipjack fishery could result in a Bigeye stock size of `r max(purchases$ssb_v_ssbmsy) %>% round(1)`, a significant gain for the Bigeye population. We estimate this increase in the Bigeye stock would produce an increase of $ `r (max(purchases$npv_benefits) / 1e9) %>% round(1)` billion in NPV of revenues for the targeted Bigeye fishery. These benefits would primarily flow to countries such as XX. Removal of FADs from the WCPO skipjack fishery though would result in a net loss in revenues valued at $ `r (max(purchases$npv_costs) / 1e9) %>% round(1)` billion, with these losses primarily affecting countries such as XX (Fig. \@ref(fig:conservation-plot)).  Therefore, while our model estimates complete removal of FAD associated skipjack purse seine fishing in the WCPO would substantially improve the future health of the bigeye stock, the direct economic costs of achieving this conservation gain would far outweigh the direct economic benefits. 
+
+
+We have so far focused exclusively on economic costs and benefits as measured by fishing revenues to the the targeted skipjack and bigeye fleets. This does not account for other measure of economic value produced by bigeye tuna, for example cultural value to the Japanese market (CITATION), the role of bigeye tuna in the health of the broader WCPO ecosystem (CITATION), or the intrinsic value placed by people in the inherent existence of these pelagic predators (CITATION). These other forms of economic value certainly are produced by Bigeye, but are also extremely challenging to measure. However, under our framework we can ask, how large must these non-market values of bigeye tuna be in order for the total (market and non-market) economic gains of bigeye conservation outweigh the market economic costs? 
+
+Following the “beneficiary pays” principles this study is based on, suppose that a tax could be levied on longline captured bigeye tuna, the proceeds of which would go towards funding the removal of FAD fishing from the skipjack purse seine fleet. Or, conversely suppose that a price premium were assigned to certified free-school skipjack tuna . The size of the tax/premium a consumer would be willing to pay would reflect their intrinsic value in the future of the bigeye fishery. How large would this premium have to be to make up for the deficit in the direct market benefits generated by rebuilding the future bigeye stock to a desired level? Bigeye consumers would need to place an extremely high value on bigeye tuna to achieve substantial conservation gains, up to a `r (max(purchases$required_tax) * 100) %>% round(0)`% tax to achieve an SSB/SSB~MSY~ of `r max(purchases$ssb_v_ssbmsy) %>% round(1)`. The price premium on free-school skipjack is much lower though; our model estimates that a `r (max(purchases$canned_premium) * 100) %>% round(0)`% price premium on free-school caught skipjack tuna would be sufficient to fund the complete removal of FAD fishing from the purse-seine fishery (Fig. \@ref(fig:tax-plot)). Note that the required price increase or tax is zero for the levels of conservation for which the purely market-based benefits of conservation can pay for the market-based costs, as shown in Fig.\@ref(fig:conservation-plot). 
+
+```{r tax-plot, fig.cap='% Tax on long-line BET required to achieve a target spawning stock biomass relative to unfished spawning stock biomass'}
+combo_premium_plot
+```
+
+These results hinge on comparing expected bigeye revenues under FAD removal to an overfished BAU state, derived from extending currently observed levels of fishing mortality in the bigeye fishery. This BAU scenario does not account for the possibility of a threshold population size for bigeye tuna, below which the bigeye population would not be simply overfished, but would in fact collapse. Such thresholds have been reported in other species, e.g. XX, XX, (though we would note that Pacific bluefin tuna, a relatively similar XX species to bigeye, is reported to be at xx% of unfished biomass and has not outright collapsed). Clearly the direct economic value of preventing the extinction of bigeye may be far greater than the economic value of simply reducing overfishing. As a thought experiment then, suppose that the BAU scenario were guaranteed to immediately result in the extinction of bigeye tuna, meaning that the NPV of the bigeye fishery under BAU would be $0. Suppose as well that removal of even one day of FAD associated purse seining would guarantee the survival of the species, and produce the same expected stream of revenues as used to estimate the surpluses in Fig.\@ref(fig:conservation-plot). This is of course an unrealistic scenario, a proper accounting would make extinction probability a function of stock size over time, but this provides an upper bound on the market benefits of preventing extinction and as such is a useful exercise. 
+
+
+Under this “extinction under BAU” scenario, the maximum economic benefit to the targeted bigeye fishery jumps to \$ `r (max(purchases$npv_extinction_surplus) / 1e9) %>% round(1)` billion, and our proposed incentive-based solution would make rebuilding the bigeye population up to over `r purchases$ssb_v_ssbmsy[which(purchases$npv_extinction_surplus <0)[1] - 1]` SSB/SSB~MSY~ economically viable. However, even compared to a future in which bigeye tuna have been driven extinct, the economic costs to the skipjack fishery of rebuilding bigeye to a SSB/SSB~MSY~ of 0.8 outweigh the economic gains to the bigeye fishery by over \$ `r  -(min(purchases$npv_extinction_surplus)/1e9) %>% round(1)` (Fig. \@ref(fig:extinction-plot)). 
+
+
+```{r extinction-plot, fig.cap = 'NPV of reform relative to extinction outcome'}
+
+extinction_plot
+
+```
+
+# Randoms
+
+```{r b-v-c, fig.cap='test'}
+
+purchases %>% 
+  select(npv_benefits, npv_costs, p_fad) %>% 
+  gather('npv_type', 'npv', -p_fad) %>% 
+  ggplot(aes(p_fad, npv, color = npv_type)) + 
+  geom_line(size = 2) + 
+  scale_y_log10(labels = dollar) + 
+  scale_x_continuous(labels = percent) + 
+  scale_color_npg(labels = c('Bigeye Benefits','Skipjack Costs'))
+
+```
+
+Changes in catch
+
+
+```{r thing, fig.cap='Change in catch for fads'}
+
+
+bau_catch <- status_quo$catch_at_fleet %>% 
+  filter(quarter == max(quarter), fleet == 'LL') %>% 
+  {
+    .$catch
+  }
+
+purchases %>% 
+  mutate(p_change_c = yield_surplus / bau_catch) %>% 
+  ggplot(aes(p_fad, p_change_c)) + 
+  geom_point() + 
+  scale_x_continuous(labels = percent, name = 'Percent of FADs Bought') + 
+  scale_y_continuous(labels = percent, name = 'Percent Increase in Catch')
+
+
+```
+
+
+```{r bet saved/skj bought, fig.cap='Something about the number of BET saved per SKJ bought by FAD'}
+
+directory <- getwd()
+lat_lon <- readOGR(dsn = path.expand(paste(directory, '/data/lat_lon_5deg_360_ll', sep = '')), layer = "lat_lon_5deg_360_ll")
+lat_lon@data$id <- rownames(lat_lon@data)
+lat_lon_boxes <- fortify(lat_lon, region = 'id') %>%
+  dplyr::mutate(order_short = order %% 5, 
+         lon_center_one = ifelse(order_short == 1, long + 2.5, NA),
+         lat_center_one = ifelse(order_short == 1, lat - 2.5, NA)) %>%
+  ungroup() %>%
+  dplyr::group_by(id) %>%
+  dplyr::mutate(lon_center = max(lon_center_one, na.rm = T),
+         lat_center = max(lat_center_one, na.rm = T)) %>%
+  ungroup() %>%
+  dplyr::select(long, lat, order, hole, piece, id, group, lon_center, lat_center)
+
+```
+
+1. Solve market externalities
+
+2. If the conservationists don't like the outcome, provide them a platform to do that. 
+
+# Running on the cloud
+to get external IP address
+sudo gcloud compute instances describe <name>  --zone us-west1-a
+
+start 
+sudo gcloud compute instances start lobster
+
+sudo gcloud compute instances stop lobster
+
+
+to log in
+
+
+
+sudo gcloud compute ssh hondo@lobster --zone us-west1-a
+
+35.199.157.193
+http://35.199.157.193:8787
+
+CloudAbal0ne sudo for thing
+
+hondo 
+RockL0bster
+
+sudo gcloud compute ssh hondo@lobster --zone us-west1-a
+
+Last login: Thu Jul 27 13:10:16 on ttys002
+dano:~ danovando$ sudo gcloud compute copy-files ~/local-directory/amazingresults-copy.csv rstudio:/home/elvis/Papers/MyAwesomePaper/amazingresults.csv  --zone us-west1-a
+
+
+
+# Thoughts on "bigeye hotspots report"
+
+Depth seems to be an issue, though the relationship with depth seems to vary pretty dramtically. 
+
+Most associated sets were made on man-made FADs compare to logs, especially in the Central and Eastern areas. In terms of FAD characteristics, FAD depth appeared to influence bigeye tuna catch per set, specifically bigeye catch ‘per FAD set’ was higher on FADs with sub-surface structures of 30–50m and 0–20m depth in the East and 50–60m in the West, a
+
+ENSO seems to play a roll too, which you don't have explicitly in there 
+
+The number of top vessels catching 50% of the bigeye between 2011 and 2016 varied between 23 and 34 vessels, with only seven individual vessels listed as top vessels in at least three of those years
+
+Total bigeye catch fluctuated with time quite a bit, but the high CPUE area in the tropical north-eastern area
+
+2011-2016 data... could be good to fit analysis just to that period and see what it looks like
+
+drifting and logs only
+
+Important to note in your analysis that it's somewhat hard to disentangle endogeneity between vessels fishing at a location and the effect of a location. A certain are might be a "hotspot" because of the vessels that choose to fish there, not characteristics of the location itselfs
+
+Highest CPUE in the northeast - that's basically just raw data or is that standardized? raw data. HOw does that compare to your results? hmmm not as clear in our data, wonder why that is
+
+
+Leaves a substantial gap in that we account for both skipjack and bigeye, they are just thinking about bigeye
+
+Thermocline depth is a big factor that you don't have in here
+
+
+# Thoughts on updated bigeye stock assessment
+
+uhhhh so the stock's in good shape now. lovely. just lovely. 
+
+Mostly has to do with the shift in linf, from about 180 to closer to 160. 
+Also, you were intepreting "depletion" incorrectly. It's the predicted biomass divided by the biomass that would have occured if fishing mortality was zero and recruitment was about the same as it was predicted to have been, plus a stock recruitment relationship correction. 
+
+Gary has some good ideas for the framing... hard to say what this will do the bargain though, since there's no need to bargain; bigeye would rather fish harder. 
+
+# Paper fixing with Chris
+
+THe extent of a coaseian bargain depends crucially on where you are in terms of stock. On august 22 we thought we were here. On august 23 there is no coaseian bargain. WE're going to look at the data 
+
+How big was that wedge and what does that 
+
+You get the reader thinking about the idea that we used to be here and now we're there
+
+These things happen all the time cite parma 
+
+That's a motivation for arguing against the new assessment 
+
+It used to be free, here's how much it costs younow. The stock assessment just imposed a cost on conservation groups by removing the fishery incentive for fishing groups to pony up. 
+
+If you started actually increasing fishing pressure on skipjack in hotspots, how quickly would you start ovefishing bigeye then?
+
+Also, add in correlations with other species into the mix. 
+
+
+
+
+# revitalizing
+
+So everything runs, needs a bit of cleaning up to make pretty and could use a newer look at the machine learning steps to see how that went. 
+
+Biggest problem right now is that even using the 2014 assessment, under BAU B/Bmsy for bigeye is like 1.8. I thought that maybe this was becuase F/Fmsy was being underestimatined in the last couple years (which it is), but that's not actually it. The way that the model works is that it takes recent **catch**, modifies that catch according to the amount of FADs reduced, finds the F that produces that catch, and then projects forward with that catch. So that means that the problem isn't in the F's, but in the F's required to catch the catch. so, the problem likely then is in either the estimates of current biomass or of MSY. Let's take a look at catch vs msy in the assessment and in your data. 
+
+```{r}
+
+recent$catches_fleet %>% 
+  group_by(year_quarter, fleet) %>% 
+  summarise(total_catch = sum(catch)) %>% 
+  mutate(msy = fitted_bet$lh$MSY) %>% 
+  ggplot(aes(as.numeric(year_quarter), total_catch/msy, fill = fleet)) + 
+  geom_hline(aes(yintercept = 1), linetype = 2, color = "red") +
+  geom_col()
+
+fitted_bet$catch_total %>% 
+  as.data.frame() %>% 
+  mutate(year_quarter = rownames(.)) %>% 
+  mutate(msy = fitted_bet$lh$MSY) %>% 
+  rename(catch = V1) %>% 
+  ggplot(aes(as.numeric(year_quarter), catch/msy)) + 
+  geom_hline(aes(yintercept = 1), linetype = 2, color = "red") +
+  geom_point()
+
+```
+
+Aha, so the problem is that the model is saying that recent catches are way too low. Are those data or estimates?
+
+```{r}
+fitted_bet$catch_total %>% 
+  as.data.frame() %>% 
+  mutate(year_quarter = rownames(.) %>% as.numeric()) %>% 
+  mutate(year = plyr::round_any(year_quarter,1,floor)) %>% 
+  group_by(year) %>% 
+  summarise(total_catch = sum(V1)) %>% 
+  mutate(msy = fitted_bet$lh$MSY) %>% 
+  ungroup() %>% 
+  ggplot(aes(as.numeric(year), total_catch)) + 
+  geom_hline(aes(yintercept = fitted_bet$lh$MSY), linetype = 2, color = "red") +
+  geom_point() + 
+  scale_y_continuous(labels = comma)
+```
+
+Eh at the yearly scale catch is around MSY... bottom line, everytihng works pretty well except for the projects. There's some mismatch between the way that the life history values from the fitting are propogating in your projection model. Check in with kat. 
+
+# to do
+
+check if the ssb/ssbmsy is crazy in year one, to see if there's a problem in the projection or a problem in the units
+
+
+
+
+
+
+# WHAT THE FUCK. 
+
+THe fitting over on the tuna side has officially gotten ridiculous, you've spent three days fixing and tweeking the fit and you're sitll nowhere near a reasonable looking thing. 
+
+
+For the sake of coaseian, you don't need all the stupid qs. All that you need is a) for the f's associated with the current catches to deplete the population if they were to continue. So, would an easier thing be this. Take everything else, and take a tiemseries of SSB/MSY and U/Umsy. Fit to that, ignoring the qs, just estimate the F by fleet to get the catches right given the biomass. 
+
+Ok I think I see what's happening here. It's aclling for an absolutely insane recent F, and so while it works to fit, anything above zero in a projection crashes the population. 
+
+So what the hell is the solution? One is to burn it all down, and make a new version of the model that simply fits to the reference points, and ignores the q's completely. All it cares about is the selectivity. Certainly appealing in a sense, though not totally clear that it would solve the problem... and requires graph clicking. Could maybe try fitting to the catches and depletions and the final year reference points as a compromise? Would certainly simplify the code a lot.... What does it help? On the one hand, you'd think the effort data would actually be useful, since it should contain a signal on the catch.... 
+
+OK, there's something wrong between the catches and the F's. Just looking at the recent catches, there are 12024.326 tons of catch for PS-FAD, but it reports the F's as 1e-16. So, the F's are going way up, driving population down. So, somewhere the F's are going all kinds of haywire. 
+
+
+# journal ideas
+
+
+What does a conservation letters version look like? Need to pare down to 3,000 words, so need to make a much tighter argument. The paper can't be about tuna since bigeye aren't a problem anymore. So what's the paper about
+
+- solving persistent environmental problems through proportional distribution of costs and benefits
+
+- Improving conservation outcomes through a "beneficiary pays" framework
+
+- Conservation payments can help alleviate persistent environmental problems
+
+  - many solutions to environmental problems create unbalanced distributinos of costs and benefits. Growing suite of "incentive based" solutions to complement regulatory strategies, but many of those still focus on realigning incentives over redistributing costs and benefits. Even if the total balance of costs and benefits is positive if the costs/benefits are disproportionatly borne can still create barriers to reform. Coase suggests a solution to this, let's walk through an example to answer, why did we keep overfishing bigeye tuna, and what was a solution?
+  - Who bears costs and who gets benefits?
+  - How could we realign them?
+  - How much does that get you?
+  - Sometimes direct economci benefits aren't on the side of conservation.Understanding this allows stakeholders to get a sense of the magnitude of the imbalance and what might be required to offset the difference. 
+  
+# calls with gary
+
+fair amount of repitition
+
+move things to methods
+
+probably only need to say the approach once
+
+some of the institutional structure
+
+referencing other examples - footnote
+
+solutions - remedies. 
+
+suggests to me that with a more dire outcome, nevertheless the incentives of the parties have not changed. 
+
+Some elaboration would be useful to talk about the implications of 0.6. what does 0.7 actually buy you? Make a bit clearer the portion of thebenefits that come population growth, 0.6,0.7,1.0
+
+Number of countries involved gets bigger and bigger/vessels
+
+change that table
+
+magnusun stevens cost 
+
+make clearly productivity gain/loss from using FAD
+
+
+

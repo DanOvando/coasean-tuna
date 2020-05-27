@@ -1,0 +1,666 @@
+---
+title: "Western and Central Pacific Ocean (WCPO) Purse Seine and Longline Fishery Data"
+author: 
+date: "5/11/2017"
+mainfont: Times New Roman
+fontsize: 12
+output:
+  pdf_document:
+    latex_engine: xelatex
+    fig_caption: TRUE
+   
+   
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning=FALSE)
+```
+
+```{r loaddata, include=FALSE, echo=FALSE,warning=FALSE}
+rm(list=ls())
+library(sp)
+library(rgdal)
+library(rgeos)
+#library(raster)
+#library(tmap)
+library(ggplot2)
+library(ggmap)
+library(leaflet)
+library(spatstat)
+library(gstat)
+library(RColorBrewer)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(grid)
+library(lubridate)
+library(demons)
+library(purrr)
+library(stringr)
+library(tmaptools)
+library(ggspatial)
+library(maps)
+library(rosm)
+library(maptools)
+library(scales)
+
+
+load_functions(func_dir = 'functions')
+source("./functions/MakeBoundingBoxShapefile.R")
+source("./scripts/tidy data.R")
+whale_sharks=TRUE
+```
+
+
+
+# Purse Seine Data: 1970 -  2014 #
+
+```{r Purse seine bigeye plot function, echo = FALSE}
+
+
+
+
+
+plot_data <- function (data, mapping, title,leg.title,up_limit) {
+
+        ggplot (data, mapping) +
+          geom_polygon(color = "grey90", size = 0.25)+
+          scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+          scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+          coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+          labs(x = "Longitude", y = "Latitude")+
+          scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = leg.title, title.position = "top"),
+                                labels = comma,
+                                limits = c(0, up_limit),
+                                breaks = c(0,
+                                           round( 0.2*up_limit,-3),
+                                            round(0.4*up_limit,-3),
+                                            round(0.6*up_limit,-3),
+                                            round(0.8*up_limit,-3),
+                                            round(up_limit,-3)),
+                                palette = "RdBu",
+                                direction = -1,
+                                na.value = NA) +
+          geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5,alpha=0.5) +
+          map_layer +
+          map_theme +
+          ggtitle (title) 
+      #    facet_wrap(as.formula(paste("~",wrap)),labeller=labeller(labels))
+
+}
+
+
+plot_data_facet <- function (data, mapping, title,leg.title,up_limit,wrap,labels) {
+
+        ggplot (data, mapping) +
+          geom_polygon(color = "grey90", size = 0.25)+
+          scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+          scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+          coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+          labs(x = "Longitude", y = "Latitude")+
+          scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = leg.title, title.position = "top"),
+                                labels = comma,
+                                limits = c(.0, up_limit),
+                                breaks = c(0,
+                                           round( 0.2*up_limit,-3),
+                                            round(0.4*up_limit,-3),
+                                            round(0.6*up_limit,-3),
+                                            round(0.8*up_limit,-3),
+                                            round(up_limit,-3)),
+                                palette = "RdBu",
+                                direction = -1,
+                                na.value = NA) +
+          geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5,alpha=0.5) +
+          map_layer +
+          map_theme +
+          ggtitle (title) + 
+          facet_wrap(as.formula(paste("~",wrap)),labeller=as_labeller(labels))
+
+}
+#ggsave(paste('./spatial plots/bet_cpue_by_fad_map_',title,".png",sep=""), bet_cpue_map, width = 12.76, height = 8.10, units = "in", dpi = 500)
+
+
+```
+
+```{r , fig.width=7.5,fig.height=7, fig.cap="Purse seine fishery total catch (\\textit{t}) from 1970 - 2015",echo=FALSE}
+
+ps_catch <- purse_data %>%
+   group_by (lon,lat) %>%
+  summarise (total_catch = sum(catch,na.rm=TRUE)) %>%
+            # total_effort = sum(unique(days),na.rm=TRUE))%>%
+  mutate ( lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+  ungroup()
+
+ps_catch_spatial<- left_join(ps_catch, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit=max(ps_catch$total_catch,na.rm=TRUE)+0.1
+
+c_titl<-expression(paste("Catch (",italic("t"),")"))
+
+plot_data(ps_catch_spatial,aes( x = long, y = lat.y, group = group, fill =total_catch),"",c_titl,uplimit)
+
+```
+
+```{r , fig.width=7.5,fig.height=7, fig.cap="Purse seine fishery total effort ( # \\textit{of days}) from 1970 - 2015",echo=FALSE}
+
+ps_effort<- purse_data %>%
+  filter(species=="skj")%>%
+  group_by(lat,lon) %>%
+  summarise(total_effort = sum(days,na.rm=TRUE)) %>%
+  ungroup()%>%
+  mutate(lat_center = lat + 2.5,
+           lon_center = lon + 2.5)
+
+ps_effort_spatial<- left_join(ps_effort, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit=max(ps_effort$total_effort,na.rm=TRUE)
+
+e_titl<-paste(expression("Effort (",italic(" # of days"),")"),sep="")
+
+plot_data(ps_effort_spatial,aes( x = long, y = lat.y, group = group, fill = total_effort),"",e_titl,uplimit )
+ 
+  
+
+
+```
+
+```{r PS catch by species, fig.width= 7.5, fig.height=7, fig.cap="Purse seine fishery total catch (\\textit{t}) by species from 1970 - 2015",echo=FALSE}
+
+sp_catch <- 
+   purse_data %>%
+   group_by (lon,lat,species) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_effort = sum(days,na.rm=TRUE)) %>%
+   ungroup () %>%
+   group_by (lon,lat) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_effort,
+           lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+   ungroup()
+
+#ps_catch$species <-as.factor(ps_catch$species)
+
+sp_catch_spatial<-left_join(sp_catch,lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit = round(max(sp_catch$sp_catch,na.rm = TRUE),1)+1
+
+labels<-c(bet ="Bigeye",skj="Skipjack",yft="Yellowfin",oth="Other")
+
+plot_data_facet(sp_catch_spatial, aes( x = long, y = lat.y, group = group, fill = sp_catch),"",c_titl,uplimit,"species",labels)
+
+```
+
+## Bigeye ##
+
+```{r,fig.asp=0.5, fig.width=7.5, fig.cap= "Purse seine fishery bigeye catch  (\\textit{t}) for sets that are associated and unassociated with FADS from 1970 - 2015",echo=FALSE}
+bet_catch <- 
+   purse_data %>%
+   group_by (lon,lat,species,FADS) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_effort = sum(days,na.rm=TRUE)) %>%
+   ungroup () %>%
+   group_by (lon,lat,FADS) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_effort,
+           lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+   ungroup() %>%
+   filter (species == "bet")
+  
+bet_catch_spatial<- left_join(bet_catch, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+labels<-c(associated="FAD Associated",unassociated = "Unassociated")
+uplimit=max(bet_catch$sp_catch,na.rm=TRUE)+0.1
+betctitl<-expression(paste("Bigeye Catch (",italic("t"),")"))
+plot_data_facet(bet_catch_spatial,aes( x = long, y = lat.y, group = group, fill = sp_catch),"", betctitl,uplimit,"FADS",labels)
+
+```
+
+```{r,fig.width=7.5,fig.asp=0.5, fig.cap="Purse seine fishery bigeye catch rates (% \\textit{of total catch}) for sets that are associated and unassociated with FADS from 1970 - 2015",echo=FALSE}
+bet_fad <- 
+   purse_data %>%
+   group_by (lon,lat,species,FADS) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_effort = sum(days,na.rm=TRUE)) %>%
+   ungroup () %>%
+   group_by (lon,lat,FADS) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_effort,
+           lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+   ungroup() %>%
+   filter (species == "bet")
+  
+bet_fad_spatial<- left_join(bet_fad, lat_lon_boxes, by = c("lat_center", "lon_center"))
+labels<-c(associated="FAD Asssociated",unassociated= "Unassociated")
+uplimit=max(bet_fad$prop_catch,na.rm=TRUE)
+cr<-paste(expression("Bigeye catch rate (",italic(" % of total catch"),")"),sep="")
+plot_data_facet(bet_fad_spatial,aes( x = long, y = lat.y, group = group, fill = prop_catch),"", cr,uplimit,"FADS",labels)
+
+```
+
+```{r bet month, fig.width= 10.5, fig.asp=0.93, fig.cap="Purse seine fishery bigeye catch rates (% \\textit{of total catch}) by month from 1970 - 2015",echo=FALSE }
+
+bet_month <- 
+   purse_data %>%
+   group_by (lon,lat,month,species) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_effort = sum(days,na.rm=TRUE)) %>%
+   ungroup () %>%
+   group_by (lon,lat) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_effort,
+           lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+   ungroup()%>%
+   filter (species=="bet")
+
+#ps_catch$species <-as.factor(ps_catch$species)
+
+bet_month_spatial<-left_join(bet_month,lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit = round(max(bet_month_spatial$prop_catch,na.rm = TRUE),1)
+
+bet_month_spatial$month = month(bet_month_spatial$month,label=TRUE)
+
+labels=bet_month_spatial$month
+
+plot_data_facet(bet_month_spatial, aes( x = long, y = lat.y, group = group, fill = prop_catch),"",cr,uplimit,"month",labels)
+
+```
+
+# Purse Seine Data: 2009 - 2015 #
+
+```{r, fig.width=7.5,fig.height=7, fig.cap="Purse seine fishery total catch (\\textit{t}) from 2010 - 2015",echo=FALSE}
+
+ps_catch <- purse_data %>%
+   filter(year > 2009) %>%
+   group_by (lon,lat) %>%
+  summarise (total_catch = sum(catch,na.rm=TRUE)/1000) %>%
+            # total_effort = sum(unique(days),na.rm=TRUE))%>%
+  mutate ( lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+  ungroup()
+
+ps_catch_spatial<- left_join(ps_catch, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit=max(ps_catch$total_catch,na.rm=TRUE)+0.1
+
+plot_data(ps_catch_spatial,aes( x = long, y = lat.y, group = group, fill =total_catch),"",c_titl,uplimit)
+
+
+```
+
+```{r , fig.width=7.5,fig.height=7, fig.cap=" Purse seine fishery total effort (\\textit{no. of days}) from 2010 - 2015",echo=FALSE}
+
+ps_effort<- purse_data %>%
+ filter(year > 2009) %>%
+  filter(species=="skj")%>%
+  group_by(lat,lon) %>%
+  summarise(total_effort = sum(days,na.rm=TRUE)) %>%
+  ungroup()%>%
+  mutate(lat_center = lat + 2.5,
+           lon_center = lon + 2.5)
+
+ps_effort_spatial<- left_join(ps_effort, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit=max(ps_effort$total_effort,na.rm=TRUE)
+
+plot_data(ps_effort_spatial,aes( x = long, y = lat.y, group = group, fill = total_effort),"",e_titl,uplimit )
+ 
+  
+
+
+```
+
+```{r , fig.width= 8.5, fig.asp=.93, fig.cap="Purse seine fishery total catch (\\textit{t}) by species from 2010 - 2015",echo=FALSE }
+
+sp_catch <- 
+   purse_data %>%
+   filter (year > 2009)%>%
+   group_by (lon,lat,species) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE)/1000,
+              sp_effort = sum(days,na.rm=TRUE)) %>%
+   ungroup () %>%
+   group_by (lon,lat) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_effort,
+           lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+   ungroup()
+
+#ps_catch$species <-as.factor(ps_catch$species)
+
+sp_catch_spatial<-left_join(sp_catch,lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit = round(max(sp_catch$sp_catch,na.rm = TRUE),1)+1
+
+labels<-c(bet ="Bigeye",skj="Skipjack",yft="Yellowfin",oth="Other")
+
+plot_data_facet(sp_catch_spatial, aes( x = long, y = lat.y, group = group, fill = sp_catch),"",c_titl,uplimit,"species",labels)
+
+```
+
+## Bigeye ##
+
+```{r , fig.asp=.48, fig.width=10.5, fig.cap= "Purse seine fishery bigeye catch  (\\textit{t}) from 2010 - 2015 for FAD associated and unassociated sets",echo=FALSE}
+bet_catch <- 
+   purse_data %>%
+   filter (year > 2009) %>%
+   group_by (lon,lat,species,FADS) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE)/1000,
+              sp_effort = sum(days,na.rm=TRUE)) %>%
+   ungroup () %>%
+   group_by (lon,lat,FADS) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_effort,
+           lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+   ungroup() %>%
+   filter (species == "bet")
+  
+bet_catch_spatial<- left_join(bet_catch, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+labels<-c(associated="FAD Associated",unassociated = "Unassociated")
+uplimit=max(bet_catch$sp_catch,na.rm=TRUE)+0.1
+
+plot_data_facet(bet_catch_spatial,aes( x = long, y = lat.y, group = group, fill = sp_catch),"", betctitl,uplimit,"FADS",labels)
+
+
+```
+
+```{r , fig.width=10.5,fig.asp=.48, fig.cap="Purse seine fishery bigeye catch rates (% \\textit{of total catch}) from 2010 - 2015 for FAD associated and unassociated sets",echo=FALSE}
+bet_fad <- 
+   purse_data %>%
+   group_by (lon,lat,species,FADS) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_effort = sum(days,na.rm=TRUE)) %>%
+   ungroup () %>%
+   group_by (lon,lat,FADS) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_effort,
+           lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+   ungroup() %>%
+   filter (species == "bet")
+  
+bet_fad_spatial<- left_join(bet_fad, lat_lon_boxes, by = c("lat_center", "lon_center"))
+labels<-c(associated="FAD Asssociated",unassociated= "Unassociated")
+uplimit=max(bet_fad$prop_catch,na.rm=TRUE)
+
+plot_data_facet(bet_fad_spatial,aes( x = long, y = lat.y, group = group, fill = prop_catch),"", cr,uplimit,"FADS",labels)
+
+
+```
+
+
+```{r, fig.width= 10.5, fig.asp=0.93, fig.cap="Purse seine fishery bigeye catch rates (% \\textit{ of total catch}) by month from 2010 - 2015",echo=FALSE }
+
+bet_month <- 
+   purse_data %>%
+   filter (year > 2009)%>%
+   group_by (lon,lat,month,species) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_effort = sum(days,na.rm=TRUE)) %>%
+   ungroup () %>%
+   group_by (lon,lat) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_effort,
+           lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+   ungroup()%>%
+   filter (species=="bet")
+
+#ps_catch$species <-as.factor(ps_catch$species)
+
+bet_month_spatial<-left_join(bet_month,lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit = round(max(bet_month_spatial$prop_catch,na.rm = TRUE),1)
+
+bet_month_spatial$month = month(bet_month_spatial$month,label=TRUE)
+labels=bet_month_spatial$month
+
+plot_data_facet(bet_month_spatial, aes( x = long, y = lat.y, group = group, fill = prop_catch),"", cr,uplimit,"month",labels)
+
+```
+
+# Longline Data: 1950 - 2014 #
+
+```{r, fig.width=7.5, fig.height=7, fig.cap="Longline fishery total catch (\\textit{t}) from 1950 - 2014",echo=FALSE}
+
+bet_ll<- ll %>%
+  group_by(lat,lon) %>%
+  summarise(sp_catch = sum (catch, na.rm=TRUE),
+            sp_effort = sum (hhooks, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate( #cpue = total_catch/total_effort,
+          lat_center = lat + 2.5,
+           lon_center = lon + 2.5) 
+
+
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+
+uplimit <- max(bet_ll$sp_catch,na.rm = TRUE)+1
+
+plot_data(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = sp_catch),"",c_titl,uplimit )
+
+```
+
+```{r, fig.width=7.5, fig.height=7, fig.cap="Longline fishery total effort (# \\textit{of hooks}) from 1950 - 2014",echo=FALSE}
+
+bet_ll<- ll %>%
+  group_by(lat,lon,species) %>%
+  summarise(sp_catch = sum (catch, na.rm=TRUE),
+            sp_effort = sum (hhooks, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate( #cpue = total_catch/total_effort,
+          lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+  filter(species=="BET")
+
+uplimit <- max(bet_ll$sp_effort,na.rm = TRUE)+1
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+plot_data(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = sp_effort),"",e_titl,uplimit )
+
+```
+
+
+```{r, fig.width=10.5,fig.asp=0.93,fig.cap="Longline fishery catch (\\textit{t}) by species from 1950 - 2014",echo=FALSE}
+
+bet_ll<- ll %>%
+  group_by(lat,lon,species) %>%
+  summarise(sp_catch = sum (catch, na.rm=TRUE)/1000,
+            sp_effort = sum (hhooks, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate( #cpue = total_catch/total_effort,
+          lat_center = lat + 2.5,
+           lon_center = lon + 2.5) 
+uplimit <- max(bet_ll$sp_catch,na.rm = TRUE)+1
+
+labels<- c(ALB ="Albacore",BET ="Bigeye", YFT ="Yellowfin",MLS="Striped marlin",BUM="Blue marlin",BLM="Black marlin",SWO="Striped marlin",OTH="Other")
+
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+plot_data_facet(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = sp_catch),"",c_titl,uplimit,"species",labels )
+```
+
+## Bigeye ##
+
+```{r, fig.width=7.5, fig.height=7, fig.cap="Longline fishery bigeye catch (\\textit{t}) from 1950 - 2014",echo=FALSE}
+
+bet_ll<- ll %>%
+  group_by(lat,lon,species) %>%
+  summarise(sp_catch = sum (catch, na.rm=TRUE)/1000,
+            sp_effort = sum (hhooks, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate( cpue = sp_catch/sp_effort,
+          lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+  filter (species == "BET")
+
+
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+
+uplimit <- max(bet_ll$sp_catch,na.rm = TRUE)+1
+
+plot_data(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = sp_catch),"",c_titl,uplimit )
+
+```
+
+```{r fig.width=7.5, fig.height=7, fig.cap="Longline fishery bigeye CPUE (\\textit{t}/ \\textit{hooks}) from 1950 - 2014",echo=FALSE}
+uplimit <- max(bet_ll$cpue,na.rm = TRUE)+1
+cputtl<-expression("Bigeye CPUE (",italic("t/hooks"),")")
+plot_data(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = cpue),"",cputtl,uplimit )
+```
+
+```{r Longline , fig.width=10.5, fig.height=7, fig.cap="Longline fishery bigeye catch (\\textit{t}) by month 1950 - 2014",echo=FALSE}
+
+bet_ll<- ll %>%
+  group_by(lat,lon, mm, species) %>%
+  summarise(sp_catch = sum (catch, na.rm=TRUE)/1000,
+            sp_effort = sum (hhooks, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate( #cpue = total_catch/total_effort,
+          lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+  filter (species =="BET")
+
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+bet_ll_spatial$mm = month(bet_ll_spatial$mm,label=TRUE)
+labels=bet_ll_spatial$mm
+uplimit <- max(bet_ll$sp_catch,na.rm = TRUE)+1
+
+plot_data_facet(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = sp_catch),"",c_titl,uplimit,"mm",labels )
+
+```
+
+# Longline Data: 2009-2014 #
+
+```{r, fig.width=7.5, fig.height=7, fig.cap="Longline fishery total catch (\\textit{t}) from 2009 - 2014",echo=FALSE}
+
+bet_ll<- ll %>%
+  filter (yy > 2008) %>%
+  group_by(lat,lon) %>%
+  summarise(total_catch = sum (catch, na.rm=TRUE)) %>%
+  ungroup() %>%
+  mutate( lat_center = lat + 2.5,
+           lon_center = lon + 2.5) 
+
+
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+
+uplimit <- max(bet_ll$total_catch,na.rm = TRUE)+1
+
+plot_data(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = total_catch),"",c_titl,uplimit )
+
+```
+
+```{r, fig.width=7.5, fig.height=7, fig.cap="Longline fishery total effort (\\textit{hooks}) from 2009 - 2014",echo=FALSE}
+
+
+bet_ll<- ll %>%
+  filter(species=="BET")%>%
+  filter (yy > 2008) %>%
+  group_by(lat,lon) %>%
+  summarise(sp_effort = sum (hhooks, na.rm=TRUE)) %>%
+  ungroup() %>%
+  mutate( #cpue = total_catch/total_effort,
+          lat_center = lat + 2.5,
+           lon_center = lon + 2.5) 
+
+
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit <- max(bet_ll$sp_effort,na.rm = TRUE)+1
+ll_ttl<-paste(expression("Effort (# ",italic("of hooks"),")"),sep="")
+plot_data(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = sp_effort),"",ll_ttl,uplimit )
+
+```
+
+```{r, fig.width=8.5, fig.asp=0.93,fig.cap="Longline fishery catch (\\textit{t}) by species from 2009 - 2014",echo=FALSE}
+
+bet_ll<- ll %>%
+  filter(yy > 2008)%>%
+  group_by(lat,lon,species) %>%
+  summarise(sp_catch = sum (catch, na.rm=TRUE)/1000,
+            sp_effort = sum (hhooks, na.rm = TRUE)) %>%
+  mutate( #cpue = total_catch/total_effort,
+          lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+  filter(species=="BET")
+uplimit <- max(bet_ll$sp_catch,na.rm = TRUE)+1
+
+labels<- c(ALB ="Albacore",BET ="Bigeye", YFT ="Yellowfin",MLS="Striped marlin",BUM="Blue marlin",BLM="Black marlin",SWO="Swordfish",OTH="Other")
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+plot_data_facet(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = sp_catch),"",c_titl,uplimit,"species",labels )
+```
+
+## Bigeye ##
+
+```{r, fig.width=7.5, fig.height=7, fig.cap="Longline fishery bigeye catch  (\\textit{t}) from 2009 - 2014",echo=FALSE}
+
+bet_ll<- ll %>%
+  filter(yy>2008)%>%
+  group_by(lat,lon,species) %>%
+  summarise(sp_catch = sum (catch, na.rm=TRUE),
+            sp_effort = sum (hhooks, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate( cpue = sp_catch/sp_effort,
+          lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+  filter(species=="BET")
+
+
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+
+uplimit <- max(bet_ll$sp_catch,na.rm = TRUE)+1
+
+plot_data(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = sp_catch),"",c_titl,uplimit )
+
+```
+
+```{r fig.width=7.5, fig.height=7, fig.cap="Longline fishery bigeye CPUE  (\\textit{t}/\\textit{hooks}) from 2009 - 2014",echo=FALSE}
+uplimit <- max(bet_ll$cpue,na.rm = TRUE)+1
+cputtl<-expression("Bigeye CPUE (",italic("t/hooks"),")")
+plot_data(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = cpue),"",cputtl,uplimit)
+```
+
+```{r  , fig.width=7.5, fig.asp=0.93, fig.cap="Longline fishery bigeye catch (\\textit{t}) by month from 2009 - 2014",echo=FALSE}
+
+bet_ll<- ll %>%
+  filter(yy>2008)%>%
+  group_by(lat,lon, mm, species) %>%
+  summarise(sp_catch = sum (catch, na.rm=TRUE),
+            sp_effort = sum (hhooks, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate( #cpue = total_catch/total_effort,
+          lat_center = lat + 2.5,
+           lon_center = lon + 2.5) %>%
+  filter (species =="BET")
+
+bet_ll_spatial <- left_join(bet_ll, lat_lon_boxes, by = c("lat_center", "lon_center"))
+bet_ll_spatial$mm = month(bet_ll_spatial$mm,label=TRUE)
+labels=bet_ll_spatial$mm
+uplimit <- max(bet_ll$sp_catch,na.rm = TRUE)+1
+
+plot_data_facet(bet_ll_spatial,aes( x = long, y = lat.y, group = group, fill = sp_catch),"",c_titl,uplimit,"mm",labels )
+
+```
+
+# References #
+
+Western and Central Pacific Fisheries Commission (WCPFC). 2016. WCPFC Public Domain Aggregated Catch/Effort Data. Western and Central Pacific Fisheries Commission, Kolonia, Federated States of Micronesia. Available at https://www.wcpfc.int/wcpfc-public-domain-aggregated-catcheffort-data-download-page. *Accessed*: March 1, 2017.

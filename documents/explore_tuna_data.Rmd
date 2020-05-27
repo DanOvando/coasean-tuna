@@ -1,0 +1,241 @@
+---
+title: "R Notebook"
+output:
+  html_notebook: default
+  html_document: default
+---
+
+```{r load things}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(scales)
+library(ggthemr)
+library(forcats)
+library(car)
+library(lme4)
+library(rstanarm)
+
+
+run_name = 'Hurdle CPUE GLM 1.0'
+form = 'hurdle'
+run_in_parallel = F
+num_cores = 1
+training_set = 'all'
+run_dir = paste('Coaseian Tuna Results/', run_name, '/', sep = '')
+
+load(file = paste(run_dir, 'coaseian_fad_bargain_results.Rdata', sep = ''))
+
+```
+
+## Explore BET data
+
+```{r plot bet}
+
+bet_dat %>% 
+  ggplot(aes(catch)) + 
+  geom_histogram() 
+```
+
+```{r}
+bet_dat %>% 
+  ggplot(aes(catch)) + 
+  geom_histogram() +
+  scale_x_log10()
+
+```
+
+```{r}
+bet_dat %>% 
+  filter(catch >0) %>% 
+  ggplot(aes(factor(FAD), catch)) + 
+  geom_violin() 
+```
+
+```{r}
+bet_dat %>% 
+  filter(catch >0) %>% 
+  ggplot(aes(factor(FAD), catch)) + 
+geom_dotplot(binaxis = 'y', stackdir = 'center',
+             aes(fill = country)) + 
+  legend_top()
+```
+
+```{r}
+bet_dat %>% 
+  filter(catch >0) %>% 
+  ggplot(aes(fct_reorder(country,catch), catch)) + 
+geom_boxplot() + 
+  legend_top() + 
+  coord_flip()
+```
+
+OK now that's interesting, ther's a concentration of outliers in the "NA" country, wonder where that is. Should look that up
+
+```{r}
+
+bet_dat %>% 
+  ggplot(aes(sst,catch)) + 
+  geom_point(alpha = 0.75) + 
+  ggtitle('bigeye')
+```
+
+
+Hard to read a lot into the temperature plot. Could be that they like that 30 degree range, could be that that's just there a lot of the fishing happens. Let's compare to skipjack
+
+```{r}
+skj_dat %>% 
+  ggplot(aes(sst,catch)) + 
+  geom_point(alpha = 0.75) + 
+    ggtitle('skipjack')
+
+```
+
+Yeah, probably just lots of bycatch there since there are lots of skipjack there. 
+
+I wonder if the issue is vessel capacity. Could it be that those big guys are a handful of huge vessels?
+
+## Let's look at time
+
+```{r}
+
+bet_dat %>% 
+    mutate(year_month = zoo::as.yearmon(paste(year,month, sep = '-'))) %>%
+  group_by(year_month, FAD) %>% 
+  summarise(tc = sum(catch)) %>% 
+  ggplot(aes(year_month, tc, fill = factor(FAD))) + 
+  geom_point(shape = 21)
+
+```
+There are these somewhat preiodic spikes in massive bigeye bycatch events, what's up with that?
+
+```{r}
+
+bet_dat %>% 
+  group_by(month, FAD) %>% 
+  summarise(tc = sum(catch, na.rm = T)) %>% 
+  ggplot(aes(month, tc, color = factor(FAD))) + 
+  geom_point()
+
+
+
+```
+
+```{r}
+
+skj_dat %>% 
+  group_by(month, FAD) %>% 
+  summarise(tc = sum(catch, na.rm = T)) %>% 
+  ggplot(aes(month, tc, color = factor(FAD))) + 
+  geom_point() + 
+  ggtitle('skipjack')
+
+```
+
+Now that's interesting. There's  areally clear flipflop in those summer months. And the total captures don't seem to actually change all that much, let's check that
+
+```{r}
+
+skj_dat %>% 
+  filter(pna_country == T & is.na(country) == F) %>% 
+  group_by(month, FAD) %>% 
+  summarise(tc = sum(catch, na.rm = T)) %>% 
+  ggplot(aes(month, tc, fill = factor(FAD))) + 
+  geom_bar(stat = 'identity') + 
+  ggtitle('skipjack')
+
+
+```
+
+
+```{r}
+
+bet_dat %>% 
+  filter(pna_country == T & is.na(country) == F) %>% 
+  group_by(month, FAD) %>% 
+  summarise(tc = sum(catch, na.rm = T)) %>% 
+  ggplot(aes(month, tc, fill = factor(FAD))) + 
+  geom_bar(stat = 'identity')
+```
+
+So are you just making this all wayyyy too complicated. You should still go regression based if you can, but what about broadly the relative fad effects are just the change in catches inside and outside of season. 
+
+
+```{r}
+
+empirical_fad_effect <- bet_dat %>% 
+  bind_rows(skj_dat) %>% 
+  filter(pna_country == T & is.na(country) == F & year >= 2009) %>% 
+  mutate(fad_close = month %in% c(7,8,9)) %>% 
+  group_by(species, year, fad_close) %>% 
+  summarise(mean_catch = mean(catch, na.rm = T)) %>% 
+  spread(fad_close, mean_catch) %>% 
+  ungroup() %>% 
+  mutate(fad_effect = 1 -`TRUE`/(`FALSE`))
+
+empirical_fad_effect %>% 
+  ggplot(aes(year,fad_effect, fill = species)) + 
+  geom_bar(color = 'black', stat = 'identity', position = 'dodge') + 
+  scale_y_continuous(name = 'FAD effect',labels = percent, limits = c(-.2,1))
+
+
+empirical_fad_effect %>% 
+  group_by(species) %>% 
+  summarise(mean_fad_effect = mean(fad_effect))
+
+```
+
+
+# Let's look at effort stuff
+
+```{r effort exploration}
+
+tunas <- bet_dat
+  bind_rows(skj_dat) 
+  
+  tunas %>% 
+    filter(catch > 0) %>% 
+  ggplot(aes(days,catch,color = factor(FAD))) + 
+  geom_point(alpha = 0.75) + 
+    facet_wrap(~year)
+
+```
+
+# Regressions
+
+```{r}
+
+flat_dat <-  bet_dat %>%
+  group_by(year,month,lat,lon,country,species) %>%
+  summarise(total_catch = sum(catch, na.rm = T), total_days = unique(days),
+         mean_sst = mean(sst), p_fad = catch[FAD == 1]/total_catch,
+         region = unique(area)) %>%
+  mutate(cpue = total_catch / total_days) %>%
+  filter(cpue > 0 & is.na(country) == F)
+
+flat_dat %>%
+  filter(cpue > 0) %>%
+  ggplot(aes(log(cpue), fill = cut(p_fad, breaks = 4))) +
+  geom_histogram(color = 'black') +
+  facet_grid(region ~.)
+
+mle_glm <- glmer(
+  cpue ~ month + (1|region) +  factor(year) + mean_sst,
+  family = Gamma(link = 'inverse'),
+  data = flat_dat
+)
+
+# stan_mle_glm <- stan_glm(
+#   cpue ~ month + region +  factor(year) + mean_sst,
+#   family = Gamma(link = 'inverse'),
+#   data = flat_dat , chains = 1)
+
+mle_glm_shape <- MASS::gamma.shape(mle_glm)$alpha
+
+summary(mle_glm)
+
+qqPlot(rstudent(mle_glm), distribution = 'gamma', shape = mle_glm_shape)
+
+
+```
+

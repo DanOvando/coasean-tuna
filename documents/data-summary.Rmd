@@ -1,0 +1,329 @@
+---
+title: "Tuna Data"
+author: "Lennon Thomas"
+date: "5/5/2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+rm(list=ls())
+library(sp)
+library(rgdal)
+library(rgeos)
+#library(raster)
+#library(tmap)
+library(ggplot2)
+library(ggmap)
+library(leaflet)
+library(spatstat)
+library(gstat)
+library(RColorBrewer)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(grid)
+library(lubridate)
+library(demons)
+library(purrr)
+library(stringr)
+library(tmaptools)
+library(ggspatial)
+library(maps)
+library(rosm)
+library(maptools)
+
+load_functions(func_dir = 'functions')
+source("./functions/MakeBoundingBoxShapefile.R")
+source("bet_cpue_plot.R")
+whale_sharks=TRUE
+```
+
+
+```
+
+
+
+## Spatial Tuna Data
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r Purse seine bigeye tuna cpue, echo = FALSE}
+
+
+bet_cpue <- #function (yr_first,yr_second,g1,g2,g3,g4) {
+   purse_data %>%
+   #filter (year >= 1970 &  year <= 1998) %>%
+   group_by (lon5,lat5,species,fad) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_set = sum(sets,na.rm =TRUE)) %>%
+   ungroup () %>%
+   group_by (lon5,lat5,fad) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_set,
+           lat_center = lat5 + 2.5,
+           lon_center = lon5 + 2.5) %>%
+   ungroup() %>%
+   filter (species == "bet") %>%
+  
+combine_bet_cpue_latlong <- left_join(bet_cpue, lat_lon_boxes, by = c("lat_center", "lon_center"))
+#}
+
+
+bet_cpue_map <- function (data, title, up_limit) 
+{
+  ggplot (data) +
+  aes(x = long, y = lat, group = group, fill = cpue) +
+  geom_polygon(color = "grey90", size = 0.25)+
+  scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+  scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+  coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+  labs(x = "Longitude", y = "Latitude")+
+  scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = "BET catch rates (catch / sets )", title.position = "top"),
+                        limits = c(0, up_limit),
+                        breaks = c(0,
+                                   round( 0.2*up_limit,1),
+                                    round(0.4*up_limit,1),
+                                    round(0.6*up_limit,1),
+                                    round(0.8*up_limit,1),
+                                    round(up_limit,2)),
+                       # # labels = c("0",
+                       #            "2.5%",
+                       #            "5.0%",
+                       #            "7.5%",
+                       #            "10%",
+                       #            "12.5%"),
+                        type = "div",
+                        palette = "RdBu",
+                        direction = -1,
+                        na.value = NA) +
+  geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5)+
+  map_layer +
+  map_theme +
+  ggtitle (title) +
+  facet_wrap(~fad, labeller = as_labeller(fad_names)) 
+
+#ggsave(paste('./spatial plots/bet_cpue_by_fad_map_',title,".png",sep=""), bet_cpue_map, width = 12.76, height = 8.10, units = "in", dpi = 500)
+}
+
+```
+
+
+
+
+
+Many tuna species can be found aggregating near floating objects in the ocean. The reason for this is not entirely known but one hypothesis is that floating objects are often assciated with higher nutrient levels and higher productivity because both floating objects and nutrient rich water often orginate from areas of high productivity (e.g. river mouths, etc. ) .
+
+'Associated sets' are purse seine sets that were associated with floating objects, also called Fish Aggregating Devices (FADs). Purse seiners target primarily skipjack and  often set near these floating objects to increase their catch rates.
+```{r total purse seine catch fig.cap =  'Total purse seine cpue'}
+
+skj_cpue <- #function (yr_first,yr_second,g1,g2,g3,g4) {
+   purse_data %>%
+   group_by (lon5,lat5,species,FADS) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_set = sum(sets,na.rm =TRUE)) %>%
+   ungroup () %>%
+   group_by (lon5,lat5,FADS) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_set,
+           lat_center = lat5 + 2.5,
+           lon_center = lon5 + 2.5) %>%
+   ungroup() %>%
+   filter (species == "skj")
+  
+combine_skj_cpue_latlong <- left_join(skj_cpue, lat_lon_boxes, by = c("lat_center", "lon_center"))
+up_limit = max(skj_cpue$cpue,na.rm = TRUE)
+
+  ggplot ( combine_skj_cpue_latlong) +
+  aes(x = long, y = lat, group = group, fill = cpue) +
+  geom_polygon(color = "grey90", size = 0.25)+
+  scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+  scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+  coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+  labs(x = "Longitude", y = "Latitude")+
+  scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = "Purse seine SKJ catch rates (catch / sets )", title.position = "top"),
+                       # limits = c(0, up_limit),
+                       #  breaks = c(0,
+                       #             round( 0.2*up_limit,1),
+                       #              round(0.4*up_limit,1),
+                       #              round(0.6*up_limit,1),
+                       #              round(0.8*up_limit,1),
+                       #              round(up_limit,2)),
+                       # # # labels = c("0",
+                       #            "2.5%",
+                       #            "5.0%",
+                       #            "7.5%",
+                       #            "10%",
+                       #            "12.5%"),
+                        type = "div",
+                        palette = "RdBu",
+                        direction = -1,
+                        na.value = NA) +
+  geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5)+
+  map_layer +
+  map_theme +
+  ggtitle ("1970 - 2015") +
+  facet_wrap(~FADS) 
+
+```
+
+
+
+
+
+
+While the purse seiners are primarily targeting skipjack, catch rates of bycatch species such as juvenile bigeye tuna also increase in these associated sets(*t*/set). In general, higher catch rates of juvenile bigeye tuna are observed near the eastern equatorial region. 
+
+
+```{r ass/una bet ps catch rates fig.cap = "Purse seine bigeye catch rates (*t*/sets) in the WCPO from 1970 - 2015 for associated and unassociated sets"}
+
+all_cpue <- 
+   purse_data %>%
+   #filter (year >= 1970 &  year <= 1998) %>%
+   group_by (lon5,lat5,species,FADS) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_set = sum(sets,na.rm =TRUE)) %>%
+   ungroup () %>%
+   group_by (lon5,lat5,FADS) %>%
+   mutate (total_catch = sum(sp_catch, na.rm =  TRUE),
+           prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_set,
+           lat_center = lat5 + 2.5,
+           lon_center = lon5 + 2.5) %>%
+   ungroup() %>%
+   filter (species == "bet")
+  
+combine_all_cpue_latlong <- left_join(all_cpue, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+up_limit <- max(all_cpue$cpue,na.rm = TRUE)
+ 
+ggplot (combine_all_cpue_latlong) +
+  aes(x = long, y = lat, group = group, fill = cpue) +
+  geom_polygon(color = "grey90", size = 0.25)+
+  scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+  scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+  coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+  labs(x = "Longitude", y = "Latitude")+
+  scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = "Purse seine BET catch rates (catch / sets )", title.position = "top"),
+                        limits = c(0, up_limit),
+                        breaks = c(0,
+                                   round( 0.2*up_limit,1),
+                                    round(0.4*up_limit,1),
+                                    round(0.6*up_limit,1),
+                                    round(0.8*up_limit,1),
+                                    round(up_limit,2)),
+                       # # labels = c("0",
+                       #            "2.5%",
+                       #            "5.0%",
+                       #            "7.5%",
+                       #            "10%",
+                       #            "12.5%"),
+                        type = "div",
+                        palette = "RdBu",
+                        direction = -1,
+                        na.value = NA) +
+  geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5)+
+  map_layer +
+  map_theme +
+  ggtitle ("1970 - 2015") +
+  facet_wrap(~FADS) 
+```
+
+
+
+FADs may be natural logs, ocean debris, larger species such as whale sharks or marine mammals. In the late 1990s the use of both anchored and drifting manmade FADs began to increase. or manmade drifting or anchored FADs, items such as logs found floating in the ocean, or large species such as whale sharks or marine mammals. The use of drifting and aggretaged FADs increased in the mid to late 1990s. . Catch rates for juvnile big eye are highest on sets assocoiated with drifting or anchored FADs, and lowest on sets unassociated with FADs.
+
+
+```{r bet cpue plots, fig.cap="Bigeye catch rates in the purse seine fishery by set type before (pre-late 1990s) and after the expansion of FAD use"}
+
+bet_cpue <- function (yr_first,yr_second) {
+   purse_data %>%
+   filter (year >= yr_first &  year <= yr_second) %>%
+   group_by (lon5,lat5,species,fad) %>%
+   summarise (sp_catch = sum(catch,na.rm = TRUE),
+              sp_set = sum(sets,na.rm =TRUE)) %>%
+   ungroup () %>%
+   group_by (lon5,lat5,fad) %>%
+   mutate  (total_catch = sum(sp_catch, na.rm =  TRUE),
+           total_set = sum(sp_set, na.rm = TRUE),
+           # prop_catch = sp_catch/total_catch*100,
+           cpue = sp_catch/sp_set,
+           lat_center = lat5 + 2.5,
+           lon_center = lon5 + 2.5) %>%
+   ungroup() %>%
+  filter (species == "bet")
+} 
+
+
+
+early_data <- bet_cpue(1970,1997)
+early_data  <- left_join(early_data, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+mid_data <- bet_cpue(1998,2008)
+mid_data <- left_join(mid_data, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+late_data <- bet_cpue(2009,2015)
+late_data <- left_join(late_data, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+uplimit <- max(mid_data$cpue,na.rm = TRUE)
+
+bet_cpue_map(early_data,"1970 - 1997",uplimit)
+bet_cpue_map(mid_data, "1998 - 2008", uplimit)
+bet_cpue_map(late_data, "2009 - 2015", uplimit)
+```
+
+```{r sets by fadtype fig.cap =  "Number of total sets by FAD type"}
+up_limit = max(late_set$total_set,na.rm=TRUE)
+
+set_map <-function(data,title){ 
+  ggplot (data) +
+  aes(x = long, y = lat, group = group, fill = total_set) +
+  geom_polygon(color = "grey90", size = 0.25)+
+  scale_x_continuous(limits = c(20, 340), breaks = c(120, 160, 200))+
+  scale_y_continuous(breaks = c(-40, -20, 0, 20, 40))+
+  coord_cartesian(xlim = c(90,230), ylim = c(-40, 50))+
+  labs(x = "Longitude", y = "Latitude")+
+  scale_fill_distiller(guide = guide_colorbar(barwidth = 20, barheight = 1.5, title = "Total purse seine effort (sets )", title.position = "top"),
+                         limits = c(0, up_limit),
+                         breaks = c(0,
+                                    round( 0.2*up_limit,1),
+                                     round(0.4*up_limit,1),
+                                     round(0.6*up_limit,1),
+                                     round(0.8*up_limit,1),
+                                     round(up_limit,2)),
+                       # # labels = c("0",
+                       #            "2.5%",
+                       #            "5.0%",
+                       #            "7.5%",
+                       #            "10%",
+                       #            "12.5%"),
+                        type = "div",
+                        palette = "RdBu",
+                        direction = -1,
+                        na.value = NA) +
+  geom_polygon(data = lat_lon_boxes, aes(x = long, y = lat, group = group), fill = NA, color = "grey90", size = 0.5)+
+  map_layer +
+  map_theme +
+  ggtitle (title) +
+  facet_wrap(~fad, labeller = as_labeller(fad_names)) 
+}
+
+early_set<-bet_cpue(1970,1989)
+early_set <- left_join(early_set, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+late_set<-bet_cpue(1991,2015)
+late_set <- left_join(late_set, lat_lon_boxes, by = c("lat_center", "lon_center"))
+
+set_map(early_set,"1970 - 1989")
+set_map(late_data, "1990 - 2015")
+
+
+```
+
+
+

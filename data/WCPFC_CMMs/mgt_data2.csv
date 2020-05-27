@@ -1,0 +1,21 @@
+st_yr,end_yr,mgt,Fishery,type,ymin,ymax
+2006,2009,Cap annual catch at \naverage 2001-04 levels,LL,Catch,5,6
+2006,2009,Reduce fishing capacity \nto pre-1999 levels,LL,Effort,4,5
+2008.5,2010,10% catch \nreduction,LL,Catch,3,4
+2009.5,2011,20% catch \nreduction,LL,Catch,2,3
+2011,2013,30% catch \nreduction,LL,Catch,2,3
+2013,2018,Catch limits \nspecified by flag,LL,Catch,2,3
+2014,2018,No increase in large \nvessels with freezing capacity,LL,Effort,1,2
+2015,2018,Catch reductions \nspecified by flag,LL,Catch,0,1
+2006,2009,Reduce fishing capacity \nto pre-1999 levels,PS,Effort,10,11
+2006,2012,Annual effort levels \ncapped at 2004 levels,PS,Effort,9,10
+2008,2018,Vessel Day Scheme,PS,Effort,8,9
+2008.5,2010,2 month \nFAD closure,PS,Effort,7,8
+2010,2013,High seas \npocket closures,PS,Effort,7,8
+2010,2013,3 month \nFAD closure,PS,Effort,6,7
+2012,2018,Annual effort levels \ncapped at 2010 levels,PS,Effort,5,6
+2013,2015,4 month \nFAD closure,PS,Effort,4,5
+2014,2018,No increase in large \nvessels with freezing capacity,PS,Effort,3,4
+2015,2018,5 month \nFAD closure,PS,Effort,2,3
+2016,2018,PNA \nFAD charge,PS,Effort,1,2
+2017,2019,High seas \nFAD closure,PS,Effort,0,1

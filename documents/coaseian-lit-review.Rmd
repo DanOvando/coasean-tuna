@@ -1,0 +1,58 @@
+---
+title: "lit-review"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+
+# Catch trend of bigeye tuna Thunnus obesus by purse seine using fish aggregating devices, by flag states and area of operation in tropical regions of the Western and Central Pacific Ocean
+
+## @kawamoto2017
+
+"Seventeen members and cooperating non-mem- bers (CCMs) of the Western and Central Pacific Fisheries Commission (WCPFC) were responsible for 86% of the total catch of bigeye tuna Thunnus obesus by purse seine fishing from 2012 to 2014. We categorize the CCMs into an eastern, western and “other” group based on their main fishing areas. We found significant differences in the bigeye tuna catch per fish aggregating device (FAD) between the eastern group and the western group. We also estimated that the eastern group achieved a higher catch of bigeye tuna because of their increased fishing effort using FAD in the eastern area where there is a higher catch per unit effort for FAD. The regression analysis found significant correlations between the annual catch of bigeye tuna and the number of FAD sets. The average catch of bigeye tuna per single FAD set, estimated from the slope of the regression line, was 7.1 t in the eastern area and 2.7 t in the western area. An impact and risk plot composed of the slope of the regression line and the catch of bigeye tuna by each individual CCM was developed to improve management measures. Appropriate measures for the sustainable use of tuna resources in the region are discussed."
+
+Oh good to know the 4 month FAD closure is WCPFC not PNA. 
+
+Oh bother, they yse data from 2005 onwards due to higher-quality observing and VMS
+
+
+Validity for findings; lots more bigeye caught in the eastern section
+
+'Fuller et al. [9] examined the average daytime depth of bigeye tuna and the thermal characteristics at a range of longitude (170°E–100°W) by using archival tags. They reported that the average daytime depth of bigeye tuna was shallower in the eastern area (230 m, 13.3 °C, east of 120°W) and deeper in the western area (366 m, 11.7 °C, west of 180°) of the region."
+
+They point out that FAD reductions could benefit bigeye, but dont' get into cost benefit. 
+
+# Behaviour and vulnerability of target and non-target species at drifting fish aggregating devices (FADs) in the tropical tuna purse seine fishery determined by acoustic telemetry
+
+## @forget2015
+
+
+
+Characterizing the vulnerability of both target and non-target (bycatch) species to a fishing gear is a key step towards an ecosystem-based fisheries management approach. This study addresses this issue for the tropical tuna purse seine fishery that uses fish aggregating devices (FADs). We used passive acoustic telemetry to characterize, on a 24 h scale, the associative patterns and the vertical distribution of skipjack (Katsuwonus pelamis), yellowfin (Thunnus albacares), and bigeye tuna (Thunnus obesus) (target species), as well as silky shark (Carcharhinus falciformis), oceanic triggerfish (Canthidermis maculata), and rainbow runner (Elagatis bipinnulata) (major non-target species). Distinct diel associative patterns were observed; the tunas and the silky sharks were more closely associated with FADs during daytime, while the rainbow runner and the oceanic triggerfish were more closely associated during the night. Minor changes in bycatch to catch ratio of rainbow runner and oceanic triggerfish could possibly be achieved by fishing at FADs after sunrise. However, as silky sharks display a similar associative pattern as tunas, no specific change in fishing time could mitigate the vulnerability of this more sensitive species. For the vertical distribution, there was no particular time of the day when any species occurred beyond the depth of a typical purse seine net. While this study does not provide an immediate solution to reduce the bycatch to catch ratios of the FAD-based fishery in the western Indian Ocean, the method described here could be applied to other regions where similar fisheries exist so as to evaluate potential solutions to reducing fishing mortality of non-target species.
+
+
+* provides support to the idea that FAD removals might benefit a lot more than just bieye (other species), and therefore lends support to idea of how much would we have to value those species to express that value in this manner at least. 
+
+* points out that in the case of things like silky sharks, behavior modification of the FADs might not cut it; lends support to idea that we might need FAD removal itself, which means compensation. Ah, slightly important detail THIS IS FOR THE INDIAN OCEAN, GET RID
+
+# Fishing tuna around Fish Aggregating Devices (FADs) vs free swimming schools: Skipper decision and other determining factors
+
+# @guillotreau2011
+
+Fish Aggregating Devices (FADs) are increasingly used by tuna purse-seine fleets all around the world, modifying the species catch composition. We analyse the determinants of FAD vs free school (FS) fishing, including the skipper effect, and environmental and economic factors. A multivariate and econometric analysis of a panel dataset for the French purse-seine fleet in the Indian Ocean (1980–2007), comple- mented by a survey of fishers, demonstrates the influential role of climate and prey on FAD fishing and also emphasises individual skipper preference. However, we found that the major determinant of FAD fishing remains the growing fishing capacity (use of bigger vessels, satellite buoys, echo-sounders, supply vessels), thus modifying the species catch composition towards smaller tuna. Other things being equal, raising the proportion of FAD sets by 1% would increase the catches of skipjack by 1.3% and decrease those of large yellowfin tuna by 1.7%. This result shows that the control of effort and investment could be adapted through management measures to encourage one fishing method.
+
+* all else  being equal using FAD increases skipjack by 1.3% while decreasing yellowfin tuna by 1.7%
+
+* we don't address changes in search time, that's a bigeye that would also ding this analysis
+
+* focused on the indian ocean, point that out. 
+
+* Broadly, makes the case the investment (vessel size) is a hige determinant in fishing FADs or not
+
+
+
+
+

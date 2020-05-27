@@ -1,0 +1,7 @@
+sch_id,sch_definition,sch_short,FAD
+1,unassociated,unassociated,0
+3,natural,natural,0
+4,Drifting FAD,drifting_fad,1
+5, Anchored FAD ,anchored_fad,1
+6,Marine Mammal associated,marine_mammal,0
+7,Whale shark associated ,whale_shark,0

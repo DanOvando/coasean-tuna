@@ -1,0 +1,325 @@
+"","species","set_type","EEZ","Country","PNA_country","EEZ_catch"
+"1","BET","ASS","American Samoa Exclusive Economic Zone","American Samoa",FALSE,96.338
+"2","BET","ASS","Australian Exclusive Economic Zone","Australia",FALSE,123.127
+"3","BET","ASS","Chinese Exclusive Economic Zone","China",FALSE,0.06
+"4","BET","ASS","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,92.31
+"5","BET","ASS","Fijian Exclusive Economic Zone","Fiji",FALSE,4019.089
+"6","BET","ASS","High Seas",NA,FALSE,82436.225
+"7","BET","ASS","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,237.702
+"8","BET","ASS","Indonesian Exclusive Economic Zone","Indonesia",FALSE,22244.167
+"9","BET","ASS","Japanese Exclusive Economic Zone","Japan",FALSE,143.616
+"10","BET","ASS","Kiribati Exclusive Economic Zone","Kiribati",TRUE,10862.043
+"11","BET","ASS","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,1005.679
+"12","BET","ASS","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,7824.83
+"13","BET","ASS","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,0
+"14","BET","ASS","Micronesian Exclusive Economic Zone","Micronesia",TRUE,8703.511
+"15","BET","ASS","Nauruan Exclusive Economic Zone","Nauru",TRUE,9547.394
+"16","BET","ASS","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"17","BET","ASS","Palau Exclusive Economic Zone","Palau",TRUE,2605.939
+"18","BET","ASS","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,59929.12
+"19","BET","ASS","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,814.215
+"20","BET","ASS","Philippines Exclusive Economic Zone","Philippines",FALSE,1758.597
+"21","BET","ASS","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,35526.515
+"22","BET","ASS","South Korean Exclusive Economic Zone","South Korea",FALSE,0
+"23","BET","ASS","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,814.264
+"24","BET","ASS","Tokelau Exclusive Economic Zone","Tokelau",FALSE,3011
+"25","BET","ASS","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,11740.889
+"26","BET","ASS","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,44.061
+"27","BET","ASS","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,1628.207
+"28","BET","OTH","American Samoa Exclusive Economic Zone","American Samoa",FALSE,0
+"29","BET","OTH","Australian Exclusive Economic Zone","Australia",FALSE,0
+"30","BET","OTH","Chinese Exclusive Economic Zone","China",FALSE,0
+"31","BET","OTH","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,0
+"32","BET","OTH","Fijian Exclusive Economic Zone","Fiji",FALSE,0
+"33","BET","OTH","High Seas",NA,FALSE,0
+"34","BET","OTH","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,0
+"35","BET","OTH","Indonesian Exclusive Economic Zone","Indonesia",FALSE,0
+"36","BET","OTH","Japanese Exclusive Economic Zone","Japan",FALSE,0
+"37","BET","OTH","Kiribati Exclusive Economic Zone","Kiribati",TRUE,0
+"38","BET","OTH","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,0
+"39","BET","OTH","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,0
+"40","BET","OTH","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,0
+"41","BET","OTH","Micronesian Exclusive Economic Zone","Micronesia",TRUE,0
+"42","BET","OTH","Nauruan Exclusive Economic Zone","Nauru",TRUE,0
+"43","BET","OTH","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"44","BET","OTH","Palau Exclusive Economic Zone","Palau",TRUE,0
+"45","BET","OTH","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,0
+"46","BET","OTH","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,0
+"47","BET","OTH","Philippines Exclusive Economic Zone","Philippines",FALSE,0
+"48","BET","OTH","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,0
+"49","BET","OTH","South Korean Exclusive Economic Zone","South Korea",FALSE,0
+"50","BET","OTH","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,0
+"51","BET","OTH","Tokelau Exclusive Economic Zone","Tokelau",FALSE,0
+"52","BET","OTH","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,0
+"53","BET","OTH","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,0
+"54","BET","OTH","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,0
+"55","BET","UNA","American Samoa Exclusive Economic Zone","American Samoa",FALSE,0
+"56","BET","UNA","Australian Exclusive Economic Zone","Australia",FALSE,415.839
+"57","BET","UNA","Chinese Exclusive Economic Zone","China",FALSE,0.041
+"58","BET","UNA","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,9.732
+"59","BET","UNA","Fijian Exclusive Economic Zone","Fiji",FALSE,139.037
+"60","BET","UNA","High Seas",NA,FALSE,11280.118
+"61","BET","UNA","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,102.051
+"62","BET","UNA","Indonesian Exclusive Economic Zone","Indonesia",FALSE,2771.013
+"63","BET","UNA","Japanese Exclusive Economic Zone","Japan",FALSE,84.081
+"64","BET","UNA","Kiribati Exclusive Economic Zone","Kiribati",TRUE,1114.735
+"65","BET","UNA","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,0
+"66","BET","UNA","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,690.965
+"67","BET","UNA","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,49.646
+"68","BET","UNA","Micronesian Exclusive Economic Zone","Micronesia",TRUE,1249.291
+"69","BET","UNA","Nauruan Exclusive Economic Zone","Nauru",TRUE,1073.722
+"70","BET","UNA","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"71","BET","UNA","Palau Exclusive Economic Zone","Palau",TRUE,433.607
+"72","BET","UNA","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,14680.891
+"73","BET","UNA","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,70.485
+"74","BET","UNA","Philippines Exclusive Economic Zone","Philippines",FALSE,422.033
+"75","BET","UNA","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,2122.48
+"76","BET","UNA","South Korean Exclusive Economic Zone","South Korea",FALSE,0
+"77","BET","UNA","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,70.521
+"78","BET","UNA","Tokelau Exclusive Economic Zone","Tokelau",FALSE,88.995
+"79","BET","UNA","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,1490.863
+"80","BET","UNA","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,2.706
+"81","BET","UNA","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,141.017
+"82","OTH","ASS","American Samoa Exclusive Economic Zone","American Samoa",FALSE,0.564
+"83","OTH","ASS","Australian Exclusive Economic Zone","Australia",FALSE,0.68
+"84","OTH","ASS","Chinese Exclusive Economic Zone","China",FALSE,146531.562
+"85","OTH","ASS","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,0
+"86","OTH","ASS","Fijian Exclusive Economic Zone","Fiji",FALSE,9.945
+"87","OTH","ASS","High Seas",NA,FALSE,21055.331
+"88","OTH","ASS","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,1.345
+"89","OTH","ASS","Indonesian Exclusive Economic Zone","Indonesia",FALSE,14.2
+"90","OTH","ASS","Japanese Exclusive Economic Zone","Japan",FALSE,175082.207
+"91","OTH","ASS","Kiribati Exclusive Economic Zone","Kiribati",TRUE,10.899
+"92","OTH","ASS","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,0
+"93","OTH","ASS","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,16.031
+"94","OTH","ASS","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,0
+"95","OTH","ASS","Micronesian Exclusive Economic Zone","Micronesia",TRUE,32.055
+"96","OTH","ASS","Nauruan Exclusive Economic Zone","Nauru",TRUE,14.101
+"97","OTH","ASS","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"98","OTH","ASS","Palau Exclusive Economic Zone","Palau",TRUE,0
+"99","OTH","ASS","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,407.385
+"100","OTH","ASS","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,0
+"101","OTH","ASS","Philippines Exclusive Economic Zone","Philippines",FALSE,0
+"102","OTH","ASS","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,93.557
+"103","OTH","ASS","South Korean Exclusive Economic Zone","South Korea",FALSE,231.317
+"104","OTH","ASS","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,0
+"105","OTH","ASS","Tokelau Exclusive Economic Zone","Tokelau",FALSE,5.686
+"106","OTH","ASS","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,22.824
+"107","OTH","ASS","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,0.098
+"108","OTH","ASS","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,0
+"109","OTH","OTH","American Samoa Exclusive Economic Zone","American Samoa",FALSE,0
+"110","OTH","OTH","Australian Exclusive Economic Zone","Australia",FALSE,0
+"111","OTH","OTH","Chinese Exclusive Economic Zone","China",FALSE,0
+"112","OTH","OTH","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,0
+"113","OTH","OTH","Fijian Exclusive Economic Zone","Fiji",FALSE,0
+"114","OTH","OTH","High Seas",NA,FALSE,0
+"115","OTH","OTH","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,0
+"116","OTH","OTH","Indonesian Exclusive Economic Zone","Indonesia",FALSE,0
+"117","OTH","OTH","Japanese Exclusive Economic Zone","Japan",FALSE,0
+"118","OTH","OTH","Kiribati Exclusive Economic Zone","Kiribati",TRUE,0
+"119","OTH","OTH","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,0
+"120","OTH","OTH","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,0
+"121","OTH","OTH","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,0
+"122","OTH","OTH","Micronesian Exclusive Economic Zone","Micronesia",TRUE,0
+"123","OTH","OTH","Nauruan Exclusive Economic Zone","Nauru",TRUE,0
+"124","OTH","OTH","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"125","OTH","OTH","Palau Exclusive Economic Zone","Palau",TRUE,0
+"126","OTH","OTH","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,0
+"127","OTH","OTH","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,0
+"128","OTH","OTH","Philippines Exclusive Economic Zone","Philippines",FALSE,0
+"129","OTH","OTH","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,0
+"130","OTH","OTH","South Korean Exclusive Economic Zone","South Korea",FALSE,0
+"131","OTH","OTH","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,0
+"132","OTH","OTH","Tokelau Exclusive Economic Zone","Tokelau",FALSE,0
+"133","OTH","OTH","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,0
+"134","OTH","OTH","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,0
+"135","OTH","OTH","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,0
+"136","OTH","UNA","American Samoa Exclusive Economic Zone","American Samoa",FALSE,0
+"137","OTH","UNA","Australian Exclusive Economic Zone","Australia",FALSE,6.719
+"138","OTH","UNA","Chinese Exclusive Economic Zone","China",FALSE,75995.529
+"139","OTH","UNA","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,1.606
+"140","OTH","UNA","Fijian Exclusive Economic Zone","Fiji",FALSE,5.505
+"141","OTH","UNA","High Seas",NA,FALSE,23153.356
+"142","OTH","UNA","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,0.005
+"143","OTH","UNA","Indonesian Exclusive Economic Zone","Indonesia",FALSE,2.737
+"144","OTH","UNA","Japanese Exclusive Economic Zone","Japan",FALSE,109841.584
+"145","OTH","UNA","Kiribati Exclusive Economic Zone","Kiribati",TRUE,1.951
+"146","OTH","UNA","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,0
+"147","OTH","UNA","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,6.315
+"148","OTH","UNA","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,0
+"149","OTH","UNA","Micronesian Exclusive Economic Zone","Micronesia",TRUE,20.66
+"150","OTH","UNA","Nauruan Exclusive Economic Zone","Nauru",TRUE,1.679
+"151","OTH","UNA","New Zealand Exclusive Economic Zone","New Zealand",FALSE,1.039
+"152","OTH","UNA","Palau Exclusive Economic Zone","Palau",TRUE,0
+"153","OTH","UNA","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,366.055
+"154","OTH","UNA","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,0
+"155","OTH","UNA","Philippines Exclusive Economic Zone","Philippines",FALSE,0
+"156","OTH","UNA","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,12.87
+"157","OTH","UNA","South Korean Exclusive Economic Zone","South Korea",FALSE,260.883
+"158","OTH","UNA","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,0
+"159","OTH","UNA","Tokelau Exclusive Economic Zone","Tokelau",FALSE,1.612
+"160","OTH","UNA","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,22.058
+"161","OTH","UNA","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,0.274
+"162","OTH","UNA","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,0
+"163","SKJ","ASS","American Samoa Exclusive Economic Zone","American Samoa",FALSE,2796.558
+"164","SKJ","ASS","Australian Exclusive Economic Zone","Australia",FALSE,6563.296
+"165","SKJ","ASS","Chinese Exclusive Economic Zone","China",FALSE,641.828
+"166","SKJ","ASS","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,962.957
+"167","SKJ","ASS","Fijian Exclusive Economic Zone","Fiji",FALSE,74564.883
+"168","SKJ","ASS","High Seas",NA,FALSE,1059563.426
+"169","SKJ","ASS","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,1566.35
+"170","SKJ","ASS","Indonesian Exclusive Economic Zone","Indonesia",FALSE,488633.092
+"171","SKJ","ASS","Japanese Exclusive Economic Zone","Japan",FALSE,1740.757
+"172","SKJ","ASS","Kiribati Exclusive Economic Zone","Kiribati",TRUE,100376.96
+"173","SKJ","ASS","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,3530.681
+"174","SKJ","ASS","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,69225.236
+"175","SKJ","ASS","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,0
+"176","SKJ","ASS","Micronesian Exclusive Economic Zone","Micronesia",TRUE,124957.688
+"177","SKJ","ASS","Nauruan Exclusive Economic Zone","Nauru",TRUE,95446.966
+"178","SKJ","ASS","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"179","SKJ","ASS","Palau Exclusive Economic Zone","Palau",TRUE,81808.93
+"180","SKJ","ASS","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,846226.444
+"181","SKJ","ASS","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,13385.4
+"182","SKJ","ASS","Philippines Exclusive Economic Zone","Philippines",FALSE,51286.524
+"183","SKJ","ASS","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,477225.023
+"184","SKJ","ASS","South Korean Exclusive Economic Zone","South Korea",FALSE,19.916
+"185","SKJ","ASS","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,13385.306
+"186","SKJ","ASS","Tokelau Exclusive Economic Zone","Tokelau",FALSE,48300.405
+"187","SKJ","ASS","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,141853.792
+"188","SKJ","ASS","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,2487.382
+"189","SKJ","ASS","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,26770.196
+"190","SKJ","OTH","American Samoa Exclusive Economic Zone","American Samoa",FALSE,0
+"191","SKJ","OTH","Australian Exclusive Economic Zone","Australia",FALSE,0
+"192","SKJ","OTH","Chinese Exclusive Economic Zone","China",FALSE,0
+"193","SKJ","OTH","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,0
+"194","SKJ","OTH","Fijian Exclusive Economic Zone","Fiji",FALSE,0
+"195","SKJ","OTH","High Seas",NA,FALSE,0
+"196","SKJ","OTH","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,0
+"197","SKJ","OTH","Indonesian Exclusive Economic Zone","Indonesia",FALSE,0
+"198","SKJ","OTH","Japanese Exclusive Economic Zone","Japan",FALSE,0
+"199","SKJ","OTH","Kiribati Exclusive Economic Zone","Kiribati",TRUE,0
+"200","SKJ","OTH","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,0
+"201","SKJ","OTH","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,0
+"202","SKJ","OTH","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,0
+"203","SKJ","OTH","Micronesian Exclusive Economic Zone","Micronesia",TRUE,0
+"204","SKJ","OTH","Nauruan Exclusive Economic Zone","Nauru",TRUE,0
+"205","SKJ","OTH","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"206","SKJ","OTH","Palau Exclusive Economic Zone","Palau",TRUE,0
+"207","SKJ","OTH","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,0
+"208","SKJ","OTH","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,0
+"209","SKJ","OTH","Philippines Exclusive Economic Zone","Philippines",FALSE,0
+"210","SKJ","OTH","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,0
+"211","SKJ","OTH","South Korean Exclusive Economic Zone","South Korea",FALSE,0
+"212","SKJ","OTH","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,0
+"213","SKJ","OTH","Tokelau Exclusive Economic Zone","Tokelau",FALSE,0
+"214","SKJ","OTH","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,0
+"215","SKJ","OTH","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,0
+"216","SKJ","OTH","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,0
+"217","SKJ","UNA","American Samoa Exclusive Economic Zone","American Samoa",FALSE,928.702
+"218","SKJ","UNA","Australian Exclusive Economic Zone","Australia",FALSE,26422.645
+"219","SKJ","UNA","Chinese Exclusive Economic Zone","China",FALSE,1731.055
+"220","SKJ","UNA","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,10139.64
+"221","SKJ","UNA","Fijian Exclusive Economic Zone","Fiji",FALSE,37483.761
+"222","SKJ","UNA","High Seas",NA,FALSE,873374.953
+"223","SKJ","UNA","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,6767.502
+"224","SKJ","UNA","Indonesian Exclusive Economic Zone","Indonesia",FALSE,374395.936
+"225","SKJ","UNA","Japanese Exclusive Economic Zone","Japan",FALSE,5584.238
+"226","SKJ","UNA","Kiribati Exclusive Economic Zone","Kiribati",TRUE,78294.244
+"227","SKJ","UNA","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,0
+"228","SKJ","UNA","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,82132.355
+"229","SKJ","UNA","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,3970.87
+"230","SKJ","UNA","Micronesian Exclusive Economic Zone","Micronesia",TRUE,159566.802
+"231","SKJ","UNA","Nauruan Exclusive Economic Zone","Nauru",TRUE,102055.809
+"232","SKJ","UNA","New Zealand Exclusive Economic Zone","New Zealand",FALSE,25263.212
+"233","SKJ","UNA","Palau Exclusive Economic Zone","Palau",TRUE,47667.191
+"234","SKJ","UNA","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,1243751.101
+"235","SKJ","UNA","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,12329.52
+"236","SKJ","UNA","Philippines Exclusive Economic Zone","Philippines",FALSE,38817.204
+"237","SKJ","UNA","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,252401.411
+"238","SKJ","UNA","South Korean Exclusive Economic Zone","South Korea",FALSE,33.484
+"239","SKJ","UNA","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,12329.449
+"240","SKJ","UNA","Tokelau Exclusive Economic Zone","Tokelau",FALSE,59616.902
+"241","SKJ","UNA","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,171309.585
+"242","SKJ","UNA","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,4051.751
+"243","SKJ","UNA","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,24658.634
+"244","YFT","ASS","American Samoa Exclusive Economic Zone","American Samoa",FALSE,334.212
+"245","YFT","ASS","Australian Exclusive Economic Zone","Australia",FALSE,2424.26
+"246","YFT","ASS","Chinese Exclusive Economic Zone","China",FALSE,20.604
+"247","YFT","ASS","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,111.059
+"248","YFT","ASS","Fijian Exclusive Economic Zone","Fiji",FALSE,14635.342
+"249","YFT","ASS","High Seas",NA,FALSE,291216.036
+"250","YFT","ASS","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,329.224
+"251","YFT","ASS","Indonesian Exclusive Economic Zone","Indonesia",FALSE,104348.984
+"252","YFT","ASS","Japanese Exclusive Economic Zone","Japan",FALSE,250.379
+"253","YFT","ASS","Kiribati Exclusive Economic Zone","Kiribati",TRUE,18315.243
+"254","YFT","ASS","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,357.428
+"255","YFT","ASS","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,11959.858
+"256","YFT","ASS","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,0
+"257","YFT","ASS","Micronesian Exclusive Economic Zone","Micronesia",TRUE,26884.909
+"258","YFT","ASS","Nauruan Exclusive Economic Zone","Nauru",TRUE,19013.811
+"259","YFT","ASS","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"260","YFT","ASS","Palau Exclusive Economic Zone","Palau",TRUE,16392.267
+"261","YFT","ASS","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,253226.404
+"262","YFT","ASS","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,2211.075
+"263","YFT","ASS","Philippines Exclusive Economic Zone","Philippines",FALSE,9550.978
+"264","YFT","ASS","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,105681.119
+"265","YFT","ASS","South Korean Exclusive Economic Zone","South Korea",FALSE,0
+"266","YFT","ASS","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,2211.132
+"267","YFT","ASS","Tokelau Exclusive Economic Zone","Tokelau",FALSE,5674.125
+"268","YFT","ASS","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,27935.882
+"269","YFT","ASS","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,502.934
+"270","YFT","ASS","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,4421.978
+"271","YFT","OTH","American Samoa Exclusive Economic Zone","American Samoa",FALSE,0
+"272","YFT","OTH","Australian Exclusive Economic Zone","Australia",FALSE,0
+"273","YFT","OTH","Chinese Exclusive Economic Zone","China",FALSE,0
+"274","YFT","OTH","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,0
+"275","YFT","OTH","Fijian Exclusive Economic Zone","Fiji",FALSE,0
+"276","YFT","OTH","High Seas",NA,FALSE,0
+"277","YFT","OTH","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,0
+"278","YFT","OTH","Indonesian Exclusive Economic Zone","Indonesia",FALSE,0
+"279","YFT","OTH","Japanese Exclusive Economic Zone","Japan",FALSE,0
+"280","YFT","OTH","Kiribati Exclusive Economic Zone","Kiribati",TRUE,0
+"281","YFT","OTH","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,0
+"282","YFT","OTH","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,0
+"283","YFT","OTH","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,0
+"284","YFT","OTH","Micronesian Exclusive Economic Zone","Micronesia",TRUE,0
+"285","YFT","OTH","Nauruan Exclusive Economic Zone","Nauru",TRUE,0
+"286","YFT","OTH","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"287","YFT","OTH","Palau Exclusive Economic Zone","Palau",TRUE,0
+"288","YFT","OTH","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,0
+"289","YFT","OTH","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,0
+"290","YFT","OTH","Philippines Exclusive Economic Zone","Philippines",FALSE,0
+"291","YFT","OTH","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,0
+"292","YFT","OTH","South Korean Exclusive Economic Zone","South Korea",FALSE,0
+"293","YFT","OTH","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,0
+"294","YFT","OTH","Tokelau Exclusive Economic Zone","Tokelau",FALSE,0
+"295","YFT","OTH","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,0
+"296","YFT","OTH","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,0
+"297","YFT","OTH","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,0
+"298","YFT","UNA","American Samoa Exclusive Economic Zone","American Samoa",FALSE,0
+"299","YFT","UNA","Australian Exclusive Economic Zone","Australia",FALSE,18633.391
+"300","YFT","UNA","Chinese Exclusive Economic Zone","China",FALSE,3.198
+"301","YFT","UNA","Cook Islands Exclusive Economic Zone","Cook Islands",FALSE,506.873
+"302","YFT","UNA","Fijian Exclusive Economic Zone","Fiji",FALSE,1089.319
+"303","YFT","UNA","High Seas",NA,FALSE,301811.367
+"304","YFT","UNA","Howland and Baker Island Exclusive Economic Zone","Howland Island and Baker Island",FALSE,2656.821
+"305","YFT","UNA","Indonesian Exclusive Economic Zone","Indonesia",FALSE,84047.712
+"306","YFT","UNA","Japanese Exclusive Economic Zone","Japan",FALSE,1172.92
+"307","YFT","UNA","Kiribati Exclusive Economic Zone","Kiribati",TRUE,39899.367
+"308","YFT","UNA","Kiribati Exclusive Economic Zone (Line Group)","Line Group",TRUE,0
+"309","YFT","UNA","Kiribati Exclusive Economic Zone (Phoenix Group)","Phoenix Group",TRUE,21544.406
+"310","YFT","UNA","Marshall Islands Exclusive Economic Zone","Marshall Islands",TRUE,755.834
+"311","YFT","UNA","Micronesian Exclusive Economic Zone","Micronesia",TRUE,22842.865
+"312","YFT","UNA","Nauruan Exclusive Economic Zone","Nauru",TRUE,29498.593
+"313","YFT","UNA","New Zealand Exclusive Economic Zone","New Zealand",FALSE,0
+"314","YFT","UNA","Palau Exclusive Economic Zone","Palau",TRUE,12121.635
+"315","YFT","UNA","Papua New Guinean Exclusive Economic Zone","Papua New Guinea",TRUE,403218.985
+"316","YFT","UNA","Paracel Islands Exclusive Economic Zone","Paracel Islands",FALSE,3351.735
+"317","YFT","UNA","Philippines Exclusive Economic Zone","Philippines",FALSE,10950.213
+"318","YFT","UNA","Solomon Islands Exclusive Economic Zone","Solomon Islands",TRUE,57804.67
+"319","YFT","UNA","South Korean Exclusive Economic Zone","South Korea",FALSE,0
+"320","YFT","UNA","Spratly Islands Exclusive Economic Zone","Spratly Islands",FALSE,3351.667
+"321","YFT","UNA","Tokelau Exclusive Economic Zone","Tokelau",FALSE,2358.762
+"322","YFT","UNA","Tuvaluan Exclusive Economic Zone","Tuvalu",TRUE,44673.99
+"323","YFT","UNA","Vanuatu Exclusive Economic Zone","Vanuatu",FALSE,140.194
+"324","YFT","UNA","Vietnamese Exclusive Economic Zone","Vietnam",FALSE,6703.318

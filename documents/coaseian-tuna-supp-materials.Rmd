@@ -1,0 +1,238 @@
+---
+title: "Incentive Driven Solutions to Overfishing of Bigeye Tuna"
+subtitle: "Supplementary Materials"
+csl: fish-and-fisheries.csl
+output:
+  bookdown::word_document2: default
+  bookdown::html_document2: default
+  bookdown::pdf_document2: default
+  html_document: default
+  pdf_document: default
+linkcolor: blue
+bibliography: Coaseian Tunas.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(here)
+
+title_size <-
+  14 # Plot titles (axis, legends, plot, etc) - 14 for paper, 20 for ppts
+text_size <-
+  12 # All other text (axis text, legend text, etc.) - 12 for paper, 18 for ppts
+point_size <- 7
+
+simple_theme <- theme_bw() +
+  theme(
+    text = element_text(size = text_size),
+    title = element_text(size = title_size),
+    legend.position = "bottom"
+  )
+
+theme_set(simple_theme)
+```
+
+# Computational Environment
+
+```{r load-data}
+
+run_name <-  'v5.2-pna'
+
+assessment_year = 2014
+
+run_dir = here('results', run_name)
+
+load(file.path(run_dir, paste0("fit_data_", assessment_year, ".Rdata")))
+
+load(file.path(run_dir,"figures.Rdata"))
+
+
+```
+
+
+The code underlying this paper requires several different types of analysis, and associated packages. All analyses were performed in R [@rcoreteam2019]. Many packages were utilized, in particular Template Model Builder [kristensen2016], `ranger` [@wright2017], and `parsnip`. In order to facilitate reproduction, we have set up a Docker image of the computational environment used for this publication. The image can be found at XX. Readers interested in reproducing our results can load the supplied docker image and follow the included README instructions to reproduce our results. Users should expect a run time of approximately 4 hours running on 12 cores. 
+
+# Population Model
+
+## Model Rationale
+
+The tuna complex in the Western Central Pacific Ocean (WCPO) is a highly studied group of species. Formal stock assessments exist for both of the species included in this study (Bigeye tuna, *Thunnus obesus*, and Skipjack, *Katsuwonus pelamis*). Given the extensive modeling already present for these species, why create our own population model? The stock assessment models for Bigeye and Skipjack consist of XX "fleets" (defined by XX) and XX areas. However, the FAD associated data we have is at a coarser resolution, reporting only XX. As such, we have no clear way of assigning changes in FAD use to the fine-scale fleets used in the stock assessment models. The stock assessment model also contains many features (such as movement rates) which while critical for the management of the species are not vital for the strategic analysis presented here. A tactical model designed to actually implement the methods discussed here would certainly require a model more in line the complexity of the stock assessment models. 
+
+## Model Structure
+
+### Population Dynamics
+
+The population model is single-species and age-structured, with Beverton-Holt style recruitment dynamics. 
+
+Numbers *n* at time *t* for age *a* are given by 
+
+$$n_{t,a}=\begin{cases}
+      = BH(ssb_{t-1}) & \text{if $a = 1$}\\
+     = n_{t-1,a-1}e^{-(m_a + f_t*s_{a-1})}, & \text{if $1< a < max(age)$}\\
+     =  n_{t-1,a}e^{-(m_a + f_t*s_a)} + n_{t-1,a-1}e^{-(m_a + f_t*s_{a-1})}, & \text{if $a = max(a)$}
+  \end{cases}$$
+
+where *BH* is the Beverton-Holt recruitment function, *ssb* is spawning-stock-biomass, *m* is natural mortality at age *a*, *f* is fishing mortality at time *t*, and *s* is selectivity at age *a*. 
+
+Natural mortality at age was pulled from the XX stock assessment [citation]
+
+```{r nat-m, fig.cap="Natural mortality at age for Bigeye tuna, drawn from XX citation XX"}
+
+dplyr::tibble(Age = 1:length(fitted_lh$BET$m),
+              `Natural Mortality` = fitted_lh$BET$m) %>%
+  ggplot(aes(Age, `Natural Mortality`)) +
+  geom_point()
+
+```
+
+
+*ssb* is calculated by converting age to mean length, calculating weight at age, maturity at age, and then calculating spawning stock biomass as the sum of spawning potential at age in a given time step. 
+
+$$l_{a} = l_{\infty}\left(1 - e^{-k(a - a_0)}\right)$$
+
+
+Weight at age is then given by 
+
+$$b_{a} = w_a \times l_{a}^{w_b}$$
+
+Maturity at age (*mat*) was pulled from the XX stock assessment for Bigeye tuna (citation), which importantly captures the concave shape of the maturity function at higher ages of Bigeye tuna
+
+```{r maturity, fig.cap="Mean proportion of individuals sexually mature at age, from citation"}
+
+
+dplyr::tibble(Age = 1:length(fitted_lh$BET$m),
+              `Proportion Mature` = fitted_lh$BET$maturity_at_age) %>%
+  ggplot(aes(Age, `Proportion Mature`)) +
+  geom_point()
+
+
+```
+
+Spawning stock biomass at time *t* is then calculated as
+
+$$ssb_t = \sum_{a=1}^Aw_{a,t}mat_{a,t}n_{a,t}$$
+
+We chose to use a Beverton-Holt recruitment function for this simulation. This is a slight deviation from the methods used in the latest Bigeye stock assessments. The stock assessment assumes Beverton-Holt dynamics, but ... XX KAT HELP XX
+
+For the Beverton-Holt equation, we first calculate $\alpha$ as
+
+$$\alpha = (ssb0 / r0) \times (1 - h) / ( 4 \times h)$$
+
+where $r0$ is unfished recruitment (set in the model tuning process), *h* is steepness, set to 0.8 per citation, and ssb0 is calculated analytically by calculating the SSB at equilibrium given *r0* and the other life history parameters. 
+
+$\beta$ is given as
+  
+$$\beta = (5 \times h - 1)/(4 \times h \times r0)$$
+
+Finally, recruits are calculated by
+
+$$n_{a=0,t} = \frac{ssb_{t-1}}{\alpha+(\beta \times ssb_{t-1})}$$
+
+### Fleet Dynamics
+
+Kaaaaaaaaat can you explain what in the hell we are doing with the fleet dynamics?
+
+## Tuning to Stock Assessment
+
+Given these population and fleet dynamics, we now need to tune our simplified model to resemble the stock status reported in @harley2014. We could have tried to fit a new assessment model, given supplied catches, catch-per-unit-effort (CPUE), and length composition data. However, given the complex spatial and multi-fleet nature of the original assessment, we felt it unlikely that our simplified model would reach the same conclusions as @harley2014 as to the current state of the population given some of the same data. 
+
+As such, we elected to "tune" rather than fit our model. We accomplish this by estimating an unfished recruitment, catchability by fleet and time, and an initial depletion that, given the timeseries of effort and selectivities by fleet, best reproduces the timeseries depletion and catches by fleet reported in @harley2014. 
+
+This is of course a rough approximation of the model estimated in @harley2014, but it captures some of the key life history traits of Bigeye tuna (including varying natural mortality and maturity at age), while allowing us to translate changes in fleet efficiency brought on by FAD removal directly into the operating model estimated here. In the end, since we are projecting the population forward holding fishing mortality rates constant, the most important factor is getting the most recent fishing mortality rates approximately correct, given the volume of catches recently observed. Our model estimates a recent F/Fmsy value of `r round(last(fitted_lh$BET$ref_points$F_Fmsy),2)`, close to the values of XX reported in @harley2014.
+`
+
+
+```{r kobe-plot, fig.cap="Tuned values of B/Bmsy and F/Fmsy over time. Red triangle shows estimate of B/Bmsy and F/Fmsy from @harley2014"}
+
+fitted_lh$BET$ref_points %>%
+  ggplot() +
+  geom_hline(aes(yintercept = 1)) +
+  geom_vline(aes(xintercept = 1)) +
+  geom_point(aes(SSB_SSBmsy, F_Fmsy, color = year),
+             size = 4,
+             alpha = 0.75) +
+  geom_point(
+    data = dplyr::slice(fitted_lh$BET$ref_points_known, n()),
+aes(SSBcur_SSBmsy, Fcurr_Fmsy), 
+color = "red",
+size = 4, 
+shape = 17
+  ) +
+  geom_path(aes(SSB_SSBmsy,F_Fmsy, color = year)) +
+  labs(x = "B/Bmsy", y = "F/Fmsy") +
+  scale_x_continuous(expand = expand_scale(mult = c(0, .1), add = 0),
+                     limits = c(0, 4)) +
+  scale_y_continuous(expand = expand_scale(mult = c(0, .1), add = 0),
+                     limits = c(0, 1.75)) +
+  scale_color_gradient(name = "Year",
+                       guide = guide_colorbar(barwidth = unit(15,"lines")))
+
+```
+
+# Estimating FAD Effects
+
+Given this operating model, we then require a method of estimating the effect of FAD removal. FAD use affects many aspects of fishing operations, including search time [citation], success rates [citation], size composition [citation], etc. For this simplified scenario, we focus on the effect of FAD use on catch-per-unit-effort (CPUE). 
+
+We obtained a database of bigeye and skipjack catches and effort by space, time and gear from the [WCPFC online portal](https://www.wcpfc.int/node/4648), accessed on XX. This database XX Lennon can you explain the content of the database XX. Importantly, this gives us information on the total catch of Bigeye or Skipjack,the number of days fished to obtain that catch, and covariates including the FAD type used (including if it was a free-school set), the rough location (5 degree by 5 degree cells), year and month. We paired these data with data on sea-surface temperature (SST) obtained from XX, estimated as the average SST across the 5x5 degree cell in the year and month of a given observation of FAD fishing. 
+
+This allows us to estimate a rough model of CPUE as a function of location, year,month, sea-surface temperature, and FAD use. The goal of this model is to ask, if we were to move from FAD-associated to free-school fishing at a given observation, how would we expect CPUE to change?
+
+We estimated this model using a random forest [@breiman2001] implemented through the `ranger` package in R. The model was trained on the years 1995 to 2008, to isolate a relative modern period prior to the implementation of summer FAD closures in 2009. The training data were split into a series of assessment and analysis splits that each select a sequentially longer part of the training data to use as an assessment split, holding out the remaining time steps prior to 2009 as the analysis split. These assessment and analysis splits were used to tune relevant hyper-parameters (by selecting those that minimized root-mean-squared error of the analysis splits). 
+
+Once the best hyper-parameters of the random forest were selected (XX add in best parameters), we then trained the model with these hyper-parameters on the training data, and used the subsequent model to predict CPUE for the testing data of 2009 onward, which critically includes the newly implemented summer FAD closures. 
+
+The summer FAD closures provide an ideal case study on the effects of FAD removal on CPUE. Looking at the raw data, median XX CPUE declines sharply for both Bigeye and Skipjack during the FAD closures (Fig.\@ref(fig:fad-effect)). Despite not being exposed to these periods on the training data (which would allow the model to simply learn that the summer months post 2009 are associated with lower CPUEs), our model is able to capture these general dynamics. This gives us confidence that the model is able to provide a reasonable predictions of CPUE as a function of FAD type. A more tactical model would clearly need to account for complications like the effect of overall stock size on CPUE, but for our purposes the critical factor here is the relative reduction in CPUE as a function of moving from FAD to free-school fishing. To estimate this, we pulled out all the observations of FAD fishing from the data, set their fishing type to free-school, and then used our model to predict their new CPUE. This provides an estimate of the difference in CPUE with and without FAD use across space, time.
+
+For comparison, we only include data from 2009 onward, and only for locations that reported use of FADs in a given month prior to 2009. This helps control for the possibility that during the FAD closures may simply move to new locations. Instead, we attempt to estimate the change in CPUE during the summer FAD closures for sites that at least prior to the FAD closures did use FADs in the summer months. 
+
+```{r fad-effect, fig.cap="Mean observed (red) and predicted (blue) CPUE for bigeye and skipjack tuna in the WCPO since 2009 Grey bars indicate summer FAD closures"}
+
+fig_A1
+
+
+```
+
+
+
+Many alternative model types were tested, including gradient boosted models, generalized linear models, and generalized additive models, all of which provide qualitatively similar but less accurate results. 
+
+# Projecting FAD Effects
+
+We used our population model together with our model of FAD effects on CPUE to estimate the effect of FAD removal on the bigeye and skipjack fishery. Critically, since our FAD model is estimated at the resolution of 5x5 degree cell, month, FAD type, we are able to represent the wide heterogeneity in in FAD effects on bigeye and skipjack CPUE. 
+
+Our objective is to estimate the gains in the bigeye fishery and losses in the skipjack fishery resulting from FAD removal. Selecting only FAD associated observations, for each observation *i* at the resolution of FAD type, latitude, longitude, year,and month, we first calculated the expected change in catch $\Delta$ for both species *s* (skipjack or bigeye) resulting from moving from FAD to free-school (free) fishing
+
+
+$$\Delta_{s,i}  = catch_{s,i} - \hat{cpue_{s,i}^{free}}\times{effort_{s,i}}$$
+
+For each observation *i*, we can then calculate the difference in the expected change in bigeye and skipjack catch as a function of FAD removal, *freeschool*
+
+$$freeshool_i= \Delta_{s=bigeye,i} -  \Delta_{s=skipjack,i}$$
+
+An observation with a very large value of *freeschool* means that our model estimates that moving from FAD to freeschool fishing at observation *i* would reduce bigeye catch substantially more than it would reduce skipjack catch, and *vice versa*. Note that clearly in some instances our model estimates that moving from FAD to freeschool will actually increase bigeye or skipjack catch. We consider this outcome to be somewhat unlikely. It is possible that captains are trading off the increased certainty of FAD catches with potential catch volume, but we believe a simpler explanation is that the model is incorrect in those circumstances. As such, and to be conservative as to the magnitude of the potential benefits of of FAD removal, we only include locations *i* that estimate reductions in both bigeye and skipjack CPUE as a function of moving to free-school fishing. We re-ran the analysis including all observations (including those which the model projected freeschool fishing to positively affect catches), and present an alternative version of Fig.XX below, to demonstrate that our core results do not change substantially as a result. 
+
+For each observation *i*, we then calculated the mean *freeschool* effect and $\Delta$ from 2009-2016, giving us the mean values of $\Delta$ and *freeschool* at each location and month over that time period. We then arrange the resulting predictions in descending order of *freeschool*, so that the first FADs moved through our proposed "bargain" to freeschool fishing are those we would expect to provide the greatest reduction in bigeye and the least reduction in skipjack. 
+
+From the perspective of the population though, the key question is not only the expected change in catches today resulting from moving to freeschool fishing, but the long-term effects of this change on the population. Moving sequentially through the potential instances of FAD removal, we estimate the effect of changing *n* instances of FAD fishing to freeschool fishing as follows. To try and simplify this process somewhat, we only project the effect of FAD removal on the bigeye population. We make this choice because the skipjack population is estimated to be quite healthy with relatively low levels of fishing mortality. As such, we assume that both current catches of skipjack, and reduced catches of skipjack resulting from moving to free-school fishing, will persist into the future. 
+
+For bigeye, we need to translate changes in catches stemming from the free-school shift into changes in fishing mortality rates. For each fleet and quarter, we pull out the total reported bigeye catches in 2016. We then adjust these catches as a function of switching *n* instances of FAD fishing to free-school fishing.The new catch by the purse-seine FAD fleet in a quarter is equal to the current purse-seine FAD catches in that quarter minus the total expected reduction in bigeye catch from switching to *n* observations of FADs to freeschool fishing ($\sum_{i=1}^n\Delta_{s=bigeye,i}$). Remember though that the assumption of this bargain is that fishing isn't removed, but instead switched to free-school purse-seine fishing. As such, we calculate the new catch in the free-school purse-seine fleet in a given quarter as the observed catch by that fleet in that quarter in the most recent year, plus the total amount of bigeye predicted by the model to be caught under free-school conditions $(\sum_{i=1}^n\hat{cpue_{s=bigeye,i}^{free}}\times{effort_{s=bigeye,i}}$. 
+
+This step gives us new expected catches by fleet, reflecting the switching of *n* FADs. From there, we use the Baranov equation [@baranov1918] to estimate the fishing mortality rate that, given the estimates of the population in the most recent time step derived from the model tuning, would produce these new expected catches. This more or less translates to, if FAD associated purse seine catches were expected to decrease by 5%, FAD associated fishing mortality rates will decrease by approximately 5%. After adjusting the fishing mortality rates of the free-school and FAD associated purse-seine fleets accordingly, we then project the population forward in time, holding these updated fishing mortality rates constant. The resulting bigeye population trajectory is then calculated, taking into account these new fishing mortality rates, and importantly the difference in selectivity of the fleets. 
+
+This projection gives us a vector of new expected bigeye catches by fleet. Under the idea of our bargain, the proposed "beneficiaries" is the targeted longline bigeye fleet. We calculate the benefits accrued to the longline fleet as the net present value (assuming a 5% discount rate) of the difference in longline bigeye catches under business as usual (i.e. assuming no FADs are switched to free-school) and under incrementally greater amounts of FAD removal ($\sum_{t=0}^T({llcatch}^{BAU}_t - {llcatch}_t^{n})(1 + .05)^{-t}$). Those being the "benefits", the costs are then the expected losses to the purse-seine fleet. Since we are not projecting the skipjack population, we assume that the total amount of skipjack lose (that must be compensated for) is $\sum_{i=1}^n\Delta_{s=skipjack,i}$ in each timestep, plus $\sum_{i=1}^n\Delta_{s=bigeye,i}$ to account for the value that the purse-seine fleet would have obtained from the incidental bigeye catch. We then calculate the net present value of these costs. The surplus generated by the bargain is then simply the difference in the NPV of the benefits to the longline fleet, minus the NPV of the costs to the purse-seine fleet.
+
+
+# Estimating Alternative Sources of Benefits
+
+As shown in Fig.XX, while our exercise suggests that complete removal of FADs from the WCPO could have substantial positive impacts on the bigeye stock, the direct fishery benefits of these gains are quickly dwarfed by the direct fishery losses. As an exercise then, we considered what the magnitude of several alternative strategies for offsetting these losses would have to be. For the first, we calculate the tax on longline caught bigeye tuna (sashimi-grade bigeye) that would be required to make up the deficit to the purse-seine fleet. For removal of *n* FADs, this is simply 
+
+$$tax_n = p_{sahismi} \times \frac{npv^{costs}_n - npv^{benefits}_n}{npv^{benefits}_n} $$
+
+Where *p_{sashimi}* is the current price of sashimi grade bigeye. Put simply, we calculate the percentage increase in net present value needed in order for costs to equal benefits, and augment price accordingly. This is a large simplification, since ideally we would account for the effects that this tax would have on demand, but it serves as a useful illustration of the general magnitude of the price increase required. The results are down in Fig.XX-X. 
+
+We also calculate the percent price premium that would need to be paid for "FAD-free" canned skipjack tuna in order for costs to equal benefits. This is simply the percentage increase in the value of canned skipjack tuna that would be required to offset the losses incurred to the purse-seine fleet (accounting for any payments that the longline fleet might already be making) (Fig.XX-X)
+
+Lastly, we consider what the conservation payments per FAD day would have to be in order for the NPV of costs to equal the NPV of benefits. We calculated this as the as annual annuity payment per FAD day such that benefits equal costs (Fig.XX-X).
+
+# Works Cited

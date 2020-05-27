@@ -1,0 +1,11 @@
+---
+title: "coaseian-tuna-equations"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+$$cpue_{s,i} = f(fad_i,lat_i,lon_i,sst_i, year_i, month_i)$$

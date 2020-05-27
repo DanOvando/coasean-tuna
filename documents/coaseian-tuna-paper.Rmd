@@ -1,0 +1,538 @@
+---
+title: "An Evaluation of Incentive Driven Solutions to Overfishing of Bigeye Tuna"
+# author: "Dan Ovando, Gary Libecap, Lennon Thomas, Kat Millage"
+csl: fish-and-fisheries.csl
+output:
+  bookdown::html_document2: default
+  bookdown::word_document2: default
+  bookdown::pdf_document2: default
+  html_document: default
+  pdf_document: default
+linkcolor: blue
+bibliography: Coaseian Tunas.bib
+---
+
+
+```{r setup, include=FALSE}
+
+fig_width <- 5
+fig_height <- 6
+fig_asp <- .75
+knitr::opts_chunk$set(echo = FALSE, message = F, warning = F, fig.width = fig_width,
+                      fig.height = fig_height)
+                      #dev = 'cairo_pdf')
+```
+
+```{r load run}
+library(AER)
+library(car)
+library(broom)
+library(readr)
+library(scales)
+library(ggalt)
+library(mgcv)
+library(pbapply)
+library(stringr)
+library(parallel)
+library(rstanarm)
+library(ggforce)
+library(ggrepel)
+library(ggsci)
+library(grid)
+#library(ggtree)
+library(ggExtra)
+library(knitr)
+library(viridis)
+library(grid)
+library(gridExtra)
+library(extrafont)
+library(randomForest)
+library(tidyverse)
+
+
+#library(extrafont)
+
+run_name <-  'v5.1'
+
+cur_dir = getwd()
+
+if (cur_dir == "/Users/danovando/SFG Work/Coaseian Tuna") {
+results_dir = paste('results/', run_name, '/', sep = '')
+}else{
+  results_dir = paste('../results/', run_name, '/', sep = '')
+
+}
+
+load(paste(results_dir,'coaseian_fad_bargain_figures.Rdata', sep = ''))
+
+
+bigeye_price = 9800 # targeted bigeye price per unit weight(?)
+
+```
+
+
+# Introduction
+Bigeye tuna (bigeye, *Thunnus obesus*) are an iconic ocean predator that range throughout tropical and temperate oceans across the globe, diving to depths of over 600 meters to hunt for fishes, cephalopods, and crustaceans [@Molony2008]. In addition to their role in marine food webs, bigeye also play a key role in the lucrative longline and purse seine fisheries in the Western and Central Pacific Ocean (WCPO). The longline catch of bigeye in the WCPO (~65,000 tons per year) is valued at over \$550 million and the purse seine catch (~85,000 tons per year) is valued at approximately \$200 million [@Williams2012]. Bigeye caught in the longline fishery are primarily adults destined for the Japanese sashimi market [@Bailey2013], while most purse seine catches consist of juvenile bigeye caught on sets on natural or artificial floating objects, termed Fish Aggregating Devices (FADs). This fishery provides economic benefits around the globe; 19 countries have active fleets in the WCPO longline fishery, and 17 countries are currently active in the purse seine fishery, spreading economic benefits around the globe [@SPC2016]. However, assessments of the health of the bigeye stock in the WCPO dating back to 2001 [@Hampton2001] have indicated that the population has been persistently overfished, and that if the fishery continues along a "business as usual" (BAU) path the bigeye spawning stock could be reduced to less than 20% of historic unfished levels [@Pilling6]. While the most recent assessment of the bigeye population paints a more optimistic picture of the status of bigeye [citation], for nearly two decades management persisted down a path based on best available science suggested would have long-term negative ecological and economic consequences. Why was this? We argue that the inability to enact substantial reforms in the bigeye fishery during years of perceived overfishing stemmed from an imbalance of the costs and benefits of reforms among stakeholders. Stakeholders who must reduce bigeye harvests in order to protect the stock would not receive commensurate benefits, whereas those who would benefit from stock improvements would not bear commensurate costs. The disproportional distribution of costs and benefits leads to differential incentives to engage in what, in the aggregate, would seem to be a clear public good: the prevention of bigeye overfishing.
+
+This type of inaction is not unique to bigeye tuna, or fisheries in general. The overfishing of Pacific bluefin tuna [@Pons2016; @ISC2016], overdrawing of California groundwater [@Culp2014], and of course, global climate change [@Libecap2014] stand as clear examples in which the risks of business as usual are clear, and yet imbalances in the distribution of costs and benefits stand in the way of reforms that could provide net benefits to all parties. Resolving these kinds of challenges requires strategies for realigning costs and benefits among the parties who must take action. @Coase1960 suggested a socially-beneficial approach to align benefits and costs via exchange. In a Coaseian framework, net beneficiaries of reforms could compensate those parties that bear more costs to achieve consensus.  Such a “beneficiary pays” approach is in contrast to standard regulatory remedies to the problem of social cost, which is “polluter pays”. As Coase noted, such remedies could be more costly than the problem itself, resulting in a reduction in aggregate welfare, and leaving the regulated parties with little incentive to comply. He believed that a beneficiary pays approach, whereby net beneficiaries paid those who bore net costs would not only result in a more optimal provision of the public good, but also better align the incentives of all parties to cooperate. We apply this line of thinking to ask, can a Coaseian incentive-based solution act to realign costs and benefits of reform in the WCPO bigeye fishery, and in doing so break the business as usual stalemate and provide economic and ecological benefits?
+
+To make this case, we provide:
+
+  1. A brief review of the institutional structure of the WCPO fishery, illustrating how the structure of the fishery has created a strong incentive against reforms.
+
+  2. An incentive based solution, in which payments are made to remove fish aggregating devices (FADs) from targeted areas of the fishery. Elimination of certain FADS would remove a major source of mortality for the bigeye population, but would also raise costs for purse seine fishing operations.
+
+  3. An empirical assessment of the ability of our proposed solution to generate economic and ecological benefits to the bigeye population and fishery stakeholders.
+
+This process allows us to clearly assess the root causes of the persistent perceived overfishing of bigeye tuna in the WCPO, and evaluate the likely viability of strategies to reform the fishery. We find that the direct fishery costs of rebuilding bigeye tuna may in fact outweigh the aggregate benefits, as Coase warned, and demonstrate how conservation payments from beneficiaries could better balance total costs and benefits as well as secure the participation of those most responsible for bigeye tuna overharvest.
+
+## Institutional Structure of the WCPO Tuna Fisheries
+
+Bigeye grow to over 2 meters in length, reach sexual maturity within 2-3 years, and have a lifespan > 10 years [@Schaefer2005]. Adults undergo large, diel vertical migrations, diving to depths of more than 600m during the day and returning to the surface layer at night following movement patterns of their meso and bathypelagic prey species [@Lehodey2008]. Though juveniles also exhibit deep-diving behavior, they spend more time in the surface layer where they are often observed aggregated near floating objects in mixed schools with adult skipjack (*Katsuwonus pelamis*) and juvenile yellowfin (*Thunnus albacares*) tunas [@Fonteneau2004; @Schaefer2010]. Bigeye spawn and move throughout the WCPO, likely composing a single population across the region [@Harley2014].
+
+The tendency for juvenile bigeye to concentrate with adult skipjack around floating objects is one of the primary drivers of the persistent overfishing of bigeye, due to the resulting incidental catch of juvenile bigeye in FAD-associated purse seine sets targeting skipjack. The WCPO skipjack fishery is currently the third largest directed marine fishery in the world, using purse-seining methods to catch approximately 1.5 million tons of skipjack per year (valued at more than \$3 billion) [@FAO2016]. Skipjack tuna are primarily sold to canners and processors in Thailand where 24% of the world's canned tuna originates [@Miyake2010], 38% of which is exported to the United State (US) and European Union (EU) [@Lewis2011]. Since the mid-1990s, roughly 50% of the purse seine skipjack catch has been from FAD-associated sets [@Hare2015]. FADs range from simple pieces of floating debris to elaborate contraptions equipped with fish finders and radio communication. FADs are used to attract fish such as skipjack, reducing search time and dramatically increasing the efficiency of fishing activities. On average, only ~4% of the total catch on any given FAD-associated purse seine set is made up of bigeye, but due to the sheer volume of the purse seine fishery relative to the directed bigeye longline fishery, this relatively low bycatch rate nevertheless accounts for ~50% of all bigeye tuna caught each year in the WCPO [@Harley2014]. Because the bulk of the bigeye bycatch in the purse seine fishery are juveniles, they often have not have an opportunity to reproduce, and are caught before they have reached their peak market value, creating both economic and ecological waste. The prices paid for fresh or frozen mature bigeye in the Japanese sashimi market are aproximately 4 to 5 times greater than the price paid for juveniles delivered for canning in Thailand [@Sibert2012].
+
+The poor state of many fisheries around the world can be at least partially attributed to simple lack of data: it is hard to effectively manage what you cannot monitor [@Costello2016; @Hilborn2014]. However, the WCPO bigeye fishery does not fall in this camp; it has volumes of data, permitting assessment of the bigeye population through rigorous statistical modeling [e.g. @Harley2014]. Given then that there is an understanding if both the nature of the problem (too many bigeye are being killed), the broad class of solutions available (reduction in catches in either the targeted longline fishery or the incidental harvest in the purse seine fishery), and that this state of affairs has been understood for a long time, why has the problem persisted? 
+
+One explanation might be the simple multinational nature of the fishery; it is hard to manage highly mobile stocks such as tuna that range throughout high seas, through the exclusive economic zones (EEZs) of multiple countries, and are targeted by over 30 fleets that range from large,industrial distant water vessels to local artisanal vessels employing a variety of fishing methods. However, many similarly mobile species of tuna and billfish have in fact been successfully managed using existing regulatory frameworks [@Pons2016]. The challenge for bigeye can be traced then not to a lack of data or the inherent difficulties of a multinational fishery, but rather the differential incentives of key parties to participate in conservation efforts due to the imbalances of costs and benefits that result from management approaches [@Hanich2012], such as restricting the catch of juvenile bigeye tuna by purse seines. The nature and consequences of these imbalances can be observed by examining the institutional structure of the fishery itself.
+
+Tuna in the WCPO are managed by the Western and Central Pacific Fisheries Commission (WCPFC). The WCPFC, established in 2004, is a collection of 26 member countries (both local and foreign flags), 7 cooperating non-members, and 7 participating territories that collectively reach agreements on management decisions for the the long-term conservation and sustainable use of highly migratory fish stocks in the WCPO. WCPFC members include both Pacific Island Countries (PICs) that are located in the region, and Distant Water Fishing Nations (DWFNs). A core component of the WCPF Convention negotiation was that the WCPFC must take into account the economic needs of Small Island Developing States (SIDS) that depend economically on tuna fisheries. Along with the WCPFC, The Nauru Agreement, enacted in 1982, plays a substantial role in the region's fisheries. The Nauru Agreement is a sub-regional agreement between 8 PICs, collectively known as PNA members. Over 60% of the landed volume of tuna in the WCPO is caught within the EEZs of the eight PNA member countries, giving them a great deal of influence in the fishery [@Havice2013].
+
+<!-- Tuna in the region are then managed by a complex set of interacting institutions and actors, each with varying degrees of aligning and competing objectives.  -->
+
+Regulatory decisions made by the WCPFC must be made through agreement across these diverse stakeholders. What are the obstacles that must be overcome if the WCPFC was to stop the overfishing of Bigeye? As noted above, one option would be to reduce the amount of bigeye caught in the targeted skipjack purse seine fishery. Catch or effort limits on bigeye bycatch could be used to achieve this objective, or restrictions could be placed on FAD use, which attract bigeye tuna while lowering harvest costs for skipjack fleets. Any of these actions would provide benefits to the bigeye longline fleet, consumers, and the WCPO ecosystem, while imposing costs on the skipjack fishery supply chain. Another strategy would be to limit the catch of targeted adult bigeye, imposing costs on the longline fishing countries while implicitly benefiting (or at least leaving unaffected) the purse seine interests. Regardless of the strategy then, reform is likely to provide benefits to one group and costs to another. How then are these benefits and costs currently distributed across countries?
+
+Different countries that fish in the WCPO derive very different levels of benefits from each of these fisheries. Countries such as Taiwan, China, South Korea, Japan, the United States, and many PICs have extremely large longline fleets [CITATION]. In contrast, the tuna fishing fleets of countries such as Papua New Guinea, the Philippines, and the Marshall Islands are almost entirely composed of skipjack targeting purse seine vessels XX is this true? As in does the country have these fleets, or do they provide access to these fleets. My sense is that the domestic fleet is largely artisanal XX. Focusing on mortality of bigeye specifically, vessels flagged to countries such as Japan, China, and Vanuatu catch substantial numbers of bigeye through longlining; countries such as these would benefit from preventing overfishing of the bigeye stock, and be negatively impacted (at least in the short term) by reductions in targeted bigeye catch. Conversely, countries such Papua New Guinea, the Philippines, and the Marshall Islands almost only catch bigeye as bycatch in the skipjack purse seine fishery XX see early commentXX (Fig.\@ref(fig:fleet-plot)). Reducing this mortality would benefit the bigeye population over the long-term, but provide little to no economic benefit to these countries (due to the increased costs in the skipjack fishery). The result of this standoff is that any action that negatively affects either the skipjack or bigeye fisheries will place disproportionate costs and benefits on different countries and their fishing interests. This disparity places a severe impediment to successful reform: What incentive does a country such as Papua New Guinea have to reduce skipjack catches in order to benefit the bigeye population, if countries such as Japan are those that will benefit economically from that action?
+
+```{r fleet-plot, fig.cap='XX Kat can you fix this map?XX Number of vessels by gear type and country operating in the WCPO Tuna Fishery (top panel). Total bigeye tuna catces by gear type and country (bottom panel).'}
+
+country_facet_plot
+
+```
+
+We can see the effects of this imbalance in the outcome of regulatory attempts to reign in bigeye overfishing that have occurred to date. The first formal assessment of the WCPO bigeye tuna stock in 2001 confirmed concerns that the population was experiencing overfishing [@Hampton2001a]. Since that time, the WCPFC and PNA members have adopted a number of Conservation and Management Measures (CMMs) for bigeye tuna. Despite these management efforts, the stock was estimated to be experincing overfishing through the 2014 stock assessment, though is is important to note that this is not to say that management has not had an effect; without these regulatory actions fishing mortality might have been even higher [Fig. \@ref(fig:mgt-plot), @Harley2014]. The failure of the WCPFC to substantially reduce fishing mortality (*F*) on bigeye can be largely be attributed to competing interests between the 14 Member States that control almost all WCPO tuna fisheries. Disagreement between these Members on who should bear the costs of taking action to reduce *F* of bigeye have resulted in watering down of proposed regulations [@Hanich2012]. We should note that as of the 2017 assessment the primary model output suggests that the stock is no longer experiencing overfishing, but this is due to changes in data and biological assumptions, not management measuers *per se*. 
+
+Half of the 14 countries that control bigeye are PNA member countries that receive benefits from the skipjack purse seine fishery through their own domestic fisheries and licensing revenue for access to fishing in their EEZs. The other half are a mix of DWFNs and PICs who receive some, if not all, of their benefits from the bigeye longline fishery [@Hanich2012]. Purse seine dependent states have criticized management measures proposed for the purse seine fishery as placing an unfair management burden on small island states and argued that fishing mortality of bigeye tuna should be reduced through more restrictions on the longline fishery or purse seiners in the high seas. In order to avoid violating the Convention agreement, CMMs passed that impact the purse seine fishery have included many exemptions for SIDS [@WCPFC2012]. Longline-dependent states have also been reluctant to accept CMMs impacting their fishery arguing they have already been economically burdened by reduced catch rates as a result of declining bigeye biomass [citation]. Ultimately, the lack of consensus on who should bear the cost of management for bigeye have resulted in the inability of enacted regulatory constraints to sufficiently reduce fishing mortality rates on bigeye tuna in the WCPO.
+
+```{r mgt-plot, fig.cap='xx need to clean up the test on this a little XX Timeline of management and outcomes in the WCPO bigeye fishery', include = FALSE}
+
+mgt_catch_facet_plot
+
+```
+
+# An Incentive Driven Solution
+
+Persistent problems such as the overfishing of bigeye can be expected in natural resource management whenever benefits and costs of taking action are imbalanced among stakeholders. As we noted earlier, one solution may be to attempt to strengthen existing top-down regulatory constraints (e.g push for bycatch limits, reduced catch levels). However, as we have already seen from the regulatory history of the bigeye fishery, restrictions on fishing sufficient to stop overfishing are unlikely to be politically palatable to all stakeholders at once. In addition, regulatory constraints that run contrary to economic incentives are often extremely costly to implement and enforce. They often are blunt instruments and regulated parties may have little incentive to comply beyond detection, which itself is costly. @Keohane2006 estimated that the regulatory costs of acid rain controls (SO~2~) by 1990 were $135 billion annually in the US and that despite these costs the target reductions in SO~2~ were not being met. @Grafton2000 showed that even under entry controls in the Pacific northwest halibut fishery in Canada, harvests doubled, vessel numbers were up by 40% and the fishing season had turned into a derby, with only 6 days in 1990. Given the large number of vessels involved in the bigeye fishery in the WCPO (2,983 longline, 338 purse seine [@SPC2016]), as well as the massive spatial extent of the fishery, enforcement costs may be too high for 'polluter pays' regulations. By contrast, a “beneficiary pays” approach may be more incentive compatible and effective for this case. If a group of beneficiaries of bigeye conservation can pay skipjack fleets that have the highest incidence of bycatch to reduce FAD use, and the agreement is monitored in the specific areas affected as part of existing WCPFC and PNA arrangements, then incentives for collective action to conserve bigeye stocks can change.
+
+We analyze the potential for a Coaseian bargain, in which beneficiaries from bigeye tuna conservation pay for the economic costs of required conservation actions, to resolve the persistent overfishing of bigeye in the WCPO. Skipjack purse seiners must currently purchase fishing days from PNA member countries in order to fish in their EEZs, through a system known as the Vessel Day Scheme (VDS). Under our proposed "bargain", bigeye interests would subsidize the purchase of fishing days by skipjack vessels, so long as FADs are not used in those purchased days. This proposed approach helps to minimize transaction costs by leveraging the existing VDS, as well as targeting payments towards the much smaller and more concentrated purse seine fleet (instead of the large and decentralized longline fleet). The willingness to pay of the bigeye interests depends on the expected increases in adult bigeye catch that reductions in juvenile bigeye bycatch could produce over time. The willingness to accept of the skipjack fleet depends on the expected costs of lost skipjack catch from agreeing not to use a FAD on a given fishing day. In theory then, using this Coaseian bargain there could exist a state of the world in which overfishing of bigeye is reduced and both the skipjack and bigeye fleets are as well off, if not better, than they would be under business as usual. We ask 1) can this incentive-based solution solve bigeye overfishing and 2) what are the costs and benefits to the longline fleet, purse seine fleet, and conservation interests, of potential conservation targets?
+
+<!-- Currently, countries such as Japan, China, Taiwan, and South Korea, stand to benefit the most from improvements to the bigeye fishery stemming from reductions of incidental catch, while countries such as Papua New Guinea, the Philippines, and the United States stand to lose from such actions, creating an imbalance in costs and benefits. Suppose though that bigeye beneficiaries compensated the losers for the losses they incur as a result of reform actions, such as lost skipjack revenue from removal of FADs from the fishery. -->
+
+# Results
+
+```{r comparisons}
+
+bycatch_rate <- mean((model_predictions$bet_catch / model_predictions$skj_catch)[model_predictions$skj_catch > 0 & model_predictions$fad != 'una' & model_predictions$year > 2010], na.rm = T) %>% round(2)
+
+
+catches_2014 <- recent$catches_fleet %>%
+  group_by(year, gear_type) %>%
+  summarise(catch = sum(catch, na.rm = T))
+
+current_catch <- sum(catches_2014$catch)
+
+msy <- fitted_bet$MSY
+
+catch_reduction <- current_catch - fitted_bet$MSY_known
+
+# catch_reduction / current_catch
+
+ll_reduction <- catch_reduction / catches_2014$catch[catches_2014$gear_type == 'LL']
+
+skj_reduction <- (catch_reduction / bycatch_rate) %>% signif(2)
+
+currrent_skj_fad <- skj_dat %>%
+  filter(!(fad %in% c('una','oth'))) %>%
+  group_by(year) %>%
+  summarise(catch = sum(catch)) %>%
+  ungroup() %>%
+  filter( year == max(year))
+
+perc_skj_reduction <- 100*((skj_reduction / currrent_skj_fad$catch) %>% round(2))
+
+```
+
+The average FAD-associated purse seine set in the WCPO contains `r mean((model_predictions$bet_catch / model_predictions$skj_catch)[model_predictions$skj_catch > 0], na.rm = T) %>% round(2)` tons of bigeye for every ton of skipjack caught. Based on the 2014 stock assessment [@Harley2014], current catches of bigeye exceed MSY targets by $`r catch_reduction`$ tons. As a simplistic thought exercise, if catches were reduced to MSY though bycatch reductions alone, assuming a constant bycatch rate of `r bycatch_rate * 100`%, skipjack catches would have to be reduced by $`r skj_reduction`$ tons , or `r perc_skj_reduction`% of the fishery (i.e a complete closure of the fishery), at a revenue value of \$`r (skj_reduction * skipjack_price) %>% prettyNum(big.mark = ',')` to bring bigeye catches in line with MSY (though we note that this is a thought exercise - the differences in selectivity among fleets would produce different MSYs under different amounts of purse-seine effort). Regardless, this simple exercise demonstrates that preventing bigeye overfishing strictly through restricting skipjack catches would likely create massive economic costs to the skipjack industry. 
+
+However, not all FADs are created equal; bycatch rates of juvenile bigeye vary dramatically in space and time (Fig. \@ref(fig:bycatch_combo_plot)). Targeted removal of FADs that stand to save the most bigeye while minimizing losses of skipjack could greatly improve the cost-benefit ratio of the proposed bargain. To identify these locations, we fit a random forest model using the `ranger` package by @wright2017 in  R [@RCoreTeam2017], predicting CPUE of bigeye and skipjack as a function of spatio-temporal covariates and FAD use. For each observed instance of FAD use, we used the model to predict the CPUE of bigeye and skipjack at that instance of fishing had a FAD not been used. The observed catches of bigeye and skipjack at each fishing instance were then reduced in proportion to the predicted loss in CPUE predicted by the FAD removal model for each observed instance of FAD use in the data, simulating our expected effect of FAD removal on catches.
+
+```{r bycatch_combo_plot, fig.cap='Percentage of purse seine tuna catches comprised of bigeye tuna'}
+
+bycatch_combo_plot
+
+```
+
+This procedure allows us to rank observed instances of FAD fishing by the benefit-cost ratio of the expected amount of bigeye saved to the expected amount of skipjack lost from FAD removal. The model predicts a dramatic range in the ratio of bigeye saved to skipjack lost, from a low of $`r (flat_reform$bet_saved / flat_reform$skj_bought) %>% min()`$ tons to a high of $`r (flat_reform$bet_saved / flat_reform$skj_bought) %>% max()`$ tons. Regions in the relative middle of the WCPO, north of Papua New Guinea spanning to the Solomon Islands and Nauru, show particular promise as regions to prioritize for cost-effective FAD removal (Fig. \@ref(fig:purchase-map-plot)).
+
+<!-- These are the hotspots of bigeye bycatch. How many FADs can be eliminated without imposing additional costs on the skipjack fishery? At what point will the expected gains in the value of bigeye tuna saved be less than the added costs inflicted from lost the skipjack?  -->
+
+```{r purchase-map-plot, fig.cap= 'Estimated ratios of metric tons of bigeye catch saved to skipjack catch lost'}
+
+purchase_map_grid_plot
+
+```
+
+
+We used this model to analyze the cost-benefit ratio of achieving increasing levels of bigeye stock size through strategic purchase (and subsequent removal) of FAD days. For this, we constructed a simulation model of the fishery, tuned to resemble the 2014 stock assessment of bigeye [@Harley2014]. Since the skipjack population is currently estimated to be well above SSB~MSY~, and catches below MSY, current catch rates are likely to be sustainable. We therefore do not model the trajectory of the skipjack population, but rather assume that current catches persist into the future.  We use this model to first simulate a business-as-usual scenario, in which fishing mortality rates in the longline, unassociated purse seine, and FAD-associated purse seine fleets for bigeye are held at their most recent estimates. We then extract estimates of bigeye stock size and longline bigeye fishing revenues over time under BAU. Next, we simulate the stock and revenue outcomes of incrementally removing FADs, starting with the most cost effective FAD (in terms of bigeye saved to skipjack lost), and sequentially removing increasingly "expensive" FADs. For each number of FAD fishing instances removed, we calculate the bigeye revenue surplus generated (the willingness to pay) as the the difference in net present value (NPV) of bigeye revenues under FAD removal compared to the NPV of bigeye revenues under BAU. We assume that prices for bigeye and skipjack stay constant at \$`r skipjack_price %>% prettyNum(big.mark = ',')`/ton for skipjack and purse seine captured bigeye, and  \$9,800/ton, per [CITATION] for longline caught bigeye, a reasonable assumption given the apparent inelastic nature of bigeye prices [CITATION]. The payments to skipjack interests required to accept accept a bargain was calculated as the NPV of the of skipjack revenues under FAD removal, compared to the NPV of skipjack revenues under BAU. A 5% discount rate was applied in all scenarios.
+
+```{r future-projections}
+
+
+sq_catch <- status_quo$catch_at_fleet %>%
+  mutate(year = floor((quarter - 1) / 4 + 1)) %>%
+  group_by(year, fleet) %>%
+  summarise(catch = sum(catch)) %>%
+  ungroup() %>%
+  filter(year == min(year) | year == (max(year) - 1))
+
+
+catch_loss <- sq_catch %>%
+  filter(fleet == 'LL') %>%
+  spread(year,catch) %>%
+  mutate(dif = `1` - `50`,
+         rev_dif = ((dif * bigeye_price) / 1e6) %>% round(2))
+
+
+bau_revenue <- round(catch_loss$`50`* bigeye_price / 1e6,2)
+
+msy_revenue <- round(msy * bigeye_price / 1e6,2)
+
+msy_change <-  catch_loss <- sq_catch %>%
+  filter(fleet == 'LL') 
+
+
+```
+
+Under BAU our model of the fishery estimates that the bigeye stock will be driven down to a stock status of `r round(sq_status$ssb_v_ssbmsy,2)` SSB/SSB~MSY~, resulting in a an estimated loss equilibrium annual loss of \$`r catch_loss$rev_dif` million in annual revenues for the targeted bigeye fishery, relative to current levels. What then would be the economic consequences of attempting to rebuild the bigeye population closer to a level of SSB/SSB~MSY~ = 1? Catches of MSY for the bigeye longline fleet would produce revenues of \$`r msy_revenue` million, an a `r percent(msy_revenue/bau_revenue)`% increase in revenues relative to equilibrium revenues under BAU. 
+
+<!-- Catches of targeted longline bigeye could be reduced to achieve this outcome, but achieving a stock size of  SSB/SSB~MSY~ = 1 would require a XX% reduction in targeted bigeye catch, producing a net loss in revenues for the longline fleet, relative to BAU, of XX. -->
+
+Can our incentive-based solution provide an economically beneficial path towards fixing the future of bigeye? Suppose that FADs were completely removed from the WCPO purse seine fishery. Our model estimates that complete removal of purse seine FAD fishing from the WCPO purse seine fishery could result in a bigeye stock size of `r max(purchases$ssb_v_ssbmsy) %>% round(1)` SSB/SSB~MSY~, a significant gain for the population. We estimate this increase in the bigeye stock would produce an increase of \$ `r (max(purchases$npv_benefits) / 1e9) %>% round(1)` billion in NPV of revenues for the targeted bigeye fishery. These benefits would primarily flow to countries such as Japan, where the primary consumers of longline caught bigeye reside. However, complete removal of FADs from the WCPO purse seine fishery would result in a net loss in revenues valued at \$ `r (max(purchases$npv_costs) / 1e9) %>% round(1)` billion, about `r (((max(purchases$npv_costs) / 1e9) %>% round(1)) / ((max(purchases$npv_benefits) / 1e9) %>% round(1))) %>% signif(1)` times the benefits in added bigeye revenues, with these losses primarily affecting countries such as Papua New Guinea, the Philippines, and the USA (Fig. \@ref(fig:conservation-plot)). Therefore, while our model estimates complete removal of FAD-associated skipjack purse seine fishing in the WCPO would substantially improve the future health of the bigeye stock, the direct economic costs of achieving this conservation gain would far outweigh the direct economic benefits (Table. \@ref(table:sum-table)). Such an outcome, if implemented via standard command and control regulation would clearly not pass any benefit/cost analysis test and was the outcome of concern to Coase.
+
+This analysis allows us to understand why the WCPFC has struggled to achieve conservation goals for the WCPO bigeye fishery: While all else being equal all parties would prefer to not to overfish bigeye, practical solutions to overfishing, either regulatory reductions in targeted or bycatch catch, or our incentive based solution, would produce substantial net economic losses, at least as measured by direct fishery benefits. However, while complete removal of FADs from the WCPO would not to provide net direct economic benefits, our proposed incentive based framework is capable of improving on BAU, by targeting hotspots of juvenile bigeye bycatch.
+
+We estimate that the fishery benefits (in the form of increased future catches of bigeye) of FAD removal could afford to pay for removal of `r 100*purchases$p_fad[which(purchases$npv_surplus < 0)[1] - 1] %>% round(1)`% of FAD days currently reported in the WCPO purse seine fishery, reducing the amount of bigeye caught by \$`r  100*(purchases$bet_saved[which(purchases$npv_surplus < 0)[1] - 1] / sum(bet_dat$catch[bet_dat$year == max(bet_dat$year)])) %>% round(2)`\$% ($`r purchases$bet_saved[which(purchases$npv_surplus < 0)[1] - 1]`$ tons). We estimate this reduction in FAD-associated bigeye catch would result in an increase in stock status to `r purchases$ssb_v_ssbmsy[which(purchases$npv_surplus < 0)[1] - 1] %>% round(2)`, SSB/SSB~MSY~, leaving the stock substantially overfished (Fig. \@ref(fig:conservation-plot)). It is critical to note though that this gain in conservation leaves the stock, the bigeye fishery, and the skipjack fishery as well off, if not better, than under BAU.
+
+```{r sum-table}
+
+purchases %>%
+  mutate(rounded_s = round(ssb_v_ssbmsy,1)) %>%
+  group_by(rounded_s) %>%
+  summarise(Benefits = max(npv_benefits),
+            Costs = max(npv_costs),
+            Surplus = Benefits - Costs,
+            `Percent of FADs Removed` = paste0(round(max(p_fad) * 100),'%')) %>%
+  mutate(Benefits = paste0('$', prettyNum(Benefits, big.mark = ',')),
+         Costs = paste0('$', prettyNum(Costs, big.mark = ',')),
+         Surplus = paste0('$', prettyNum(Surplus, big.mark = ','))) %>%
+  rename(`SSB/SSBmsy` = rounded_s) %>%
+  kable(caption = 'NPV of revenue benefits (increases in bigeye catch) and revenue costs (losses in skipjack catch) required to achieve target levels of SSB/SSBmsy')
+
+purchases %>%
+  mutate(rounded_s = plyr::round_any(ssb_v_ssbmsy,.1)) %>%
+  group_by(rounded_s) %>%
+  summarise(Benefits = signif(mean(npv_benefits),1),
+            Costs = signif(mean(npv_costs),1),
+            Surplus = Benefits - Costs,
+            `Percent of FADs Removed` = paste0(round(max(p_fad) * 100),'%')) %>%
+  mutate(Benefits = paste0('$', prettyNum(Benefits, big.mark = ',')),
+         Costs = paste0('$', prettyNum(Costs, big.mark = ',')),
+         Surplus = paste0('$', prettyNum(Surplus, big.mark = ','))) %>%
+  rename(`SSB/SSBmsy` = rounded_s) %>%
+  kable(caption = 'NPV of revenue benefits (increases in bigeye catch) and revenue costs (losses in skipjack catch) required to achieve target levels of SSB/SSBmsy')
+
+```
+
+
+
+```{r conservation-plot, fig.cap='Net present value (millions $US) of bigeye surplus (y-axis) plotted against equilibrium spawning stock biomass relative to spawning stock biomass that would produce maximum sustainable yield (x-axis). Color of points shows percent of FAD days purchased. Green area and number highlight the maximum SSB/SSBmsy that could be produced by surpluses generated by preventing bigeye overfishing.'}
+
+new_conservation_plot
+
+```
+
+We have so far focused exclusively on economic costs and benefits as measured by fishing revenues to the the targeted skipjack and bigeye fleets (though we do not account for the on-shore fishery sector, such as processors). This does not account for other measures of economic value produced by bigeye tuna, for example cultural value to the Japanese market [@Mikyake2010], the role of bigeye tuna in the health of the broader WCPO ecosystem [@Cox2002], or the intrinsic value placed by people on these pelagic predators. These other forms of economic value certainly are produced by bigeye, but are also extremely challenging to measure. However, under our framework we can ask, how large must these non-market values of bigeye tuna be in order for the total (market and non-market) economic gains of bigeye conservation outweigh the direct economic costs to the skipjack fishery?
+
+Our analysis suggests that direct market benefits could pay for modest conservation gains on their own (Fig. \@ref(fig:conservation-plot)). Beyond that point, in order for increased bigeye conservation to provide a net economic benefit to society the non-market value must be at least as large as the direct market losses required to reach a conservation goal. So, we can estimate the required minimum non-market value as the magnitude of the direct-market deficit created by removing a given number of FAD days from the system. We estimate that complete removal of FAD days would require that the indirect value in the fishery have a NPV of \$ `r (-min(purchases$npv_surplus) / 1e9 ) %>% round(0) ` billion (Fig. \@ref(fig:tax-plot)-A). What tools are available to incorporate these indirect benefits into the markets for bigeye and skipjack?
+
+Following the “beneficiary pays” principles this study is based on, suppose that a tax could be levied on consumption of longline captured bigeye tuna, the proceeds of which would go towards funding the removal of FAD fishing from the skipjack purse seine fleet. Or, conversely suppose that a price premium were assigned to certified FAD-free skipjack tuna. The size of the tax/premium a consumer would be willing to pay reflects their intrinsic value in the future of the bigeye fishery. How large would this premium have to be to make up for the deficit in the direct market benefits generated by rebuilding the future bigeye stock to a desired level?
+
+bigeye consumers would need to place an extremely high value on longline-caught bigeye to achieve substantial conservation gains, up to a `r (max(purchases$required_tax) * 100) %>% round(0)`% tax to achieve an SSB/SSB~MSY~ of `r max(purchases$ssb_v_ssbmsy) %>% round(1)`. The price premium on free-school skipjack is much lower though; our model estimates that a `r (max(purchases$canned_premium) * 100) %>% round(0)`% price premium on free-school caught skipjack tuna would be sufficient to fund the complete removal of FAD fishing from the purse seine fishery (Fig. \@ref(fig:tax-plot)). Note that the required price increase or tax is zero for the levels of conservation for which the purely market-based benefits of conservation can pay for the market-based costs, as shown in Fig.\@ref(fig:conservation-plot). 
+
+<!-- [use the new numbers here—I do not think that the combined tax revenues for BET in Japan and canned SKJ in Thailand can fully cover this] -->
+
+XX FIX THIS SECTION XX
+The advantage of using consumer conservation tax revenues from a 10% tax on fresh and frozen tuna in Japan and 10% tax on canned tuna in Thailand is lower transaction costs relative to restricting the bigeye longline fleet directly. The number of longline vessels in the WCPO makes this a difficult task. By contrast the Japanese fresh and frozen tuna industry is highly concentrated with a single large distributor who could implement the tax [citation]. Moreover, Japanese consumers have been willing to pay conservation taxes in the past, e.g. a XX% tax on XX [citation]. Finally, the low elasticity of demand for fresh and frozen tuna, suggests that the quantity demanded would not fall much should the price rise due to a conservation tax.  Similarly, there are XX major processors of canned tuna in Thailand , who sell XX% to the US, UK, and EU markets. These processors also could levy the tax. Consumers in these markets have also been responsive to conservation taxes, such as the Dolphin-Free label, and elasticities of demand are low, at XX.
+
+```{r tax-plot, fig.cap='Percent price premium on free-school skipjack products (A) and percent tax on longline caught Bigeye products (B) required to to achieve a given spawning stock biomass relative to spawning stock biomass that would produce maximum sustainable yield. Color of points shows percent of FAD days purchased.'}
+
+new_premium_facet_plot
+
+```
+
+These results hinge on comparing expected bigeye revenues under FAD removal to an overfished BAU state, derived from extending currently observed levels of fishing mortality in the bigeye fishery. This BAU scenario does not account for the possibility of a threshold population size for bigeye tuna, below which the population might enter a new stable state preventing recovery. Such effects have been observed in other species, e.g. Atlantic cod (*Gadus morhua*), winter skate (*Leucoraja ocellata*), and bocaccio (*Sebastes paucispinis*) [@Hutchings2015] (though we would note that these effects are hard to detect and Pacific bluefin tuna, a relatively similar species to bigeye, is reported to be at xx% of unfished biomass and has not outright collapsed). As a thought experiment to address this concept, suppose that the BAU scenario was guaranteed to immediately result in the extinction of bigeye tuna, meaning that the NPV of the bigeye fishery under BAU would be $0. Suppose as well that removal of even one day of FAD-associated purse seining would guarantee the survival of the species, and produce the same expected stream of revenues as used to estimate the surpluses in Fig.\@ref(fig:conservation-plot). This is of course an unrealistic scenario; a proper accounting would make extinction probability a function of stock size over time, but comparing certain extinction to certain persistence provides an upper bound on the market benefits of preventing extinction and as such is a useful exercise.
+
+Under this “extinction under BAU” scenario, the maximum economic benefit to the targeted bigeye fishery jumps to \$ `r (max(purchases$npv_extinction_surplus) / 1e9) %>% round(1)` billion, and our proposed incentive-based solution would make rebuilding the bigeye population up to over `r purchases$ssb_v_ssbmsy[which(purchases$npv_extinction_surplus <0)[1] - 1]` SSB/SSB~MSY~ economically viable. However, even compared to a future in which bigeye tuna have been driven extinct, the economic costs to the skipjack fishery of complete FAD removal outweigh the direct economic gains to the bigeye fishery by over \$ `r  -(min(purchases$npv_extinction_surplus)/1e9) %>% round(1)` billion (Fig. \@ref(fig:extinction-plot)).
+
+```{r extinction-plot, fig.cap = 'Net present value of preventing extinction (assuming BAU causes extinction of bigeye). Color of points shows percent of FAD days purchased. Green area and number highlight the maximum SSB/SSBmsy that could be produced by surpluses generated by preventing bigeye overfishing'}
+
+new_extinction_plot
+
+```
+
+# Discussion
+
+<!-- NOTE: COULD INCLUDE A DISCUSSION OF MEY HERE, POITING TO @Grafton2012 which says that Bmey is greater than Bmsy, but point out here that actually, once you account for transaction costs, given current technology, Bmey is less than Bmsy.  -->
+
+<!-- Why would anyone push back on the provision of a public good? -->
+
+<!-- XX Make clear that reforming targetted along won't fix the problem -->
+
+<!-- XX put in number of countries and vessels are involved in the longline fishery, to show how hard it would be to directly regulate the the longline fleet. Jump over the longline fleet and target the Skipjack side of things. The coordination problem of even voting in their own self interest. And, this is just the commercial side the coin, there's also a ton of small scale fisheries.  -->
+
+<!-- Transaction costs as impediment to reform -->
+
+
+<!-- MECHANISMS FOR CONSERVATION PAYMENTS ARE CRITICAL IF WE WANT TO RELY ON ECONOMIC INCENTIVES TO SOLVE THE PROBLEM -->
+
+<!-- COST BENEFIT RATIO HAS TO BE LESS THAN ONE FROM A REGULATORY PERSPECTIVE  -->
+
+<!-- FIND THE MOST EFFECTIVE WAY TO PROVIDE COMPENSATION FOR LOSERS  -->
+
+<!-- REFERENCE IDEA THAT MEY GREATER THAN MSY IN THE REGION, BUT POINT OUT THAT GIVEN TECH [CITE DALE] AND MULTISPECIES INTERACTIONS [CITE MATT], MEY CAN ACTUALLY BE LESS THAN MSY -->
+
+<!-- Is MEY the way in? Something like this. The open access nature of of fisheries presents both a challenge and an opportunity for management. Left unregulated, fisheries can often become economic and ecological disasters, as new entrants race to capture profits until all economic gains are exhausted. However, since open-access dynamics result in dissipation of profits, rebuilding fisheries to higher stock sizes not only produces conservation benefits, but also economic gains. This allows fisheries reform to potentially be a win-win for both conservation and fisheries stakeholders. In fact, there is evidence that the stock size that produces "maximum economic yield" (MEY) may be higher than the stock size that produces "maximum sustainable yield" (MSY) so long as costs rise sufficiently as stock size decreases [@Costello2016; CITATIONS]. This phenomenon has contributed to a growing push towards utilizing economic incentives to achieve sustainable fisheries management, the logic being that if fishermen are provided the incentives and institutions to maximize profits through property rights, biological sustainability will follow. -->
+
+<!-- However, much of the theory and thinking behind this idea of MEY is based on modeling and data from single species fisheries. Multispecies fisheries management poses a different challenge though. Fishermen and managers no longer are charged with managing one species, but rather a portfolio of species. Often in these cases, fishermen are unable to perfectly determine their catch composition, resulting in unpredictable and often unintended catch levels of different species. bigeye tuna in the Western Central Pacific Ocean (WCPO) provides a clear example of this problem. bigeye are targeted by longline fishermen, primarily for the lucrative Japanese sashimi market. However, nearly 50% of the annual catch of bigeye comes in the form of juveniles accidentally caught in the massive purse seine fishery for Skipjack tuna that occurs in the same region. Management is then faced with a challenge; maximizing returns from the Skipjack fishery may jeapordize the future of bigeye, but protecting bigeye may harm the economic viability of the Skipjack fishery. We ask whether an incentive based solution can overcome this challenge and provide economic and ecological benefits to both of these fisheries. -->
+
+The last several decades have seen a growing desire to leverage economic outcomes to achieve conservation goals [CITATIONS]. Rather than viewing conservation and economic goals as a zero-sum game, researchers, stakeholders, and managers have sought to develop economic instruments that achieve conservation outcomes while simultaneously providing economic benefits. This goal has often been pursued by restructuring incentives in order to increase economic value [e.g. through the allocation of Individual Transferable Quotas (ITQs) in fisheries, @grafton1996], or through proper accounting of the ecosystem services that would be provided by a conservation action [e.g. full accounting of the downstream benefits of watershed restoration CITATION].
+
+These incentive-driven solutions have become a critical component of the global conservation toolkit, and in many cases have clear advantages over more “traditional” command-and-control strategies, since they allow actors to find the most efficient strategy for satisfying the incentives provided by a particular strategy. However, there is no guarantee that a purely market-driven solution will provide substantial conservation benefits; while in some instances economics and conservation may go hand-in-hand [e.g. Maximum Economic Yield, @Grafton2010], in other cases a sub-optimal (from the perspective of stock size) conservation outcome may still provide the greatest direct net economic benefit.
+
+In the case of bigeye tuna in the WCPO, the 2014 estimates of fishing mortality project a grim future for this species, with depleted stock sizes and an economically depressed fishery. While new data has changed the outlook, at the time business as usual would likely create a “lose-lose-win’ outcome, where both the stock and longline fleet suffer, but the purse seine fleet is unaffected or minimally affected. What solutions would have been available to change the trajectory of this fishery? Managers might simply ban FAD use by the WCPO purse seine fleet, a principal driver in perceived historic bigeye tuna overfishing. This would certainly provide ecological benefits to the bigeye stock, and economic benefits to the targeted bigeye longline fishery, but at the expense of severe economic costs to the skipjack fleet, producing a "win-win-lose"" outcome between the stock, bigeye fleet, and skipjack fleet.
+
+Our proposed incentive-driven solution, in which the “beneficiaries” of bigeye tuna conservation (in this case measured as the targeted longline fishery) compensate the skipjack purse seine fleet for economic losses induced to produce bigeye benefits, provides an alternative path forward. Our results show that such a program may be able to provide an improvement in the bigeye population and increased revenues for the bigeye fleet while also compensating the skipjack fleet for expected losses, producing a "win-win-win"" scenario for the bigeye stock and the two fishing fleets. Clearly this is a preferable outcome to the BAU scenario, and from the perspective of direct net economic benefits, distributing costs and benefits via this strategy produces a preferable outcome to a command-and-control option as well.
+
+However, the direct market benefits (in the form of increase targeted bigeye catches), only produces marginal conservation gains, rebuilding of the future bigeye stock to `r purchases$ssb_v_ssbmsy[which(purchases$npv_surplus < 0)[1] - 1] %>% round(1)` SSB/SSB~MSY~ (under the assumptions of the 2014 assessment), leaving the bigeye stock and fishery better off than under BAU, but still overfished in the long-run. Removing enough days of FAD fishing from the skipjack purse seine fleet to rebuild the bigeye population closer to a healthy level would cost the longline fleet more than the expected economic benefits that that rebuilding would be expected to produce. Under this “beneficiary pays” system, the bigeye fleet would be economically better off with a still overfished bigeye stock. Achieving further conservation gains then requires a mechanism for conservation interests to express their preferences in the market.
+
+Our analysis does not identify what the indirect value of bigeye is, but it does provide a benchmark for how large it would have to be to achieve particular conservation goals. If the conservation sector were interested in simply writing a check to the purse seine fleet in order to remove FADs and improve bigeye stock status, our results suggest that complete removal of FAD fishing would result in an expected SSB/SSB~MSY~ of  `r max(purchases$ssb_v_ssbmsy) %>% round(1)`, at a cost of \$`r (min(purchases$npv_surplus)/1e9) %>% round(1)` billion to conservation interests (representing the expected net present value of lost revenue to the skipjack fishery from complete removal of FADs, factoring in the amount already paid by the bigeye fleet). Alternatively, conservation interests could fund these costs through an `r (max(purchases$required_tax) * 100) %>% round(0)`% tax on longline landed bigeye, or by a `r (max(purchases$required_tax) * 100) %>% round(0)`% price premium applied to free-school skipjack tuna (or combinations of the two).
+
+Many assumptions are required to achieve these results. The biological operating model is a simplification, which while tuned to be a good approximation of the model used for management (see SM for description of model tuning), does not capture important details such as natural variations in recruitment and movement rates, to name two simple and important omissions. The economic model does not account for elasticity of prices in response to supply, fleet responses to shifting prices, or multi-species interactions across different tuna species. However, these omissions in total positively bias the viability of our proposed incentive based solution, and so our results should be viewed as an optimistic assessment of this beneficiary-pays system to resolve the problem of bigeye overfishing (since in reality any benefits would be much more uncertain and as such even less valuable). Even under the optimistic assumptions of this model, the economic barriers to successful reform remain clear, demonstrating why the problem of bigeye overfishing has persisted to this day, as well as the usefulness of this framework for highlighting the root causes, and most viable solutions, to the continued over-exploitation of bigeye tuna.
+
+The past decades have seen remarkable conservation successes, driven by technological innovation [e.g. CFCs CITATION], effective regulation [@hilborn2014;@melnychuk2016], and market solutions [Acid rain reduction CITATION xx didn't we cite this as a bad example of command and control earlier?XX, Rights Based Fisheries Management , good PES example CITATION]. Many environmental problems persist though, in large part driven by imbalances in costs and benefits among parties. In these scenarios, regulatory solutions are likely to struggle due to political resistance and high enforcement costs, and traditional market driven solutions may not provide the conservation benefits desired by all parties. In the case of the WCPO bigeye fishery, we see first that the strong imbalance in cost and benefits among fishery stakeholders stands as a barrier to fisheries reform, and that the incentive-based mechanism we propose could improve outcomes for the bigeye population, but still falls well short of common biological reference points. 
+
+
+While the updated assessment suggests a reduced need for management intervention, management failed for years to reduce overfishing when they perceived there was a problem, and our analysis both demonstrates why this was and demonstrates a process for resolving these barriers. We demonstrate that providing an opportunity for conservation interest to participate directly in an incentive based system, either through direct purchase of FAD days or through mechanisms such as price premiums for FAD-free skipjack, can dramatically improve conservation outcomes (providing conservation interests place sufficient value in achieving higher bigeye population sizes), while helping distribute benefits and costs appropriately. For these kinds of intractable problems, it is critical to identify mechanisms that reduce the cost-benefit ratio of reform, through for example effective markets. It is also important to acknowledge that while in many cases, conservation and economic benefits go hand-in-hand, in others tradeoffs may exist, as our method suggests might have been the case for WCPO bigeye tuna. Methods such as ours help us identify where these tradeoffs exist, and design incentive compatible solutions that allow for improved, if imperfect, outcomes for this class of persistent environmental problem.
+
+# Methods
+
+All data relating to bigeye and skipjack catches and effort by space, time and gear, were acquired from the [WCPFC online portal](https://www.wcpfc.int/node/4648), accessed on XX.
+
+Projected costs and benefits resulting from removal of a given number of FADs from the WCPO skipjack fishery were build around an age-structured, multi-"fleet" (longline, FAD-associated purse seine, and free-school purse seine) population model for the bigeye tuna population. Where possible, parameters (growth rates, recruitment dynamics, fleet sensitivities) were drawn directly from the most recent stock assessment for bigeye tuna in the WCPO [@Harley2014]. We estimated the unfished number of recruits and historic fishing mortality rates by fleet in order to best match the observed historic catches by fleet and bigeye tuna population depletion reported by @Harley2014. This model provides us with a simplified representation of the bigeye tuna fishery in the WCPO (Table \@ref(table:pop-table)), which we use for simulation of fishery outcomes under alternative scenarios (See SM for detailed explanation and diagnostics of model tuning).
+
+```{r pop-table}
+
+# Insert table of population parameters, along the lines of
+#
+
+```
+
+| Variable | Value | Source |
+-----------|-------|--------|
+| Steepness| 0.8   | @Harley2014|
+
+The proposed incentive based solution requires estimating the expected changes in catch resulting from removing FADs from a given observation of FAD fishing. While some literature estimates of the "FAD effect" are available [CITATION], they are not at a sufficient resolution for our needs. Therefore, we exploited the data available from the WCPFC [CITATION] to estimate a model of CPUE as a function of spatio-temporal covariates (year, month, and location of fishing, as well as sea surface temperature data obtained from CITATION) and FAD use. We used data from 2000 onward, to isolate the model to the more recent technology of the fishery (though results are largely insensitive to this choice). The model was fit using a random forest using the ranger package [@wright2017] in R [@RCoreTeam2017]. Tuning parameters for the random forest were determined through model comparison in the `caret` package [@Kuhn2018] A random forest was selected over linear regression methods since the primary goal of this model is predictive power, which random forests are explicitly designed to maximize, and since the mechanisms by which spatio-temporal covariates and FAD use interact to affect catch rates are likely to be highly complex and non-linear, limiting the ability of manually designed linear regression to adequately represent the system. However, while use of the random forest substantially out-performs linear regression models selected through AIC in terms of out-of-sample predictive power, the overall results of the paper are nearly identical regardless of the use of random forest or linear regression.
+
+The random forest itself was fit as a hurdle or "delta" model, in the manner of [@Pennington1983; @Lo1992], due to the need to estimate both the probability of detection, and then the CPUE conditional on detection. Each model contains the same covariates. The first model estimates the probability of catching any tuna on a given fishing event. The second model, fit only to the observations for which CPUE > 0, is tuned to predict the observed CPUE. The net expected (E) CPUE as a function of spatio-temporal covariates and FAD use is then predicted as.
+
+$$ E(CPUE) = P(CPUE > 0)E(CPUE|CPUE >0) $$
+The out-of-sample R^2^ of the forest is `r bet_model_comp$seen_forest$finalModel$r.squared %>% last() %>% round(2)` for bigeye, `r skj_model_comp$seen_forest$finalModel$r.squared %>% last() %>% round(2)` for skipjack
+
+```{r varimp-plot, fig.cap='Variable importance of covariates included in random forest analysis', include = TRUE, eval = FALSE}
+
+ bet_importance <- ranger::importance(bet_model_comp$seen_forest$finalModel) %>% 
+  broom::tidy() %>% 
+  mutate(names = fct_reorder(names, x))
+
+bet_importance %>% 
+  filter(x > 0) %>% 
+  ggplot(aes(names, x)) + 
+  geom_col() + 
+  coord_flip() + 
+  labs(y = "Importance Score", x = "")
+
+```
+
+```{r fit-plot, fig.cap = 'Mean Observed (red) and predicted (blue) catch per unit effort of FAD associated bigeye over time. Predicted values are produced by random forest. Grey shaded areas show months of FAD closures'}
+
+closed_frame <- bet_model_comp$model_comp %>%
+    filter(month == 7, year > 2008) %>% 
+  mutate(numyear = as.numeric(year_month),
+         max_cpue = max(catch/days)) %>%
+  select(year, month, year_month,max_cpue)
+
+
+bet_cpue_fit_plot <- bet_model_comp$model_comp %>%
+  mutate(cpue = catch / days,
+         cpue_hat = exp(true_pred)) %>%
+  filter(method == 'random-forest', year > 2005) %>%
+  group_by(year_month, catch_source, method) %>%
+  summarise(mean_cpue = mean(cpue)) %>%
+  # filter(method == 'random-forest') %>%
+  ggplot() +
+  geom_rect(data = closed_frame,
+            aes(
+              xmin = year_month,
+              xmax = year_month + 2 / 12,
+              ymin = 0,
+              ymax = 3),
+            fill = 'grey',
+            alpha = 0.05) +
+  geom_line(aes(year_month, mean_cpue, color = catch_source)) +
+  scale_color_discrete(labels = c("Observed","Predicted"), name = '') + 
+  labs(y = "Mean catch per unit effort")
+
+bet_cpue_fit_plot
+
+```
+
+
+This model allows us to estimate the expected CPUE of both skipjack and bigeye (species *s*) at a location *i*, month *m*, and year *y*, of fishing as a function of the type of FAD used *f*. For each FAD fishing instance then, we estimate the FAD effect by comparing the estimated CPUE resulting from setting FAD type to "Unassociated" (UNA) to the estimated CPUE occurring with FAD use of type *f*
+
+$$ FadEffect_{s,i,m,y,f} = \frac{E(CPUE)_{s,i,m,y, f = UNA}}{E(CPUE)_{s,i,m,y,f}}    $$
+
+The actual change in the catch of species *s* from FAD removal, holding effort constant, is then calculated by
+
+$$\hat{catch}_{s,i,m,y,f = UNA} = catch_{s,i,m,y,f}FadEffect_{s,i,m,y,f}$$
+
+Since our goal is to project the effect of FAD removal into the future, we calculated the mean expected FAD-free catch at a given location in a given month
+
+$$\bar{catch}_{s,i,m, f = UNA} = \frac{1}{Y}\sum_{y = 1:Y}\hat{catch}_{s,i,m,y,f = UNA}$$
+
+$\bar{catch}$ represents then the expected catch for species *s* resulting from removing FAD fishing at a given location *i* in a given month *m*.
+
+The amount of tuna "saved" (in the case of bigeye) or "lost" (in the case of skipjack) is then simply calculated as
+
+$$\Delta{Catch}_{s,i,m,f} = (catch)_{s,i,m,f} - \bar{catch}_{s,i,m, f = UNA}$$
+
+We then calculate the "bigeye ratio" of each observation as
+
+$$Ratio_{i,m,f} = \frac{\Delta{Catch}_{s = bet,i,m,f}}{\Delta{Catch}_{s = skj,i,m,f}} $$
+
+Each fishing instance of *i*, *m*, *f* can then be ranked in descending order of *Ratio*. The total amount of bigeye saved / skipjack lost from removal of a given number of fad days is then simply the sum $\Delta{Catch}$ across the FAD fishing instances switch to free-school fishing.
+
+The final catch accounting step requires us to assign bigeye catches to each "fleet". The new bigeye catch for each FAD fishing fleet *F* is calculated as the sum of observed catches for *F*, less the sum of the observed catches of F for the *j* fishing instances from which FAD fishing is removed. The remaining BET catches ($\bar{catch}$) for the *j* switched instances are then assigned to the unassociated purse seine fleet. The net result then is for a given number of FAD days purchased, catches in FAD associated fleets are reduced accordingly, and catches for the FAD unassociated fleet is increased accordingly.
+
+We then use these adjusted catches to estimate the economic and biological effects of removing *j* instances of FAD fishing from the fishery. To do that, we translate the new catches by fleet into new fishing mortality rates by fleet, by solving the Baranov catch equation such that estimated fishing mortality rates in each fleet produce the newly adjusted catches by fleet estimated by the prior step.
+
+For a given number of FAD fishing instances *j* removed, we utilize a standard age-structured population model with Beverton-Holt recruitment to project the population forward in time, holding fishing mortality rates constant. When *j* = 0, this amounts to projecting a BAU scenario, in which fishing mortality rates are held constant at their most recently observed values. For each *j* > 0, we then estimate a future state of the fishery holding the appropriately adjusted fishing mortality rates constant.
+
+<!-- With these biological projections in hand, we then estimate the economic potential of the "bargain" used to purchase *j* fishing instance. Estimating the willingness to pay requires estimating the change in bigeye longline revenues under purchases of a given number of FAD days, relative to the expected revenues under BAU. The willingness to pay was calculated as the net present value of the difference in longline bigeye revenues under the "bargain", compared to the revenues under BAU. The willingness to accept was calculated as the discounted stream of payments made to the skipjack fleet (assuming that the amounts of those payments stay constant over time).  -->
+
+Determining the potential for a payment for ecosystem services solution to bigeye overfishing  of this solution requires establishing a "willingness to pay" by bigeye interests (defined here as targeted bigeye fishing by longliners), and a "willingness to accept" of the skipjack interests (skipjack fishing by FAD-associated or free-school purse seine). We measure the willingness to pay as the increase in revenues to the bigeye interests expected from the removal of a given number of FAD fishing events. The willingness to accept is the expected economic costs to skipjack interests of giving up a given number of FAD fishing events.
+
+$$payments_{n} = \sum_{t = 1}^{T} \frac{(revenue^{bet}_{j,t} -  revenue^{bet}_{j = 0,t}) -  (revenue^{skj}_{j,t} -  revenue^{skj}_{j = 0,t})}{(1 + r)^{t}}$$
+
+
+
+
+To summarize the key steps of the model:
+
+  1. Tune our bigeye tuna operating model (age structured and multi-fleet) to reflect the current depletion and fishing mortality of the bigeye tuna fishery estimated by the most recent stock assessment.
+
+  2. Fit two separate hurdle models estimating the expected CPUE for bigeye and skipjack tuna as a function of FAD use, along with relevant covariates. This takes into account both effect of FADs on the probability of catching any tuna, and conditional on catching something, the expected CPUE obtained.
+
+  3. Use the fitted models to estimate the expected changes in CPUE and therefore catch (holding effort constant) from moving a given observation in space and time of fishing from FAD to free-school purse seining, and therefore the expected reduction in bigeye bycatch and loss in skipjack catch.
+
+  4. Rank each observation of FAD associated purse seine fishing activity (defined by location and month of fishing) in the most recent year (2014) in descending order of the ratio of bigeye bycatch reduced to skipjack tuna lost
+
+  5. Sequentially change each observation of FAD associated purse-seine fishing from FAD to free-school. For each step, estimate the decrease in FAD associated purse-seine fishing mortality *f* that would produce the new, reduced, bigeye catch predicted by the regression. Also calculate the increase in free-school *f* that would produce the new free-school catch predicted from moving from FAD to free-school.
+
+  6. Using these new fishing mortality rates, project the bigeye population forward to equilibrium.
+
+  7. Calculate the "surplus" generated by a given number of FAD days switch to free-school days. Surplus is calculated as the net present value of the increase in bigeye revenues relative to business as usual bigeye fishing minus the cost of of the skipjack lost as a result of the switch from FADs for removal of *j* days of FAD-fishing. Note that we do not explicitly project the skipjack revenues, but rather assume that current losses in skipjack catch would continue indefinitely.
+
+  $$ Surplus_{n} = \sum_{t=0}^{T} ((revenue^{bet}_{n,t} - revenue^{bet}_{n = 0,t}) - (revenue^{skj}_{n=0,t} - revenue^{skj}_{n,t}))(1 + r)^{-t}$$
+
+  8. Compare the surplus generated to metrics of interest (e.g. B/B~msy~), and calculate the required increase in bigeye price required to make surplus $\geq$ 0.
+
+# Randoms
+
+```{r b-v-c, fig.cap='test'}
+
+purchases %>%
+  select(npv_benefits, npv_costs, p_fad) %>%
+  gather('npv_type', 'npv', -p_fad) %>%
+  ggplot(aes(p_fad, npv, color = npv_type)) +
+  geom_line(size = 2) +
+  scale_y_log10(labels = dollar) +
+  scale_x_continuous(labels = percent) +
+  scale_color_npg(labels = c('Bigeye Benefits','Skipjack Costs'))
+
+```
+
+Changes in catch
+
+
+```{r thing, fig.cap='Change in catch for fads'}
+
+
+bau_catch <- status_quo$catch_at_fleet %>%
+  filter(quarter == max(quarter), fleet == 'LL') %>%
+  {
+    .$catch
+  }
+
+purchases %>%
+  mutate(p_change_c = yield_surplus / bau_catch) %>%
+  ggplot(aes(p_fad, p_change_c)) +
+  geom_point() +
+  scale_x_continuous(labels = percent, name = 'Percent of FADs Bought') +
+  scale_y_continuous(labels = percent, name = 'Percent Increase in Catch')
+
+
+```
+
+Blah
+
+```{r thing2, fig.cap='thing'}
+
+bet_model_comp$model_comp %>%
+  mutate(species = 'Bigeye') %>%
+  bind_rows(skj_model_comp$model_comp %>%
+  mutate(species = 'Skipjack') ) %>%
+  filter(method == 'random-forest', year > 2008) %>%
+  mutate(cpue_hat = exp(true_pred),
+         cpue = catch / days,
+         `FAD Closure Months` = month %in% 7:9) %>%
+  group_by(`FAD Closure Months`,species,catch_source) %>%
+  summarise(mean_cpue = mean(cpue, na.rm = T),
+            mean_cpue_hat = mean(cpue_hat, na.rm = T)) %>%
+  ggplot(aes(`FAD Closure Months`, mean_cpue, fill = catch_source)) + geom_col(position = 'dodge') +
+  facet_wrap(~species, scales = 'free_y')
+
+
+```
+
+# Works Cited
+
+
+# notes
+
+when could you use Coase. might get concensus when resource is small and there is general agreemnt on what needs to be done. When a resource is broader spatially and more uncertain and parties are more hetergeneous. That concensus is goignt o be harder to get at. That is when a market could do well. **Coase removes the need for explicit concensus**. Cite plankton shares? 
+
+chatted with Nick, the bargain sets the obejctive. 
+
+no more than a page - equity issues 
+
+Undermines efficiency 

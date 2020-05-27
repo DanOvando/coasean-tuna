@@ -1,0 +1,117 @@
+---
+title: "coaseian-tuna-methods"
+output:
+  bookdown::word_document2: default
+---
+
+```{r setup, include=FALSE}
+
+fig_width <- 5
+fig_height <- 6
+fig_asp <- .75
+knitr::opts_chunk$set(echo = FALSE, message = F, warning = F, fig.width = fig_width,
+                      fig.height = fig_height)
+                      #dev = 'cairo_pdf')
+```
+
+```{r load run}
+library(broom)
+library(readr)
+library(scales)
+library(ggalt)
+library(pbapply)
+library(stringr)
+library(parallel)
+library(rstanarm)
+library(ggforce)
+library(ggrepel)
+library(ggsci)
+library(grid)
+library(ggExtra)
+library(knitr)
+library(viridis)
+library(extrafont)
+library(randomForest)
+library(tidyverse)
+library(here)
+
+extrafont::loadfonts()
+
+
+
+#library(extrafont)
+
+run_name <-  'v5.0'
+
+
+load(here("results",run_name,"coaseian_fad_bargain_figures.Rdata"))
+
+
+bigeye_price = 9800 # targeted bigeye price per unit weight(?)
+
+```
+
+# Methods
+
+
+All data relating to bigeye and skipjack catches and effort by space, time and gear, were acquired from the [WCPFC online portal](https://www.wcpfc.int/node/4648), accessed on XX.
+
+## Estimating FAD Effects
+
+<!-- Several papers have examined the effects of FADs on catch rates of various species, including skipjack and bigeye [@guillotreau2011;@forget2015]. However, since our analysis seeks to exploit fine-scale variation in FAD effects in space, time, and gear type, we require finer resolution results than presented in these previous studies. -->
+
+
+Our results require an estimate of the effect of moving from FAD fishing to free-school fishing on catch rates of skipjack and bigeye tunas by purse-seiners in the WCPO (which we will term 'FAD effects' from now on. We used a random forest [@breiman2001] model, implemented through the `ranger` package in the R language [@rcoreteam2018;@wright2017], to estimate FAD effects through a model of the form
+
+$$cpue_{s,i} = f(lat_i,lon_i,sst_i,month_i,year_i,country_i,fad_i) $$
+
+where *s* denotes species (e.g. bigeye), *i* is observation, *lat* is latitude, *lon* is longitude, *country* is the XX, and importantly `fad` is the type of FAD used (e.g. drifting, anchored, or free-school to indicate that no FAD was used).
+
+We trained the model on the years 2000 to 2016.  We omit the summer months (June:September) after 2009 from the model training because they provide us with a useful natural experiment to test the performance of our model. The WCPFC enacted summer FAD closures in beginning in 2009. This allows us to see whether our model can predict the changes in catch rates for bigeye and skipjack reported during the summer FAD closures, despite not being exposed to these data during the training period. 
+
+CPUE for both bigeye and skipjack drops in during the summer months (Fig.XX red points), and our model generally captures this trend, indicating that we are able to reasonably predict the reductions in CPUE resulting from FAD removals.
+
+<!-- (this is intended solely to explore the broad implications of FAD removal; much more detailed modeling would be required to make tactical decisions about specific FAD removal and compensation).  -->
+
+## Population Model
+
+We built an age-structured, multi-"fleet" (longline, FAD-associated purse seine, and free-school purse seine) population model for the bigeye tuna population in order to project the effects of FAD removal on the bigeye population. Where possible, parameters were drawn directly from @harley2014. We estimated the unfished number of recruits and historic fishing mortality rates by fleet in order to best match the observed historic catches by fleet and bigeye tuna population depletion reported by @Harley2014. This model provides us with a simplified representation of the bigeye tuna fishery in the WCPO, which we use for simulation of fishery outcomes under alternative scenarios (See appendix for detailed explanation and diagnostics of model tuning). 
+
+
+## Projecting FAD Removal
+
+Our proposed incentive based solution of FAD removal requires estimating the expected changes in catch resulting from removing FADs from a given observation of FAD fishing. The random forest model provides estimates of CPUE as a function of comparatives and FAD use. We calculate a FAD removal effect for each FAD associated set in the database by setting FAD to "free-school" for that observation (simulating the removal of the FAD for that observation)
+
+$$ FadEffect_{s,i} = \frac{E(CPUE)_{s,i, fad = free}}{E(CPUE)_{s,i,f}}    $$
+
+The actual change in the catch of species *s* from FAD removal, holding effort constant, is then calculated by
+
+$$\hat{catch}_{s,i} = catch_{s,i}FadEffect_{s,i}$$
+
+Since our goal is to project the effect of FAD removal into the future, we calculated the mean expected FAD-free catch at a given location in a given month
+
+$$\bar{catch}_{s,i,m, f = UNA} = \frac{1}{Y}\sum_{y = 1:Y}\hat{catch}_{s,i,m,y,f = UNA}$$
+
+$\bar{catch}$ represents then the expected catch for species *s* resulting from removing FAD fishing at a given location *i* in a given month *m*.
+
+The amount of tuna "saved" (in the case of bigeye) or "lost" (in the case of skipjack) is then simply calculated as
+
+$$\Delta{Catch}_{s,i,m,f} = (catch)_{s,i,m,f} - \bar{catch}_{s,i,m, f = UNA}$$
+
+We then calculate the "bigeye ratio" of each observation as
+
+$$ratio_{i} = \frac{\Delta{Catch}_{s = bet,i}}{\Delta{Catch}_{s = skj,i}}$$
+
+Defining a potential FAD fishing instance as the combination of latitude, longitude, month, and FAD type, we calculate the mean "bigeye ratio" at each location since 2008. Each instance of FAD associated fishing can then be ranked in descending order of *ratio*. The total amount of bigeye saved / skipjack lost from removal of a given number of fad days is then simply the sum $\Delta{Catch}$ of the FAD fishing instances switched to free-school fishing. We use the Baranov equation [@baranov1918] to convert the new catch for the *j* scenario into a fishing mortality rate. 
+
+<!-- The final catch accounting step requires us to assign bigeye catches to each "fleet". Suppose that we switch *j* observations from FAD fishing to free-school fishing. The new bigeye catch for each FAD fishing fleet *F* is calculated as the sum of observed catches for *F*, less the sum of the observed catches of *F* from which FAD fishing is removed. The remaining BET catches ($\bar{catch}$) for the *j* switched instances are then assigned to the free-school purse seine fleet. The net result then is for a given number of FAD days purchased, catches in FAD associated fleets are reduced accordingly, and catches for the FAD free-school fleet is increased accordingly. -->
+
+<!-- We then use these adjusted catches to estimate the economic and biological effects of removing *j* instances of FAD fishing from the fishery. To do that, we translate the new catches by fleet into new fishing mortality rates by fleet, by solving the Baranov catch equation [@baranov1918] such that the estimated fishing mortality rates in each fleet produce the newly adjusted catches by fleet estimated by the prior step. -->
+
+For a given number of FAD fishing instances *j* removed, we used our population model to project the effects of removing *j* FAD days from the WCPO forward in time (starting from our approximation of the most recent state of the Bigeye stock reported in @harley2014), holding the newly modified fishing mortality rates constant. When *j* = 0, this amounts to projecting a scenario in which fishing mortality rates are held constant at their most recently observed values. For each *j* > 0, we then estimate a future state of the fishery holding the appropriately adjusted fishing mortality rates constant.Given these future trajectories, we can then compare skipjack and bigeye fishing revenues in the scenario with FAD removals to those under BAU, providing an estimate the gains and losses to each fishery resulting from moving to free-school fishing. 
+
+<!-- Determining the potential for a payment for ecosystem services solution to bigeye overfishing  of this solution requires establishing a "willingness to pay" by bigeye interests (defined here as targeted bigeye fishing by longliners), and a "willingness to accept" of the skipjack interests (skipjack fishing by FAD-associated or free-school purse seine). We measure the willingness to pay as the increase in revenues to the bigeye interests expected from the removal of a given number of FAD fishing events. The willingness to accept is the expected economic costs to skipjack interests of giving up a given number of FAD fishing events. -->
+
+<!-- $$payments_{n} = \sum_{t = 1}^{T} \frac{(revenue^{bet}_{j,t} + revenue^{bet}_{j = 0,t}) -  (revenue^{skj}_{j,t} -  revenue^{skj}_{j = 0,t})}{(1 + r)^{t}}$$ -->
+
+<!-- To address this we used our model to simulate the population and fishery effects of sequentially converting FAD associated purse-seine fishing instances to free-school fishing, starting with the most skipjack-efficient FADs. Since the skipjack population is currently estimated to be well above SSB~MSY~, and catches below MSY, current catch rates are likely to be sustainable. We therefore do not model the trajectory of the skipjack population, but rather assume that current catches persist into the future.  We use this model to first simulate a business-as-usual scenario, in which fishing mortality rates in the longline, unassociated purse seine, and FAD-associated purse seine fleets for bigeye are held at their most recent estimates. We then extract estimates of bigeye stock size and longline bigeye fishing revenues over time under BAU. Next, we simulate the stock and revenue outcomes of incrementally removing FADs, starting with the most cost effective FAD (in terms of bigeye saved to skipjack lost), and sequentially removing increasingly "expensive" FADs. For each number of FAD fishing instances removed, we calculate the bigeye revenue surplus generated (the willingness to pay) as the the difference in net present value (NPV) of bigeye revenues under FAD removal compared to the NPV of bigeye revenues under BAU. We assume that prices for bigeye and skipjack stay constant at \$`r skipjack_price %>% prettyNum(big.mark = ',')`/ton for skipjack and purse seine captured bigeye, and  \$ `r bigeye_price %>% prettyNum(big.mark = ',')`/ton, per [CITATION] for longline caught bigeye, a reasonable assumption given the apparent inelastic nature of bigeye prices [CITATION]. The payments to skipjack interests required to accept accept a bargain was calculated as the NPV of the of skipjack revenues under FAD removal, compared to the NPV of skipjack revenues under BAU. A 5% discount rate was applied in all scenarios. -->
